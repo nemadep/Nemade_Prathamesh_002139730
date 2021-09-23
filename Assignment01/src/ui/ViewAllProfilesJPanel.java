@@ -25,6 +25,8 @@ public class ViewAllProfilesJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ViewAllProfilesJPanel
+     * @param person
+     * @throws java.io.IOException
      */
     public ViewAllProfilesJPanel(Person person) throws IOException {
         initComponents();
@@ -361,8 +363,8 @@ public class ViewAllProfilesJPanel extends javax.swing.JPanel {
                 .addComponent(profileImageJLabel)
                 .addGap(0, 0, 0)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSplitPane1)
                 .addContainerGap())
         );
 

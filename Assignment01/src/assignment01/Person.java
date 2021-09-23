@@ -27,6 +27,7 @@ public class Person {
     public String email;
     public String linkedinUrl;
     public String profilePicture;
+    public Date createdAt;
     private int ssnNumber;
     private int medicalRecordNumber;
     private String healthBeneficiaryNumber;
@@ -46,7 +47,7 @@ public class Person {
             isValid = Messages.NAME_EMPTY;
         } else if (name.length() < 2 || name.length() > 20) {
             isValid = Messages.NAME_CHARACTER_LIMIT;
-        } else if (!name.matches("[a-zA-Z]{2,20}")) {
+        } else if (!name.matches("[a-zA-Z ]{2,20}")) {
             isValid = Messages.GENERIC_MESSAGE;
         }
         return isValid;

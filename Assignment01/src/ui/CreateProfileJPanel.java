@@ -6,10 +6,8 @@
 package ui;
 
 import assignment01.Person;
-import java.awt.FlowLayout;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -23,13 +21,16 @@ import java.awt.Image;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import javax.swing.JFrame;
+import java.util.Date;
+import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
-import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+import static ui.MainJFrame.PROFILE_COUNT;
+import static ui.MainJFrame.allProfiles;
 
 /**
  *
@@ -41,17 +42,23 @@ public class CreateProfileJPanel extends javax.swing.JPanel {
     public static int PROFILE_HEIGHT = 180;
     Person person;
     JSplitPane splitSectionsPanel;
+    JLabel totalProfilesJLabel;
+    JList allProfilesJList;
 
     /**
      * Creates new form CreateProfileJPanel
      *
      * @param person
      * @param splitSectionsPanel
+     * @param totalProfilesJLabel
+     * @param allProfilesJList
      */
-    public CreateProfileJPanel(Person person, JSplitPane splitSectionsPanel) {
+    public CreateProfileJPanel(Person person, JSplitPane splitSectionsPanel, JLabel totalProfilesJLabel, JList allProfilesJList) {
         try {
             this.person = person;
             this.splitSectionsPanel = splitSectionsPanel;
+            this.totalProfilesJLabel = totalProfilesJLabel;
+            this.allProfilesJList = allProfilesJList;
             initComponents();
             newInitComponents();
         } catch (IOException ex) {
@@ -476,7 +483,6 @@ public class CreateProfileJPanel extends javax.swing.JPanel {
         ipAddressJField1JField.setBackground(new java.awt.Color(216, 220, 228));
         ipAddressJField1JField.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         ipAddressJField1JField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        ipAddressJField1JField.setText("10001");
         ipAddressJField1JField.setToolTipText("This is your identifier.");
         ipAddressJField1JField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
         ipAddressJField1JField.addActionListener(new java.awt.event.ActionListener() {
@@ -1368,8 +1374,7 @@ public class CreateProfileJPanel extends javax.swing.JPanel {
 
     public void newInitComponents() throws IOException {
         fieldsJSplitPanel.setDividerLocation((int) (0.3 * (new Dimension(Toolkit.getDefaultToolkit().getScreenSize()).width - 300)));
-        setProfilePicture("/Users/prathameshnemade/Downloads/Prathamesh.jpeg");
-        ipAddressJField1JField.setText(String.valueOf(person.profileId));
+        ipAddressJField1JField.setText(String.valueOf(MainJFrame.PROFILE_COUNT));
     }
 
     public void setProfilePicture(String path) throws IOException {
@@ -1704,26 +1709,36 @@ public class CreateProfileJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_licensePlateNoJField3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        System.out.println("name" + person.name);
-        System.out.println("profileId" + person.profileId);
-        System.out.println("address" + person.address);
-        System.out.println("dateOfBirth" + person.dateOfBirth);
-        System.out.println("telephoneAreaCode" + person.telephoneAreaCode);
-        System.out.println("telephoneNumber" + person.telephoneNumber);
-        System.out.println("faxAreaCode" + person.faxAreaCode);
-        System.out.println("faxNumber" + person.faxNumber);
-        System.out.println("email" + person.email);
-        System.out.println("linkedinUrl" + person.linkedinUrl);
-        System.out.println("getSsnNumber" + person.getSsnNumber());
-        System.out.println("getMedicalRecordNumber" + person.getMedicalRecordNumber());
-        System.out.println("getHealthBeneficiaryNumber" + person.getHealthBeneficiaryNumber());
-        System.out.println("getBankAccountNumber" + person.getBankAccountNumber());
-        System.out.println("getCertificateNumber" + person.getCertificateNumber());
-        System.out.println("getIpAddress" + person.getIpAddress());
-        System.out.println("getVehicleLicenseNumber" + person.getVehicleLicenseNumber());
-        System.out.println("getDeviceIdentifiers" + person.getDeviceIdentifiers());
-        System.out.println("getDeviceIdentifiers" + person.profilePicture);
+//        System.out.println("name" + person.name);
+//        System.out.println("profileId" + person.profileId);
+//        System.out.println("address" + person.address);
+//        System.out.println("dateOfBirth" + person.dateOfBirth);
+//        System.out.println("telephoneAreaCode" + person.telephoneAreaCode);
+//        System.out.println("telephoneNumber" + person.telephoneNumber);
+//        System.out.println("faxAreaCode" + person.faxAreaCode);
+//        System.out.println("faxNumber" + person.faxNumber);
+//        System.out.println("email" + person.email);
+//        System.out.println("linkedinUrl" + person.linkedinUrl);
+//        System.out.println("getSsnNumber" + person.getSsnNumber());
+//        System.out.println("getMedicalRecordNumber" + person.getMedicalRecordNumber());
+//        System.out.println("getHealthBeneficiaryNumber" + person.getHealthBeneficiaryNumber());
+//        System.out.println("getBankAccountNumber" + person.getBankAccountNumber());
+//        System.out.println("getCertificateNumber" + person.getCertificateNumber());
+//        System.out.println("getIpAddress" + person.getIpAddress());
+//        System.out.println("getVehicleLicenseNumber" + person.getVehicleLicenseNumber());
+//        System.out.println("getDeviceIdentifiers" + person.getDeviceIdentifiers());
+//        System.out.println("getDeviceIdentifiers" + person.profilePicture);
 
+//        person.createdAt = new Date();
+//        MainJFrame.PROFILE_COUNT++;
+//
+//        MainJFrame.allProfiles.add(person);
+////        System.out.println("add ses" + Arrays.toString(MainJFrame.allProfiles.toArray()));
+//        System.out.println("size------------" + MainJFrame.allProfiles.size());
+//        for (Person leave : MainJFrame.allProfiles) {
+//            System.out.println(leave.createdAt);
+//        }
+////        System.out.println("!@##$" + MainJFrame.allProfiles);
         if (person.name != null
                 && person.address != null
                 && person.dateOfBirth != null
@@ -1744,8 +1759,19 @@ public class CreateProfileJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Created successfully!!", "Create Profile", INFORMATION_MESSAGE);
             ViewAllProfilesJPanel viewAllProfilePanel;
             try {
+                person.profileId = PROFILE_COUNT;
+                person.createdAt = new Date();
+                allProfiles.add(person);
                 viewAllProfilePanel = new ViewAllProfilesJPanel(person);
                 splitSectionsPanel.setRightComponent(viewAllProfilePanel);
+                PROFILE_COUNT++;
+                totalProfilesJLabel.setText(String.valueOf(allProfiles.size()));
+                DefaultListModel model = new DefaultListModel();
+                allProfiles.forEach(profile -> {
+                    model.addElement(profile.profileId + " " + profile.name);
+                });
+                allProfilesJList.setModel(model);
+
             } catch (IOException ex) {
                 Logger.getLogger(CreateProfileJPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -1763,12 +1789,14 @@ public class CreateProfileJPanel extends javax.swing.JPanel {
     private void addressJField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_addressJField1FocusGained
         if (addressJField1.getText().equals("Address Line 1")) {
             addressJField1.setText("");
+            addressJField2.setText("");
         }
     }//GEN-LAST:event_addressJField1FocusGained
 
     private void addressJField2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_addressJField2FocusGained
         if (addressJField2.getText().equals("Address Line 2 ( Optional)")) {
             addressJField2.setText("");
+            addressJField1.setText("");
         }
     }//GEN-LAST:event_addressJField2FocusGained
 

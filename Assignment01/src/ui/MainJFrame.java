@@ -9,11 +9,13 @@ import assignment01.Person;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
-import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 
 /**
  *
@@ -21,8 +23,7 @@ import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
  */
 public class MainJFrame extends javax.swing.JFrame {
 
-    Person person = new Person();
-    Object[] allProfiles = {};
+    public static List<Person> allProfiles = new ArrayList();
     public static int PROFILE_COUNT = 1000;
 
     /**
@@ -48,6 +49,8 @@ public class MainJFrame extends javax.swing.JFrame {
         viewBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         totalProfilesJLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        allProfilesJList = new javax.swing.JList<>();
         interactionPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -60,7 +63,8 @@ public class MainJFrame extends javax.swing.JFrame {
         actionPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 10, 20, 10));
         actionPanel.setPreferredSize(new java.awt.Dimension(300, 449));
 
-        createBtn.setBackground(new java.awt.Color(38, 232, 139));
+        createBtn.setBackground(new java.awt.Color(1, 102, 204));
+        createBtn.setForeground(new java.awt.Color(255, 255, 255));
         createBtn.setText("Create a Profile");
         createBtn.setToolTipText("Press to create a profile.");
         createBtn.setBorderPainted(false);
@@ -74,7 +78,8 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        viewBtn.setBackground(new java.awt.Color(38, 232, 139));
+        viewBtn.setBackground(new java.awt.Color(1, 102, 204));
+        viewBtn.setForeground(new java.awt.Color(255, 255, 255));
         viewBtn.setText("View All Profiles");
         viewBtn.setBorderPainted(false);
         viewBtn.setFocusable(false);
@@ -91,7 +96,23 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel2.setText("Total Profiles created - ");
 
         totalProfilesJLabel.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        totalProfilesJLabel.setText("12");
+
+        allProfilesJList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        allProfilesJList.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                allProfilesJListFocusGained(evt);
+            }
+        });
+        allProfilesJList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                allProfilesJListMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(allProfilesJList);
 
         javax.swing.GroupLayout actionPanelLayout = new javax.swing.GroupLayout(actionPanel);
         actionPanel.setLayout(actionPanelLayout);
@@ -101,10 +122,14 @@ public class MainJFrame extends javax.swing.JFrame {
             .addComponent(viewBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(actionPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(totalProfilesJLabel)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addGroup(actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(actionPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(totalProfilesJLabel)
+                        .addGap(0, 40, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         actionPanelLayout.setVerticalGroup(
             actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,11 +138,12 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGroup(actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(totalProfilesJLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(40, 40, 40)
                 .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(viewBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(279, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE))
         );
 
         actionPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {createBtn, viewBtn});
@@ -163,27 +189,52 @@ public class MainJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void injectInitComponents() {
-        totalProfilesJLabel.setText(String.valueOf(allProfiles.length));
+        totalProfilesJLabel.setText(String.valueOf(allProfiles.size()));
+        DefaultListModel model = new DefaultListModel();
+        allProfilesJList.setModel(model);
     }
+
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
-        person.profileId = PROFILE_COUNT++;
-        CreateProfileJPanel createProfilePanel = new CreateProfileJPanel(person, splitSectionsPanel);
+        Person person = new Person();
+        CreateProfileJPanel createProfilePanel = new CreateProfileJPanel(person, splitSectionsPanel, totalProfilesJLabel, allProfilesJList);
         splitSectionsPanel.setRightComponent(createProfilePanel);
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
-        if (person.name == null) {
+        if (allProfiles.isEmpty()) {
             JOptionPane.showMessageDialog(this, "No Profiles created!!", "Error", ERROR_MESSAGE);
         } else {
             ViewAllProfilesJPanel viewAllProfilePanel;
             try {
-                viewAllProfilePanel = new ViewAllProfilesJPanel(person);
+                viewAllProfilePanel = new ViewAllProfilesJPanel(allProfiles.get(0));
                 splitSectionsPanel.setRightComponent(viewAllProfilePanel);
             } catch (IOException ex) {
                 Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_viewBtnActionPerformed
+
+    private void allProfilesJListFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_allProfilesJListFocusGained
+        int seletedProfile = allProfilesJList.getSelectedIndex();
+        ViewAllProfilesJPanel viewAllProfilePanel;
+        try {
+            viewAllProfilePanel = new ViewAllProfilesJPanel(allProfiles.get(seletedProfile));
+            splitSectionsPanel.setRightComponent(viewAllProfilePanel);
+        } catch (IOException ex) {
+            Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_allProfilesJListFocusGained
+
+    private void allProfilesJListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_allProfilesJListMouseClicked
+        int seletedProfile = allProfilesJList.getSelectedIndex();
+        ViewAllProfilesJPanel viewAllProfilePanel;
+        try {
+            viewAllProfilePanel = new ViewAllProfilesJPanel(allProfiles.get(seletedProfile));
+            splitSectionsPanel.setRightComponent(viewAllProfilePanel);
+        } catch (IOException ex) {
+            Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_allProfilesJListMouseClicked
 
     /**
      * @param args the command line arguments
@@ -223,10 +274,12 @@ public class MainJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel actionPanel;
+    private javax.swing.JList<String> allProfilesJList;
     private javax.swing.JButton createBtn;
     private javax.swing.JPanel interactionPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane splitSectionsPanel;
     private javax.swing.JLabel totalProfilesJLabel;
     private javax.swing.JButton viewBtn;
