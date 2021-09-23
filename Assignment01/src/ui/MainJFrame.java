@@ -215,25 +215,23 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_viewBtnActionPerformed
 
     private void allProfilesJListFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_allProfilesJListFocusGained
-        int seletedProfile = allProfilesJList.getSelectedIndex();
-        ViewAllProfilesJPanel viewAllProfilePanel;
-        try {
-            viewAllProfilePanel = new ViewAllProfilesJPanel(allProfiles.get(seletedProfile));
-            splitSectionsPanel.setRightComponent(viewAllProfilePanel);
-        } catch (IOException ex) {
-            Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        openSelectedProfile();
     }//GEN-LAST:event_allProfilesJListFocusGained
 
-    private void allProfilesJListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_allProfilesJListMouseClicked
+    private void openSelectedProfile() {
         int seletedProfile = allProfilesJList.getSelectedIndex();
         ViewAllProfilesJPanel viewAllProfilePanel;
-        try {
-            viewAllProfilePanel = new ViewAllProfilesJPanel(allProfiles.get(seletedProfile));
-            splitSectionsPanel.setRightComponent(viewAllProfilePanel);
-        } catch (IOException ex) {
-            Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        if (seletedProfile != -1) {
+            try {
+                viewAllProfilePanel = new ViewAllProfilesJPanel(allProfiles.get(seletedProfile));
+                splitSectionsPanel.setRightComponent(viewAllProfilePanel);
+            } catch (IOException ex) {
+                Logger.getLogger(MainJFrame.class.getName()).log(Level.FINEST, null, ex);
+            }
         }
+    }
+    private void allProfilesJListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_allProfilesJListMouseClicked
+        openSelectedProfile();
     }//GEN-LAST:event_allProfilesJListMouseClicked
 
     /**

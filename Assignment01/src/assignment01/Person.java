@@ -78,9 +78,11 @@ public class Person {
         DateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
         try {
             dateFormatter.setLenient(false);
-            dateFormatter.parse(date);
+            Date dob = dateFormatter.parse(date);
+            if (dob.compareTo((new Date())) > 0) {
+                isValid = Messages.DOB_DATE_LARGE;
+            }
         } catch (ParseException e) {
-            System.out.println("eee" + e);
             isValid = Messages.DOB_INVALID;
         }
         return isValid;
@@ -105,7 +107,6 @@ public class Person {
             }
         } catch (Exception e) {
             isValid = Messages.GENERIC_MESSAGE;
-            System.out.println("excption" + e);
         }
         return isValid;
     }
@@ -148,7 +149,6 @@ public class Person {
             }
         } catch (Exception e) {
             isValid = Messages.GENERIC_MESSAGE;
-            System.out.println("excption" + e);
         }
 
         return isValid;
@@ -171,7 +171,6 @@ public class Person {
             }
         } catch (Exception e) {
             isValid = Messages.GENERIC_MESSAGE;
-            System.out.println("excption" + e);
         }
 
         return isValid;
@@ -210,7 +209,6 @@ public class Person {
             }
         } catch (Exception e) {
             isValid = Messages.BANK_ACCOUNT_NOA;
-            System.out.println("excption" + e);
         }
         return isValid;
     }
@@ -232,7 +230,6 @@ public class Person {
             }
         } catch (Exception e) {
             isValid = Messages.CERTIFICATE_NUMBER_NOA;
-            System.out.println("excption" + e);
         }
         return isValid;
     }

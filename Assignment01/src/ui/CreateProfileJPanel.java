@@ -1398,7 +1398,6 @@ public class CreateProfileJPanel extends javax.swing.JPanel {
                 Logger.getLogger(CreateProfileJPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
             person.profilePicture = file.getAbsolutePath();
-            System.out.println("location file: " + file.getAbsolutePath());
         }
     }//GEN-LAST:event_uploadProfilePictureJButtonActionPerformed
 
@@ -1408,7 +1407,6 @@ public class CreateProfileJPanel extends javax.swing.JPanel {
 
     private void nameJFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameJFieldActionPerformed
         // TODO add your handling code here:
-        System.out.println("!!!!!evnt" + evt);
     }//GEN-LAST:event_nameJFieldActionPerformed
 
     private void dummyJField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dummyJField5ActionPerformed
@@ -1673,7 +1671,6 @@ public class CreateProfileJPanel extends javax.swing.JPanel {
 
     private void ipAddressJField4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ipAddressJField4FocusLost
         String value = ipAddressJField1.getText().trim() + "." + ipAddressJField2.getText().trim() + "." + ipAddressJField3.getText().trim() + "." + ipAddressJField4.getText().trim();
-        System.out.println("ipAddressJField1.getText().trim()" + value);
         Boolean isValid = genericValidateHandler(person.validateIP(value), ipErrorJLabel);
         if (isValid) {
             person.setIpAddress(value);
@@ -1729,16 +1726,6 @@ public class CreateProfileJPanel extends javax.swing.JPanel {
 //        System.out.println("getDeviceIdentifiers" + person.getDeviceIdentifiers());
 //        System.out.println("getDeviceIdentifiers" + person.profilePicture);
 
-//        person.createdAt = new Date();
-//        MainJFrame.PROFILE_COUNT++;
-//
-//        MainJFrame.allProfiles.add(person);
-////        System.out.println("add ses" + Arrays.toString(MainJFrame.allProfiles.toArray()));
-//        System.out.println("size------------" + MainJFrame.allProfiles.size());
-//        for (Person leave : MainJFrame.allProfiles) {
-//            System.out.println(leave.createdAt);
-//        }
-////        System.out.println("!@##$" + MainJFrame.allProfiles);
         if (person.name != null
                 && person.address != null
                 && person.dateOfBirth != null
@@ -1768,7 +1755,7 @@ public class CreateProfileJPanel extends javax.swing.JPanel {
                 totalProfilesJLabel.setText(String.valueOf(allProfiles.size()));
                 DefaultListModel model = new DefaultListModel();
                 allProfiles.forEach(profile -> {
-                    model.addElement(profile.profileId + " " + profile.name);
+                    model.addElement(profile.profileId + " - " + profile.name);
                 });
                 allProfilesJList.setModel(model);
 

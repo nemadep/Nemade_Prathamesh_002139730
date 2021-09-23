@@ -30,6 +30,7 @@ public class Messages {
      * Error messages for attribute - date of birth
      */
     public static String DOB_INVALID = "Invalid Date of Birth.";
+    public static String DOB_DATE_LARGE = "Date of Birth cannot be more than today.";
     /**
      * Error messages for attribute - email
      */
