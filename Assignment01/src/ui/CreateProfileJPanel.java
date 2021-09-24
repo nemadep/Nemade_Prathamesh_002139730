@@ -25,10 +25,10 @@ import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JSplitPane;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
-import javax.swing.JSplitPane;
 import static ui.MainJFrame.PROFILE_COUNT;
 import static ui.MainJFrame.allProfiles;
 
@@ -38,11 +38,21 @@ import static ui.MainJFrame.allProfiles;
  */
 public class CreateProfileJPanel extends javax.swing.JPanel {
 
+    /**
+     * @PROFILE_WIDTH PROFILE_HEIGHT the Height and Width of the Profile Image.
+     */
     public static int PROFILE_WIDTH = 180;
     public static int PROFILE_HEIGHT = 180;
+
+    /**
+     * @person This is used to reference the selected person.
+     */
     Person person;
     JSplitPane splitSectionsPanel;
     JLabel totalProfilesJLabel;
+    /**
+     * @allProfilesJList This is used to keep a track on the profiles created.
+     */
     JList allProfilesJList;
 
     /**
@@ -60,6 +70,9 @@ public class CreateProfileJPanel extends javax.swing.JPanel {
             this.totalProfilesJLabel = totalProfilesJLabel;
             this.allProfilesJList = allProfilesJList;
             initComponents();
+            /**
+             * @newInitComponents to inject and modify script.
+             */
             newInitComponents();
         } catch (IOException ex) {
             Logger.getLogger(CreateProfileJPanel.class.getName()).log(Level.SEVERE, null, ex);
@@ -1373,21 +1386,36 @@ public class CreateProfileJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     public void newInitComponents() throws IOException {
+        /**
+         * to set the left section 30% and the right section 70%.
+         */
         fieldsJSplitPanel.setDividerLocation((int) (0.3 * (new Dimension(Toolkit.getDefaultToolkit().getScreenSize()).width - 300)));
+        /**
+         * to show the total profile created count.
+         */
         ipAddressJField1JField.setText(String.valueOf(MainJFrame.PROFILE_COUNT));
     }
 
+    /**
+     *
+     * @param path
+     * @throws IOException. path is the Absolute path of the file.
+     */
     public void setProfilePicture(String path) throws IOException {
-        BufferedImage img = ImageIO.read(new File(path));
-        Image getImageSource = new ImageIcon(img).getImage();
-        profilePictureDisplayJLabel.setIcon(new ImageIcon(getImageSource.getScaledInstance(PROFILE_WIDTH, PROFILE_HEIGHT, Image.SCALE_SMOOTH)));
+        BufferedImage img = ImageIO.read(new File(path)); //get refrence of the image
+        Image getImageSource = new ImageIcon(img).getImage(); //get the source of the selected image
+        profilePictureDisplayJLabel.setIcon(new ImageIcon(getImageSource.getScaledInstance(PROFILE_WIDTH, PROFILE_HEIGHT, Image.SCALE_SMOOTH))); // set the image source
     }
 
+    /**
+     *
+     * @param evt to select the image form the file system
+     */
     private void uploadProfilePictureJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadProfilePictureJButtonActionPerformed
-        JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter imageFilter = new FileNameExtensionFilter("jpeg/jpg/png", "jpeg", "jpg", "png");
+        JFileChooser fileChooser = new JFileChooser(); // create the instance of the box to make a selection of image.
+        FileNameExtensionFilter imageFilter = new FileNameExtensionFilter("jpeg/jpg/png", "jpeg", "jpg", "png"); //filter the images based on the mime type.
         fileChooser.setAcceptAllFileFilterUsed(false);
-        fileChooser.addChoosableFileFilter(imageFilter);
+        fileChooser.addChoosableFileFilter(imageFilter);//set the filter.
 
         int option = fileChooser.showOpenDialog(leftJPanel);
         if (option == JFileChooser.APPROVE_OPTION) {
@@ -1725,7 +1753,6 @@ public class CreateProfileJPanel extends javax.swing.JPanel {
 //        System.out.println("getVehicleLicenseNumber" + person.getVehicleLicenseNumber());
 //        System.out.println("getDeviceIdentifiers" + person.getDeviceIdentifiers());
 //        System.out.println("getDeviceIdentifiers" + person.profilePicture);
-
         if (person.name != null
                 && person.address != null
                 && person.dateOfBirth != null
@@ -1748,11 +1775,23 @@ public class CreateProfileJPanel extends javax.swing.JPanel {
             try {
                 person.profileId = PROFILE_COUNT;
                 person.createdAt = new Date();
+                /**
+                 * Add the created profile to the left panel.
+                 */
                 allProfiles.add(person);
                 viewAllProfilePanel = new ViewAllProfilesJPanel(person);
                 splitSectionsPanel.setRightComponent(viewAllProfilePanel);
+                /**
+                 * once the profile is created successfully, increase the count
+                 */
                 PROFILE_COUNT++;
+                /**
+                 * set the count in the left menu
+                 */
                 totalProfilesJLabel.setText(String.valueOf(allProfiles.size()));
+                /**
+                 * Append the name and id to the left part.
+                 */
                 DefaultListModel model = new DefaultListModel();
                 allProfiles.forEach(profile -> {
                     model.addElement(profile.profileId + " - " + profile.name);
@@ -1937,6 +1976,13 @@ public class CreateProfileJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_ipAddressJField4FocusGained
 
+    /**
+     * dynamic validator used to validate the input field based on the label
+     *
+     * @param validate
+     * @param label
+     * @return
+     */
     private boolean genericValidateHandler(String validate, JLabel label) {
         Boolean isValid = false;
         if (!validate.equals("")) {

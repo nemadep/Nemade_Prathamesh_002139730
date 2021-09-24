@@ -25,8 +25,9 @@ public class ViewAllProfilesJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ViewAllProfilesJPanel
+     *
      * @param person
-     * @throws java.io.IOException
+     * @throws java.io.IOException set all the values to show the profile
      */
     public ViewAllProfilesJPanel(Person person) throws IOException {
         initComponents();
@@ -49,6 +50,11 @@ public class ViewAllProfilesJPanel extends javax.swing.JPanel {
         identifierJLabel.setText(String.valueOf(person.profileId));
     }
 
+    /**
+     *
+     * @param path
+     * @throws IOException. path is the Absolute path of the file.
+     */
     public void setProfilePicture(String path) throws IOException {
         BufferedImage img = ImageIO.read(new File(path));
         Image getImageSource = new ImageIcon(img).getImage();
@@ -56,6 +62,9 @@ public class ViewAllProfilesJPanel extends javax.swing.JPanel {
     }
 
     private void newInitComponents() {
+        /**
+         * Set the left section as 40% and right as 60%;
+         */
         jSplitPane1.setDividerLocation((int) (0.4 * (new Dimension(Toolkit.getDefaultToolkit().getScreenSize()).width - 300)));
     }
 

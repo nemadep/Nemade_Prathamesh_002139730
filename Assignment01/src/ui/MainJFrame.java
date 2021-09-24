@@ -56,6 +56,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize()));
+        setResizable(false);
 
         splitSectionsPanel.setEnabled(false);
 
@@ -189,23 +190,29 @@ public class MainJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void injectInitComponents() {
-        totalProfilesJLabel.setText(String.valueOf(allProfiles.size()));
+        totalProfilesJLabel.setText(String.valueOf(allProfiles.size())); // set the count of profiles created in the left section
         DefaultListModel model = new DefaultListModel();
         allProfilesJList.setModel(model);
     }
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         Person person = new Person();
+        /**
+         * Create a instance of the CreateProfileJPanel and open it.
+         */
         CreateProfileJPanel createProfilePanel = new CreateProfileJPanel(person, splitSectionsPanel, totalProfilesJLabel, allProfilesJList);
         splitSectionsPanel.setRightComponent(createProfilePanel);
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
         if (allProfiles.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "No Profiles created!!", "Error", ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No Profiles created!!", "Error", ERROR_MESSAGE); //if there are no profiles created
         } else {
             ViewAllProfilesJPanel viewAllProfilePanel;
             try {
+                /**
+                 * Create a instance of the ViewAllProfilesJPanel and open it.
+                 */
                 viewAllProfilePanel = new ViewAllProfilesJPanel(allProfiles.get(0));
                 splitSectionsPanel.setRightComponent(viewAllProfilePanel);
             } catch (IOException ex) {
@@ -219,10 +226,14 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_allProfilesJListFocusGained
 
     private void openSelectedProfile() {
-        int seletedProfile = allProfilesJList.getSelectedIndex();
+        int seletedProfile = allProfilesJList.getSelectedIndex();//get the index of the selection made in the left section.
         ViewAllProfilesJPanel viewAllProfilePanel;
         if (seletedProfile != -1) {
             try {
+                /**
+                 * Create a instance of the ViewAllProfilesJPanel and open it
+                 * based on the index.
+                 */
                 viewAllProfilePanel = new ViewAllProfilesJPanel(allProfiles.get(seletedProfile));
                 splitSectionsPanel.setRightComponent(viewAllProfilePanel);
             } catch (IOException ex) {
