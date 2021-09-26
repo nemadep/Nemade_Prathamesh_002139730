@@ -28,7 +28,7 @@ public class Person {
     public String linkedinUrl;
     public String profilePicture;
     public Date createdAt;
-    private int ssnNumber;
+    private String ssnNumber;
     private int medicalRecordNumber;
     private String healthBeneficiaryNumber;
     private int bankAccountNumber;
@@ -170,7 +170,7 @@ public class Person {
                 isValid = Messages.MEDICAL_NUMBER_ZERO;
             }
         } catch (Exception e) {
-            isValid = Messages.GENERIC_MESSAGE;
+            isValid = Messages.MEDICAL_NUMBER_NOA;
         }
 
         return isValid;
@@ -387,14 +387,14 @@ public class Person {
     /**
      * @return the ssnNumber
      */
-    public int getSsnNumber() {
+    public String getSsnNumber() {
         return ssnNumber;
     }
 
     /**
      * @param ssnNumber the ssnNumber to set
      */
-    public void setSsnNumber(int ssnNumber) {
+    public void setSsnNumber(String ssnNumber) {
         this.ssnNumber = ssnNumber;
     }
 

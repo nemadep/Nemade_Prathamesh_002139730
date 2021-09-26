@@ -1653,7 +1653,7 @@ public class CreateProfileJPanel extends javax.swing.JPanel {
         String value = ssnJField1.getText().trim() + "-" + ssnJField2.getText().trim() + "-" + ssnJField3.getText().trim();
         Boolean isValid = genericValidateHandler(person.validateSSN(value), snnErrorJLabel);
         if (isValid) {
-            person.setSsnNumber(Integer.parseInt(ssnJField1.getText().trim() + ssnJField2.getText().trim() + ssnJField3.getText().trim()));
+            person.setSsnNumber(ssnJField1.getText().trim() + ssnJField2.getText().trim() + ssnJField3.getText().trim());
         }
     }//GEN-LAST:event_ssnJField3FocusLost
 
@@ -1762,7 +1762,7 @@ public class CreateProfileJPanel extends javax.swing.JPanel {
                 && person.faxNumber != null
                 && person.email != null
                 && person.linkedinUrl != null
-                && person.getSsnNumber() != 0
+                && person.getSsnNumber() != null
                 && person.getMedicalRecordNumber() != 0
                 && person.getHealthBeneficiaryNumber() != null
                 && person.getBankAccountNumber() != 0

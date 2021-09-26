@@ -45,6 +45,7 @@ public class Messages {
      */
     public static String MEDICAL_NUMBER_CHARACTER_LIMIT = "Medical number should be 8 characters long.";
     public static String MEDICAL_NUMBER_ZERO = "Medical number cannot be 0.";
+    public static String MEDICAL_NUMBER_NOA = "Medical no. should be a number.";
     /**
      * Error messages for attribute - health beneficiary
      */
