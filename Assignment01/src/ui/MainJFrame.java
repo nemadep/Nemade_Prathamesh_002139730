@@ -197,9 +197,6 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         Person person = new Person();
-        /**
-         * Create a instance of the CreateProfileJPanel and open it.
-         */
         CreateProfileJPanel createProfilePanel = new CreateProfileJPanel(person, splitSectionsPanel, totalProfilesJLabel, allProfilesJList);
         splitSectionsPanel.setRightComponent(createProfilePanel);
     }//GEN-LAST:event_createBtnActionPerformed

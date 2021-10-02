@@ -13,10 +13,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -29,7 +27,8 @@ public class MainJFrame extends javax.swing.JFrame {
 
     ArrayList<User> adminLists = new ArrayList<User>();
     ArrayList<User> usersLists = new ArrayList<User>();
-    String[] ROLE = {"Admin", "User"};
+//    ArrayList<> dataLists = new ArrayList<>();
+    final String[] ROLE = {"Admin", "User"};
 
     /**
      * Creates new form MainJFrame
@@ -61,16 +60,21 @@ public class MainJFrame extends javax.swing.JFrame {
             JSONObject adminList = (JSONObject) jsonObject.get("admin");
             JSONObject usersList = (JSONObject) jsonObject.get("users");
 
-            Iterator<String> adminIterator = adminList.keySet().iterator();
-            Iterator<String> userIterator = usersList.keySet().iterator();
+            Iterator<Object> adminIterator = adminList.keySet().iterator();
+            Iterator<Object> userIterator = usersList.keySet().iterator();
 
             int index = 1000;
             while (adminIterator.hasNext()) {
-                String key = adminIterator.next();
-                String value = (String) adminList.get(key);
+                Object key = adminIterator.next();
+                Object value = (Object) adminList.get(key);
+                JSONObject tempObject = (JSONObject) value;
+                String tempEmail = (String) tempObject.get("email");
+                String tempName = (String) tempObject.get("name");
+                String tempPassword = (String) tempObject.get("password");
                 User user = new User();
-                user.email = (key);
-                user.password = (value);
+                user.email = tempEmail;
+                user.name = tempName;
+                user.setPassword(tempPassword);
                 user.type = ("admin");
                 user.uniqueIdentifier = index;
                 adminLists.add(user);
@@ -78,11 +82,16 @@ public class MainJFrame extends javax.swing.JFrame {
             }
 
             while (userIterator.hasNext()) {
-                String key = userIterator.next();
-                String value = (String) usersList.get(key);
+                Object key = userIterator.next();
+                Object value = (Object) usersList.get(key);
+                JSONObject tempObject = (JSONObject) value;
+                String tempEmail = (String) tempObject.get("email");
+                String tempName = (String) tempObject.get("name");
+                String tempPassword = (String) tempObject.get("password");
                 User user = new User();
-                user.email = (key);
-                user.password = (value);
+                user.email = tempEmail;
+                user.name = tempName;
+                user.setPassword(tempPassword);
                 user.type = ("user");
                 user.uniqueIdentifier = index;
                 usersLists.add(user);
@@ -91,7 +100,6 @@ public class MainJFrame extends javax.swing.JFrame {
 
             System.out.println(String.valueOf(usersList));
             System.out.println(String.valueOf(adminList));
-
         } catch (FileNotFoundException ex) {
             Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -113,6 +121,7 @@ public class MainJFrame extends javax.swing.JFrame {
         passwordJField = new javax.swing.JTextField();
         emailIDJField = new javax.swing.JTextField();
         roleJComboBox = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize()));
@@ -182,32 +191,45 @@ public class MainJFrame extends javax.swing.JFrame {
         });
 
         roleJComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        roleJComboBox.setFocusable(false);
+        roleJComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roleJComboBoxActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("LOGIN");
 
         javax.swing.GroupLayout rightJPanelLayout = new javax.swing.GroupLayout(rightJPanel);
         rightJPanel.setLayout(rightJPanelLayout);
         rightJPanelLayout.setHorizontalGroup(
             rightJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightJPanelLayout.createSequentialGroup()
-                .addGap(487, 487, 487)
+                .addGap(482, 482, 482)
                 .addGroup(rightJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(emailIDJField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(passwordJField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(roleJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(loginJButton))
-                .addContainerGap(487, Short.MAX_VALUE))
+                .addContainerGap(233, Short.MAX_VALUE))
         );
         rightJPanelLayout.setVerticalGroup(
             rightJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightJPanelLayout.createSequentialGroup()
-                .addGap(198, 198, 198)
+                .addGap(36, 36, 36)
+                .addComponent(jLabel1)
+                .addGap(174, 174, 174)
                 .addComponent(emailIDJField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(passwordJField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(roleJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(36, 36, 36)
                 .addComponent(loginJButton)
-                .addContainerGap(388, Short.MAX_VALUE))
+                .addContainerGap(428, Short.MAX_VALUE))
         );
 
         jSplitPane.setRightComponent(rightJPanel);
@@ -239,14 +261,25 @@ public class MainJFrame extends javax.swing.JFrame {
 
             if (roleSelected == "Admin") {
                 for (User admin : adminLists) {
-                    if (admin.password.equals(passwordJField.getText()) && admin.email.equals(emailIDJField.getText())) {
-                        System.out.println("logged in!!!");
+                    if (admin.getPassword().equals(passwordJField.getText()) && admin.email.equals(emailIDJField.getText())) {
+                        System.out.println("admin logged in!!!");
                         jSplitPane.setDividerLocation((int) (0.3 * (new Dimension(Toolkit.getDefaultToolkit().getScreenSize()).width - 300)));
+
+                        AdminDashboard adminDashboard = new AdminDashboard(jSplitPane);
+                        AdminLeftSection adminOptions = new AdminLeftSection();
+                        jSplitPane.setRightComponent(adminDashboard);
+                        jSplitPane.setLeftComponent(adminOptions);
 
                     }
                 }
             } else {
+                for (User user : usersLists) {
+                    if (user.getPassword().equals(passwordJField.getText()) && user.email.equals(emailIDJField.getText())) {
+                        System.out.println("user logged in!!!");
+                        jSplitPane.setDividerLocation((int) (0.3 * (new Dimension(Toolkit.getDefaultToolkit().getScreenSize()).width) - 300));
 
+                    }
+                }
             }
         }
     }//GEN-LAST:event_loginJButtonActionPerformed
@@ -278,6 +311,10 @@ public class MainJFrame extends javax.swing.JFrame {
     private void emailIDJFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailIDJFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_emailIDJFieldActionPerformed
+
+    private void roleJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleJComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_roleJComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -316,6 +353,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField emailIDJField;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JSplitPane jSplitPane;
     private javax.swing.JPanel leftJPanel;
     private javax.swing.JButton loginJButton;

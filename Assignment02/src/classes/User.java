@@ -14,7 +14,7 @@ public class User {
     public String type;
     public String name;
     public String email;
-    public String password;
+    private String password;
 
     /**
      * @return the uniqueIdentifier
@@ -51,6 +51,13 @@ public class User {
      */
     public String getPassword() {
         return password;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }

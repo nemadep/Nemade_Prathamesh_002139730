@@ -1,12 +1,36 @@
 {
     "admin": {
-      "admin@gmail.com": "Admin@123",
-      "admin1@gmail.com": "Admin@123",
-      "admin": "admin"
+        "admin@gmail.com": {
+            "name": "Admin 0",
+            "email": "admin@gmail.com",
+            "password": "Admin@123"
+        },
+        "admin1@gmail.com": {
+            "name": "Admin 1",
+            "email": "admin1@gmail.com",
+            "password": "Admin@123"
+        },
+        "admin": {
+            "name": "Admin 2",
+            "email": "admin",
+            "password": "admin"
+        }
     },
     "users": {
-      "user1@gmail.com": "user",
-      "user2@gmail.com": "user",
-      "user": "user"
+        "user1@gmail.com": {
+            "name": "User 0",
+            "email": "user1@gmail.com",
+            "password": "user"
+        },
+        "user2@gmail.com": {
+            "name": "User 1",
+            "email": "user2@gmail.com",
+            "password": "user"
+        },
+        "user": {
+            "name": "User 2",
+            "email": "user",
+            "password": "user"
+        }
     }
-  }
+}
