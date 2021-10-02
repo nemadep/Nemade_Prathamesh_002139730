@@ -1,0 +1,12 @@
+{
+    "admin": {
+      "admin@gmail.com": "Admin@123",
+      "admin1@gmail.com": "Admin@123",
+      "admin": "admin"
+    },
+    "users": {
+      "user1@gmail.com": "user",
+      "user2@gmail.com": "user",
+      "user": "user"
+    }
+  }
