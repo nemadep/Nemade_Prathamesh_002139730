@@ -6,11 +6,14 @@
 package ui;
 
 import classes.User;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.simple.JSONArray;
@@ -24,21 +27,30 @@ import org.json.simple.parser.ParseException;
  */
 public class MainJFrame extends javax.swing.JFrame {
 
-    ArrayList<Object> adminLists = new ArrayList<Object>();
-    ArrayList<Object> usersLists = new ArrayList<Object>();
+    ArrayList<User> adminLists = new ArrayList<User>();
+    ArrayList<User> usersLists = new ArrayList<User>();
+    String[] ROLE = {"Admin", "User"};
 
     /**
      * Creates new form MainJFrame
      */
     public MainJFrame() {
         initComponents();
+
+        injectComponents();
         try {
-            parseJSON("/Users/prathameshnemade/NetBeansProjects/Assignment02/src/ui/AuthenticationConfig.json");
+            parseJSON("/Users/prathameshnemade/Desktop/NEU/AED/Nemade_Prathamesh_002139730/Assignment02/src/ui/AuthenticationConfig.json");
         } catch (IOException ex) {
             Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParseException ex) {
             Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    private void injectComponents() {
+        jSplitPane.setDividerLocation((int) (0 * (new Dimension(Toolkit.getDefaultToolkit().getScreenSize()).width)));
+        roleJComboBox.setModel(new javax.swing.DefaultComboBoxModel<String>(ROLE));
+        roleJComboBox.setSelectedIndex(0);
     }
 
     private void parseJSON(String path) throws IOException, ParseException {
@@ -94,49 +106,178 @@ public class MainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jSplitPane1 = new javax.swing.JSplitPane();
+        jSplitPane = new javax.swing.JSplitPane();
+        leftJPanel = new javax.swing.JPanel();
+        rightJPanel = new javax.swing.JPanel();
+        loginJButton = new javax.swing.JButton();
+        passwordJField = new javax.swing.JTextField();
+        emailIDJField = new javax.swing.JTextField();
+        roleJComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize()));
+        setResizable(false);
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jSplitPane.setEnabled(false);
+
+        leftJPanel.setPreferredSize(new java.awt.Dimension(483, 762));
+        leftJPanel.setSize(new java.awt.Dimension(483, 762));
+
+        javax.swing.GroupLayout leftJPanelLayout = new javax.swing.GroupLayout(leftJPanel);
+        leftJPanel.setLayout(leftJPanelLayout);
+        leftJPanelLayout.setHorizontalGroup(
+            leftJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        leftJPanelLayout.setVerticalGroup(
+            leftJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jSplitPane.setLeftComponent(leftJPanel);
+
+        loginJButton.setText("Login");
+        loginJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                loginJButtonActionPerformed(evt);
             }
         });
+
+        passwordJField.setBackground(new java.awt.Color(238, 238, 238));
+        passwordJField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        passwordJField.setText("Enter password");
+        passwordJField.setToolTipText("Click to enter your Password.");
+        passwordJField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
+        passwordJField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                passwordJFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                passwordJFieldFocusLost(evt);
+            }
+        });
+        passwordJField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordJFieldActionPerformed(evt);
+            }
+        });
+
+        emailIDJField.setBackground(new java.awt.Color(238, 238, 238));
+        emailIDJField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        emailIDJField.setText("Enter email id");
+        emailIDJField.setToolTipText("Click to enter your Email ID.");
+        emailIDJField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
+        emailIDJField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                emailIDJFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                emailIDJFieldFocusLost(evt);
+            }
+        });
+        emailIDJField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailIDJFieldActionPerformed(evt);
+            }
+        });
+
+        roleJComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout rightJPanelLayout = new javax.swing.GroupLayout(rightJPanel);
+        rightJPanel.setLayout(rightJPanelLayout);
+        rightJPanelLayout.setHorizontalGroup(
+            rightJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rightJPanelLayout.createSequentialGroup()
+                .addGap(487, 487, 487)
+                .addGroup(rightJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(emailIDJField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passwordJField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(roleJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loginJButton))
+                .addContainerGap(487, Short.MAX_VALUE))
+        );
+        rightJPanelLayout.setVerticalGroup(
+            rightJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rightJPanelLayout.createSequentialGroup()
+                .addGap(198, 198, 198)
+                .addComponent(emailIDJField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(passwordJField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(roleJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(loginJButton)
+                .addContainerGap(388, Short.MAX_VALUE))
+        );
+
+        jSplitPane.setRightComponent(rightJPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(144, 144, 144)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                .addComponent(jSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(jSplitPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void loginJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginJButtonActionPerformed
+
+        if (passwordJField != null && emailIDJField != null) {
+            String roleSelected = (String) roleJComboBox.getSelectedItem();
+
+            if (roleSelected == "Admin") {
+                for (User admin : adminLists) {
+                    if (admin.password.equals(passwordJField.getText()) && admin.email.equals(emailIDJField.getText())) {
+                        System.out.println("logged in!!!");
+                        jSplitPane.setDividerLocation((int) (0.3 * (new Dimension(Toolkit.getDefaultToolkit().getScreenSize()).width - 300)));
+
+                    }
+                }
+            } else {
+
+            }
+        }
+    }//GEN-LAST:event_loginJButtonActionPerformed
+
+    private void passwordJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordJFieldFocusGained
+        if (passwordJField.getText().equals("Enter password")) {
+            passwordJField.setText("");
+        }
+    }//GEN-LAST:event_passwordJFieldFocusGained
+
+    private void passwordJFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordJFieldFocusLost
+
+    }//GEN-LAST:event_passwordJFieldFocusLost
+
+    private void passwordJFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordJFieldActionPerformed
         // TODO add your handling code here:
-        DashboardJPanel adminDashboardPanel = new DashboardJPanel();
-        jSplitPane1.setRightComponent(adminDashboardPanel);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_passwordJFieldActionPerformed
+
+    private void emailIDJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailIDJFieldFocusGained
+        if (emailIDJField.getText().equals("Enter email id")) {
+            emailIDJField.setText("");
+        }
+    }//GEN-LAST:event_emailIDJFieldFocusGained
+
+    private void emailIDJFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailIDJFieldFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailIDJFieldFocusLost
+
+    private void emailIDJFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailIDJFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailIDJFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,7 +315,12 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JTextField emailIDJField;
+    private javax.swing.JSplitPane jSplitPane;
+    private javax.swing.JPanel leftJPanel;
+    private javax.swing.JButton loginJButton;
+    private javax.swing.JTextField passwordJField;
+    private javax.swing.JPanel rightJPanel;
+    private javax.swing.JComboBox<String> roleJComboBox;
     // End of variables declaration//GEN-END:variables
 }
