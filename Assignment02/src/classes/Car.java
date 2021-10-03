@@ -13,24 +13,26 @@ import java.util.Date;
  */
 public class Car {
 
-    private String availability;
-    private String brand;
-    private String manufactureYear;
-    private String seats;
-    private String modelNo;
-    private String manufacturer;
-    private Date updatedAt;
-    private Date createdAd;
-    private String City;
+    public int id;
+    public Date availabilityFrom;
+    public Date availabilityTo;
+    public String brand;
+    public int manufactureYear;
+    public int seats;
+    public String modelNo;
+    public String manufacturer;
+    public Date updatedAt;
+    public Date createdAd;
+    public String city;
     private String maintenanceCerticateExpiry;
     private String serialNo;
-    private String availableSeats;
+    private int availableSeats;
 
     /**
-     * @return the availability
+     * @return the id
      */
-    public String getAvailability() {
-        return availability;
+    public int getId() {
+        return id;
     }
 
     /**
@@ -43,14 +45,14 @@ public class Car {
     /**
      * @return the manufactureYear
      */
-    public String getManufactureYear() {
+    public int getManufactureYear() {
         return manufactureYear;
     }
 
     /**
      * @return the seats
      */
-    public String getSeats() {
+    public int getSeats() {
         return seats;
     }
 
@@ -86,7 +88,7 @@ public class Car {
      * @return the City
      */
     public String getCity() {
-        return City;
+        return city;
     }
 
     /**
@@ -120,14 +122,28 @@ public class Car {
     /**
      * @return the availableSeats
      */
-    public String getAvailableSeats() {
+    public int getAvailableSeats() {
         return availableSeats;
     }
 
     /**
      * @param availableSeats the availableSeats to set
      */
-    public void setAvailableSeats(String availableSeats) {
+    public void setAvailableSeats(int availableSeats) {
         this.availableSeats = availableSeats;
+    }
+
+    /**
+     * @return the availabilityFrom
+     */
+    public Date getAvailabilityFrom() {
+        return availabilityFrom;
+    }
+
+    /**
+     * @return the availabilityTo
+     */
+    public Date getAvailabilityTo() {
+        return availabilityTo;
     }
 }
