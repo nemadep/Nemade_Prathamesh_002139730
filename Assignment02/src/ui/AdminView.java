@@ -8,46 +8,32 @@ package ui;
 import classes.Car;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
-import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
-import javax.swing.JPanel;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 /**
  *
  * @author prathameshnemade
  */
-public class AdminAdvanceAdd extends javax.swing.JPanel {
-
-    public JPanel jPanelMainRight;
-    ArrayList<Car> allUploadedCars = new ArrayList<Car>();
+public class AdminView extends javax.swing.JPanel {
 
     /**
-     * Creates new form AdminAdvanceAdd
+     * Creates new form AdminView
      */
-    public AdminAdvanceAdd(JPanel jPanelMainRight) {
+    public AdminView() {
         initComponents();
-        this.jPanelMainRight = jPanelMainRight;
-        DefaultListModel model = new DefaultListModel();
-        uploadedJList.setModel(model);
         jSplitPane1.setDividerLocation((int) (0.4 * (new Dimension(Toolkit.getDefaultToolkit().getScreenSize()).width - 300)));
-
+        DefaultListModel model = new DefaultListModel();
+        if (MainJFrame.allCars.isEmpty()) {
+            uploadedJList.setModel(model);
+            JOptionPane.showMessageDialog(this, "No Cars Available!!", "View Car Details", ERROR_MESSAGE);
+        } else {
+            MainJFrame.allCars.forEach(car -> {
+                model.addElement(car.id + " - " + car.getSerialNo());
+            });
+            uploadedJList.setModel(model);
+        }
     }
 
     /**
@@ -59,8 +45,6 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        uploadFileJButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -90,15 +74,8 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         uploadedJList = new javax.swing.JList<>();
-
-        uploadFileJButton.setText("Upload File");
-        uploadFileJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                uploadFileJButtonActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Click to upload file: ");
+        jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel2.setText("Available From:");
@@ -177,7 +154,7 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(81, 81, 81)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -205,7 +182,7 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
                     .addComponent(mceJLabel)
                     .addComponent(serialNoJLabel)
                     .addComponent(availableSeatsJLabel))
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,57 +261,53 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
         );
 
         jSplitPane1.setLeftComponent(jPanel2);
+
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("View All Cars");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(uploadFileJButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jSplitPane1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSplitPane1))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(uploadFileJButton))
-                .addGap(18, 18, 18)
-                .addComponent(jSplitPane1))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSplitPane1)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void uploadFileJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadFileJButtonActionPerformed
-        JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter jsonFilter = new FileNameExtensionFilter("only JSON", "json");
-        fileChooser.setAcceptAllFileFilterUsed(false);
-        fileChooser.addChoosableFileFilter(jsonFilter);
-        int option = fileChooser.showOpenDialog(jPanelMainRight);
-        if (option == JFileChooser.APPROVE_OPTION) {
-            File file = fileChooser.getSelectedFile();
-            try {
-                parseJSON(file.getAbsolutePath());
-            } catch (IOException ex) {
-                Logger.getLogger(AdminAdvanceAdd.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ParseException ex) {
-                Logger.getLogger(AdminAdvanceAdd.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-
-    }//GEN-LAST:event_uploadFileJButtonActionPerformed
 
     private void uploadedJListFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_uploadedJListFocusGained
         openSelectedProfile();
@@ -347,7 +320,7 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
     private void openSelectedProfile() {
         int seletedCarIndex = uploadedJList.getSelectedIndex();//get the index of the selection made in the left section.
         if (seletedCarIndex != -1) {
-            Car selectedCar = allUploadedCars.get(seletedCarIndex);
+            Car selectedCar = MainJFrame.allCars.get(seletedCarIndex);
             identifierJLabel.setText(String.valueOf(selectedCar.id));
             availableFromJLabel.setText(String.valueOf(selectedCar.availabilityFrom));
             availableTillJLabel.setText(String.valueOf(selectedCar.availabilityTo));
@@ -360,56 +333,6 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
             mceJLabel.setText(String.valueOf(selectedCar.getMaintenanceCerticateExpiry()));
             serialNoJLabel.setText(String.valueOf(selectedCar.getSerialNo()));
             availableSeatsJLabel.setText(String.valueOf(selectedCar.getAvailableSeats()));
-        }
-    }
-
-    private void parseJSON(String path) throws IOException, ParseException {
-        JSONParser jsonParser = new JSONParser();
-        try {
-            ArrayList uploadedCars = (ArrayList) jsonParser.parse(new FileReader(path));
-            int identifier = MainJFrame.allCars.size();
-            for (Object car : uploadedCars) {
-                JSONObject car1 = (JSONObject) car;
-                Car tempCar = new Car();
-                tempCar.id = identifier;
-                tempCar.createdAt = new Date();
-                tempCar.updatedAt = new Date();
-                tempCar.availabilityFrom = (String) car1.get("availabilityFrom");
-                tempCar.availabilityTo = (String) car1.get("availabilityTo");
-                tempCar.brand = (String) car1.get("brand");
-                tempCar.manufactureYear = (long) car1.get("manufactureYear");
-                tempCar.seats = (long) car1.get("seats");
-                tempCar.modelNo = (String) car1.get("modelNo");
-                tempCar.manufacturer = (String) car1.get("manufacturer");
-                tempCar.city = (String) car1.get("city");
-
-                DateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
-                try {
-                    dateFormatter.setLenient(false);
-                    Date mce = dateFormatter.parse((String) car1.get("maintenanceCerticateExpiry"));
-                    tempCar.setMaintenanceCerticateExpiry(mce);
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(this, "Invalid JSON!", "Upload Car Details", ERROR_MESSAGE);
-                }
-
-                tempCar.setSerialNo((String) car1.get("serialNo"));
-                tempCar.setAvailableSeats((long) car1.get("availableSeats"));
-                allUploadedCars.add(tempCar);
-                identifier++;
-            }
-
-            DefaultListModel model = new DefaultListModel();
-            allUploadedCars.forEach(car -> {
-                model.addElement(car.id + " - " + car.getSerialNo());
-                MainJFrame.allCars.add(car);
-
-            });
-            uploadedJList.setModel(model);
-            JOptionPane.showMessageDialog(this, "Uploaded successfully!!", "Upload Car Details", INFORMATION_MESSAGE);
-
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(AdminAdvanceAdd.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(this, "Invalid JSON!", "Upload Car Details", ERROR_MESSAGE);
         }
     }
 
@@ -435,6 +358,7 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel manufacturerJLabel;
@@ -443,7 +367,6 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
     private javax.swing.JLabel modelNoJLabel;
     private javax.swing.JLabel seatsJLabel;
     private javax.swing.JLabel serialNoJLabel;
-    private javax.swing.JButton uploadFileJButton;
     private javax.swing.JList<String> uploadedJList;
     // End of variables declaration//GEN-END:variables
 }

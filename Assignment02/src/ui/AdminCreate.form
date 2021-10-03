@@ -591,21 +591,33 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="PM"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="availableFromPMJCheckBoxFocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="availableFromAMJCheckBox">
       <Properties>
         <Property name="text" type="java.lang.String" value="AM"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="availableFromAMJCheckBoxFocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="availableTillAMJCheckBox">
       <Properties>
         <Property name="text" type="java.lang.String" value="AM"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="availableTillAMJCheckBoxFocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="availableTillPMJCheckBox">
       <Properties>
         <Property name="text" type="java.lang.String" value="PM"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="availableTillPMJCheckBoxFocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>

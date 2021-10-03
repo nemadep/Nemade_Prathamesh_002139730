@@ -362,12 +362,32 @@ public class AdminCreate extends javax.swing.JPanel {
         });
 
         availableFromPMJCheckBox.setText("PM");
+        availableFromPMJCheckBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                availableFromPMJCheckBoxFocusGained(evt);
+            }
+        });
 
         availableFromAMJCheckBox.setText("AM");
+        availableFromAMJCheckBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                availableFromAMJCheckBoxFocusGained(evt);
+            }
+        });
 
         availableTillAMJCheckBox.setText("AM");
+        availableTillAMJCheckBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                availableTillAMJCheckBoxFocusGained(evt);
+            }
+        });
 
         availableTillPMJCheckBox.setText("PM");
+        availableTillPMJCheckBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                availableTillPMJCheckBoxFocusGained(evt);
+            }
+        });
 
         jButton1.setText("ADD");
 
@@ -665,6 +685,22 @@ public class AdminCreate extends javax.swing.JPanel {
     private void carIdentifierJLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carIdentifierJLabelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_carIdentifierJLabelActionPerformed
+
+    private void availableFromAMJCheckBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_availableFromAMJCheckBoxFocusGained
+        availableFromPMJCheckBox.setSelected(false);
+    }//GEN-LAST:event_availableFromAMJCheckBoxFocusGained
+
+    private void availableFromPMJCheckBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_availableFromPMJCheckBoxFocusGained
+        availableFromAMJCheckBox.setSelected(false);
+    }//GEN-LAST:event_availableFromPMJCheckBoxFocusGained
+
+    private void availableTillAMJCheckBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_availableTillAMJCheckBoxFocusGained
+        availableTillPMJCheckBox.setSelected(false);
+     }//GEN-LAST:event_availableTillAMJCheckBoxFocusGained
+
+    private void availableTillPMJCheckBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_availableTillPMJCheckBoxFocusGained
+        availableTillAMJCheckBox.setSelected(false);
+    }//GEN-LAST:event_availableTillPMJCheckBoxFocusGained
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
