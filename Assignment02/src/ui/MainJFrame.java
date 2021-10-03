@@ -5,6 +5,7 @@
  */
 package ui;
 
+import classes.Car;
 import classes.User;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -27,6 +28,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     public static ArrayList<User> adminLists = new ArrayList<User>();
     public static ArrayList<User> usersLists = new ArrayList<User>();
+    public static ArrayList<Car> allCars = new ArrayList<Car>();
 
     /**
      * Creates new form MainJFrame
@@ -45,7 +47,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     private void injectComponents() {
-        
+
         LoginPage loginPage = new LoginPage(jSplitPane, leftJPanel, rightJPanel);
         jSplitPane.setRightComponent(loginPage);
 

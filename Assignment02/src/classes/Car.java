@@ -14,19 +14,19 @@ import java.util.Date;
 public class Car {
 
     public int id;
-    public Date availabilityFrom;
-    public Date availabilityTo;
+    public String availabilityFrom;
+    public String availabilityTo;
     public String brand;
-    public int manufactureYear;
-    public int seats;
+    public long manufactureYear;
+    public long seats;
     public String modelNo;
     public String manufacturer;
     public Date updatedAt;
-    public Date createdAd;
+    public Date createdAt;
     public String city;
-    private String maintenanceCerticateExpiry;
+    private Date maintenanceCerticateExpiry;
     private String serialNo;
-    private int availableSeats;
+    private long availableSeats;
 
     /**
      * @return the id
@@ -45,14 +45,14 @@ public class Car {
     /**
      * @return the manufactureYear
      */
-    public int getManufactureYear() {
+    public long getManufactureYear() {
         return manufactureYear;
     }
 
     /**
      * @return the seats
      */
-    public int getSeats() {
+    public long getSeats() {
         return seats;
     }
 
@@ -81,7 +81,7 @@ public class Car {
      * @return the createdAd
      */
     public Date getCreatedAd() {
-        return createdAd;
+        return createdAt;
     }
 
     /**
@@ -94,14 +94,14 @@ public class Car {
     /**
      * @return the maintenanceCerticateExpiry
      */
-    public String getMaintenanceCerticateExpiry() {
+    public Date getMaintenanceCerticateExpiry() {
         return maintenanceCerticateExpiry;
     }
 
     /**
      * @param maintenanceCerticateExpiry the maintenanceCerticateExpiry to set
      */
-    public void setMaintenanceCerticateExpiry(String maintenanceCerticateExpiry) {
+    public void setMaintenanceCerticateExpiry(Date maintenanceCerticateExpiry) {
         this.maintenanceCerticateExpiry = maintenanceCerticateExpiry;
     }
 
@@ -122,28 +122,28 @@ public class Car {
     /**
      * @return the availableSeats
      */
-    public int getAvailableSeats() {
+    public long getAvailableSeats() {
         return availableSeats;
     }
 
     /**
      * @param availableSeats the availableSeats to set
      */
-    public void setAvailableSeats(int availableSeats) {
+    public void setAvailableSeats(long availableSeats) {
         this.availableSeats = availableSeats;
     }
 
     /**
      * @return the availabilityFrom
      */
-    public Date getAvailabilityFrom() {
+    public String getAvailabilityFrom() {
         return availabilityFrom;
     }
 
     /**
      * @return the availabilityTo
      */
-    public Date getAvailabilityTo() {
+    public String getAvailabilityTo() {
         return availabilityTo;
     }
 }

@@ -33,7 +33,6 @@ public class LoginPage extends javax.swing.JPanel {
         roleJComboBox.setModel(new javax.swing.DefaultComboBoxModel<String>(ROLE));
         roleJComboBox.setSelectedIndex(0);
         jSplitPane.setDividerLocation((int) (0 * (new Dimension(Toolkit.getDefaultToolkit().getScreenSize()).width)));
-        System.out.println("!!!!!!!!!!!!!!");
     }
 
     /**
