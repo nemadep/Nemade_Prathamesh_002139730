@@ -529,7 +529,9 @@ public class AdminCreate extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void modelNoJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_modelNoJFieldFocusGained
-        // TODO add your handling code here:
+        if (modelNoJField.getText().equals("Enter here")) {
+            modelNoJField.setText("");
+        }
     }//GEN-LAST:event_modelNoJFieldFocusGained
 
     private void modelNoJFieldnameChangeHandler(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_modelNoJFieldnameChangeHandler
@@ -541,7 +543,9 @@ public class AdminCreate extends javax.swing.JPanel {
     }//GEN-LAST:event_modelNoJFieldActionPerformed
 
     private void seatsJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_seatsJFieldFocusGained
-        // TODO add your handling code here:
+        if (seatsJField.getText().equals("Enter here")) {
+            seatsJField.setText("");
+        }
     }//GEN-LAST:event_seatsJFieldFocusGained
 
     private void seatsJFieldnameChangeHandler(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_seatsJFieldnameChangeHandler
@@ -553,7 +557,9 @@ public class AdminCreate extends javax.swing.JPanel {
     }//GEN-LAST:event_seatsJFieldActionPerformed
 
     private void serialNoJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_serialNoJFieldFocusGained
-        // TODO add your handling code here:
+        if (serialNoJField.getText().equals("Enter here")) {
+            serialNoJField.setText("");
+        }
     }//GEN-LAST:event_serialNoJFieldFocusGained
 
     private void serialNoJFieldnameChangeHandler(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_serialNoJFieldnameChangeHandler
@@ -565,7 +571,9 @@ public class AdminCreate extends javax.swing.JPanel {
     }//GEN-LAST:event_serialNoJFieldActionPerformed
 
     private void cityJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cityJFieldFocusGained
-        // TODO add your handling code here:
+        if (cityJField.getText().equals("Enter here")) {
+            cityJField.setText("");
+        }
     }//GEN-LAST:event_cityJFieldFocusGained
 
     private void cityJFieldnameChangeHandler(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cityJFieldnameChangeHandler
@@ -627,7 +635,9 @@ public class AdminCreate extends javax.swing.JPanel {
     }//GEN-LAST:event_medYearJFieldActionPerformed
 
     private void availableFromHHJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_availableFromHHJFieldFocusGained
-        // TODO add your handling code here:
+        if (availableFromHHJField.getText().equals("HH")) {
+            availableFromHHJField.setText("");
+        }
     }//GEN-LAST:event_availableFromHHJFieldFocusGained
 
     private void availableFromHHJFielddateOfBirthFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_availableFromHHJFielddateOfBirthFocusLost
@@ -643,7 +653,9 @@ public class AdminCreate extends javax.swing.JPanel {
     }//GEN-LAST:event_dummyJField4ActionPerformed
 
     private void availableFromMMJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_availableFromMMJFieldFocusGained
-        // TODO add your handling code here:
+        if (availableFromMMJField.getText().equals("MM")) {
+            availableFromMMJField.setText("");
+        }
     }//GEN-LAST:event_availableFromMMJFieldFocusGained
 
     private void availableFromMMJFielddateOfBirthFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_availableFromMMJFielddateOfBirthFocusLost
@@ -659,7 +671,9 @@ public class AdminCreate extends javax.swing.JPanel {
     }//GEN-LAST:event_dummyJField7ActionPerformed
 
     private void availableTillMMJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_availableTillMMJFieldFocusGained
-        // TODO add your handling code here:
+        if (availableTillMMJField.getText().equals("MM")) {
+            availableTillMMJField.setText("");
+        }
     }//GEN-LAST:event_availableTillMMJFieldFocusGained
 
     private void availableTillMMJFielddateOfBirthFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_availableTillMMJFielddateOfBirthFocusLost
@@ -671,7 +685,9 @@ public class AdminCreate extends javax.swing.JPanel {
     }//GEN-LAST:event_availableTillMMJFieldActionPerformed
 
     private void availableTillHHJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_availableTillHHJFieldFocusGained
-        // TODO add your handling code here:
+        if (availableTillHHJField.getText().equals("HH")) {
+            availableTillHHJField.setText("");
+        }
     }//GEN-LAST:event_availableTillHHJFieldFocusGained
 
     private void availableTillHHJFielddateOfBirthFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_availableTillHHJFielddateOfBirthFocusLost
