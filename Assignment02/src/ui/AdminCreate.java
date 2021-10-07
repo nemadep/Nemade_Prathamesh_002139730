@@ -5,17 +5,34 @@
  */
 package ui;
 
+import classes.Car;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
+
 /**
  *
  * @author prathameshnemade
  */
 public class AdminCreate extends javax.swing.JPanel {
 
+    Car createdCar = new Car();
+
     /**
      * Creates new form AdminCreate
      */
     public AdminCreate() {
         initComponents();
+        availableFromAMJCheckBox.setSelected(true);
+        availableTillAMJCheckBox.setSelected(true);
+        carIdentifierJLabel.setText(String.valueOf(MainJFrame.allCars.size()));
+        createdCar.id = MainJFrame.allCars.size();
     }
 
     /**
@@ -34,7 +51,6 @@ public class AdminCreate extends javax.swing.JPanel {
         manufacturerYearJLabel = new javax.swing.JLabel();
         brandJComboBox = new javax.swing.JComboBox<>();
         modelNoJLabel = new javax.swing.JLabel();
-        modelNoJField = new javax.swing.JTextField();
         seatsJLabel = new javax.swing.JLabel();
         seatsJField = new javax.swing.JTextField();
         serialNoJLabel = new javax.swing.JLabel();
@@ -63,6 +79,9 @@ public class AdminCreate extends javax.swing.JPanel {
         availableTillPMJCheckBox = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        modelNoJField = new javax.swing.JComboBox<>();
+        seatsJLabel1 = new javax.swing.JLabel();
+        availableSeatsJField = new javax.swing.JTextField();
 
         availableFromJLabel.setText("Available From:");
 
@@ -77,25 +96,6 @@ public class AdminCreate extends javax.swing.JPanel {
         brandJComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         modelNoJLabel.setText("Model No.:");
-
-        modelNoJField.setBackground(new java.awt.Color(238, 238, 238));
-        modelNoJField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        modelNoJField.setText("Enter here");
-        modelNoJField.setToolTipText("Click to enter your name.");
-        modelNoJField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
-        modelNoJField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                modelNoJFieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                modelNoJFieldnameChangeHandler(evt);
-            }
-        });
-        modelNoJField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modelNoJFieldActionPerformed(evt);
-            }
-        });
 
         seatsJLabel.setText("No. of Seats:");
 
@@ -390,71 +390,109 @@ public class AdminCreate extends javax.swing.JPanel {
         });
 
         jButton1.setText("ADD");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setText("Add Car");
+
+        modelNoJField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        seatsJLabel1.setText("Available Seats:");
+
+        availableSeatsJField.setBackground(new java.awt.Color(238, 238, 238));
+        availableSeatsJField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        availableSeatsJField.setText("Enter here");
+        availableSeatsJField.setToolTipText("Click to enter your name.");
+        availableSeatsJField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
+        availableSeatsJField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                availableSeatsJFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                availableSeatsJFieldnameChangeHandler(evt);
+            }
+        });
+        availableSeatsJField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                availableSeatsJFieldActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cardentifierJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(maintenanceExpiryJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cityJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(manufacturerJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(modelNoJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(serialNoJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(seatsJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(manufacturerYearJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(brandJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(availableTillJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(availableFromJLabel, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton1)
-                    .addComponent(carIdentifierJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cityJField, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(serialNoJField, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(modelNoJField, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(brandJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(manufacturerJComboBox, 0, 300, Short.MAX_VALUE)
-                        .addComponent(manufactureYearJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(seatsJField, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(medDayJField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cardentifierJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(maintenanceExpiryJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(cityJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(manufacturerJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(modelNoJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(serialNoJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(seatsJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(manufacturerYearJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(brandJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(availableTillJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(availableFromJLabel, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dummyJField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(medMonthJField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dummyJField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(medYearJField, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(carIdentifierJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cityJField, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(serialNoJField, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(brandJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(manufacturerJComboBox, 0, 300, Short.MAX_VALUE)
+                                .addComponent(manufactureYearJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(modelNoJField, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(seatsJField, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(medDayJField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dummyJField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(medMonthJField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dummyJField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(medYearJField, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(availableTillHHJField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dummyJField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(availableTillMMJField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(availableTillAMJCheckBox)
+                                .addGap(18, 18, 18)
+                                .addComponent(availableTillPMJCheckBox))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(availableFromHHJField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dummyJField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(availableFromMMJField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(availableFromAMJCheckBox)
+                                .addGap(18, 18, 18)
+                                .addComponent(availableFromPMJCheckBox))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(availableTillHHJField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(186, 186, 186)
+                        .addComponent(jButton1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(seatsJLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dummyJField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(availableTillMMJField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(availableTillAMJCheckBox)
-                        .addGap(18, 18, 18)
-                        .addComponent(availableTillPMJCheckBox))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(availableFromHHJField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dummyJField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(availableFromMMJField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(availableFromAMJCheckBox)
-                        .addGap(18, 18, 18)
-                        .addComponent(availableFromPMJCheckBox)))
+                        .addComponent(availableSeatsJField, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)))
                 .addContainerGap(145, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -496,9 +534,13 @@ public class AdminCreate extends javax.swing.JPanel {
                     .addComponent(seatsJField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(seatsJLabel1)
+                    .addComponent(availableSeatsJField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(serialNoJField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(serialNoJLabel))
-                .addGap(19, 19, 19)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(modelNoJLabel)
                     .addComponent(modelNoJField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -522,25 +564,11 @@ public class AdminCreate extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(carIdentifierJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cardentifierJLabel))
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addContainerGap(282, Short.MAX_VALUE))
+                .addContainerGap(248, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void modelNoJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_modelNoJFieldFocusGained
-        if (modelNoJField.getText().equals("Enter here")) {
-            modelNoJField.setText("");
-        }
-    }//GEN-LAST:event_modelNoJFieldFocusGained
-
-    private void modelNoJFieldnameChangeHandler(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_modelNoJFieldnameChangeHandler
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modelNoJFieldnameChangeHandler
-
-    private void modelNoJFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modelNoJFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modelNoJFieldActionPerformed
 
     private void seatsJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_seatsJFieldFocusGained
         if (seatsJField.getText().equals("Enter here")) {
@@ -718,6 +746,129 @@ public class AdminCreate extends javax.swing.JPanel {
         availableTillAMJCheckBox.setSelected(false);
     }//GEN-LAST:event_availableTillPMJCheckBoxFocusGained
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String errorMessage = "";
+        String fromTime = availableFromHHJField.getText() + ":" + availableFromMMJField.getText();
+        String tillTime = availableTillHHJField.getText() + ":" + availableTillMMJField.getText();
+        String fromTimeErrorMessage = createdCar.validate12HourTime(fromTime, "Availability From");
+        String tillTimeErrorMessage = createdCar.validate12HourTime(tillTime, "Availability Till");
+
+        if (fromTimeErrorMessage != "") {
+            errorMessage += fromTimeErrorMessage + "\n";
+        } else if (tillTimeErrorMessage != "") {
+            errorMessage += tillTimeErrorMessage + "\n";
+        }
+
+        if (errorMessage.length() != 0) {
+            JOptionPane.showMessageDialog(this, errorMessage, "Validations", ERROR_MESSAGE);
+            return;
+        }
+
+        if (availableFromPMJCheckBox.isSelected()) {
+            fromTime = String.valueOf(Integer.valueOf(fromTime.split(":")[0]) + 12) + ":" + fromTime.split(":")[1];
+        }
+        if (availableTillPMJCheckBox.isSelected()) {
+            tillTime = String.valueOf(Integer.valueOf(tillTime.split(":")[0]) + 12) + ":" + tillTime.split(":")[1];
+        }
+
+        if (errorMessage.length() == 0) {
+            if (!"".equals(createdCar.validateStartEndTime(fromTime, tillTime))) {
+                errorMessage += "End time should be greater than the start time! \n";
+            }
+        }
+        String medErrorMessage = createdCar.validateMED(medDayJField.getText().trim() + "/" + medMonthJField.getText().trim() + "/" + medYearJField.getText().trim());
+
+        if (medErrorMessage != "") {
+            errorMessage += medErrorMessage + "\n";
+        }
+
+        if (brandJComboBox.getSelectedItem() == "") {
+            errorMessage += "Please select Brand!" + "\n";
+        }
+
+        if (manufactureYearJComboBox.getSelectedItem() == "") {
+            errorMessage += "Please select manufacture year!" + "\n";
+        }
+
+        String seatsErrorMessage = createdCar.validateSeats(seatsJField.getText());
+
+        if (seatsErrorMessage != "") {
+            errorMessage += seatsErrorMessage;
+        }
+
+        String availableSeatsErrorMessage = createdCar.validateAvailableSeats(availableSeatsJField.getText());
+
+        if (availableSeatsErrorMessage != "") {
+            errorMessage += availableSeatsErrorMessage;
+        }
+
+        if (seatsJField.getText() != "" && availableSeatsJField.getText() != "" && seatsErrorMessage != "" && availableSeatsErrorMessage != "") {
+            if (Integer.valueOf(availableSeatsJField.getText()) > Integer.valueOf(seatsJField.getText())) {
+                errorMessage += "Available seats cannot be more than no. of seats";
+            }
+        }
+
+        if (modelNoJField.getSelectedItem() == "") {
+            errorMessage += "Please select model no.!" + "\n";
+        }
+
+        String cityErrorMessage = createdCar.validateSeats(cityJField.getText());
+        if (cityErrorMessage != "") {
+            errorMessage += cityErrorMessage;
+        }
+
+        String serialNoErrorMessage = createdCar.validateSeats(serialNoJField.getText());
+        if (serialNoErrorMessage != "") {
+            errorMessage += serialNoErrorMessage;
+        }
+
+        if (manufacturerJComboBox.getSelectedItem() == "") {
+            errorMessage += "Please select manufacturer!" + "\n";
+        }
+
+        System.out.println("final errorMessage" + errorMessage);
+
+        if (errorMessage.length() != 0) {
+            JOptionPane.showMessageDialog(this, errorMessage, "Validations", ERROR_MESSAGE);
+        } else {
+            createdCar.availabilityFrom = fromTime;
+            createdCar.availabilityTo = tillTime;
+            createdCar.brand = (String) brandJComboBox.getSelectedItem();
+            createdCar.manufactureYear = (int) manufactureYearJComboBox.getSelectedItem();
+            createdCar.seats = Integer.valueOf(seatsJField.getText());
+            createdCar.modelNo = (String) modelNoJField.getSelectedItem();
+            createdCar.manufacturer = (String) manufacturerJComboBox.getSelectedItem();
+            createdCar.updatedAt = new Date();
+            createdCar.createdAt = new Date();
+            createdCar.city = cityJField.getText();
+            createdCar.setAvailableSeats(Integer.valueOf(availableSeatsJField.getText()));
+            String mce = medDayJField.getText().trim() + "/" + medMonthJField.getText().trim() + "/" + medYearJField.getText().trim();
+            DateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+            dateFormatter.setLenient(false);
+            try {
+                createdCar.setMaintenanceCerticateExpiry(dateFormatter.parse(mce));
+            } catch (ParseException ex) {
+                Logger.getLogger(AdminCreate.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            createdCar.setAvailableSeats(Integer.valueOf(serialNoJField.getText()));
+            JOptionPane.showMessageDialog(this, "Added successfully!", "Addition", INFORMATION_MESSAGE);
+
+            MainJFrame.allCars.add(createdCar);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void availableSeatsJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_availableSeatsJFieldFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_availableSeatsJFieldFocusGained
+
+    private void availableSeatsJFieldnameChangeHandler(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_availableSeatsJFieldnameChangeHandler
+        // TODO add your handling code here:
+    }//GEN-LAST:event_availableSeatsJFieldnameChangeHandler
+
+    private void availableSeatsJFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_availableSeatsJFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_availableSeatsJFieldActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox availableFromAMJCheckBox;
@@ -725,6 +876,7 @@ public class AdminCreate extends javax.swing.JPanel {
     private javax.swing.JLabel availableFromJLabel;
     private javax.swing.JTextField availableFromMMJField;
     private javax.swing.JCheckBox availableFromPMJCheckBox;
+    private javax.swing.JTextField availableSeatsJField;
     private javax.swing.JCheckBox availableTillAMJCheckBox;
     private javax.swing.JTextField availableTillHHJField;
     private javax.swing.JLabel availableTillJLabel;
@@ -750,10 +902,11 @@ public class AdminCreate extends javax.swing.JPanel {
     private javax.swing.JTextField medDayJField;
     private javax.swing.JTextField medMonthJField;
     private javax.swing.JTextField medYearJField;
-    private javax.swing.JTextField modelNoJField;
+    private javax.swing.JComboBox<String> modelNoJField;
     private javax.swing.JLabel modelNoJLabel;
     private javax.swing.JTextField seatsJField;
     private javax.swing.JLabel seatsJLabel;
+    private javax.swing.JLabel seatsJLabel1;
     private javax.swing.JTextField serialNoJField;
     private javax.swing.JLabel serialNoJLabel;
     // End of variables declaration//GEN-END:variables

@@ -5,6 +5,9 @@
  */
 package classes;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -27,6 +30,114 @@ public class Car {
     private Date maintenanceCerticateExpiry;
     private String serialNo;
     private long availableSeats;
+
+    public String validate24HourTime(String fromValue, String type) {
+        String isValid = "";
+        if (fromValue.equals("")) {
+            isValid = type + " time required!";
+        } else if (!fromValue.matches("^(2[0-3]|[01]?[0-9]):([0-5]?[0-9])$")) {
+            isValid = "Invalid " + type + " time!";
+        }
+        return isValid;
+    }
+
+    public String validate12HourTime(String fromValue, String type) {
+        String isValid = "";
+        if (fromValue.equals("")) {
+            isValid = type + " time required!";
+        } else if (!fromValue.matches("^((1[0-2])|0[0-9]|[0-9]):([0-5]?[0-9])$")) {
+            isValid = "Invalid " + type + " time entered! Must be in 12 Hours format.";
+        }
+        return isValid;
+    }
+
+    public String validateStartEndTime(String startValue, String endValue) {
+        String isValid = "";
+        if (!isMoreThanStart(startValue, endValue)) {
+            isValid = "End Date should be more than Start Data!";
+        }
+        return isValid;
+    }
+
+    public boolean isMoreThanStart(String startValue, String endValue) {
+        int time1HH = Integer.parseInt(startValue.split(":")[0]);
+        int time1MM = Integer.parseInt(startValue.split(":")[1]);
+        int time2HH = Integer.parseInt(endValue.split(":")[0]);
+        int time2MM = Integer.parseInt(endValue.split(":")[1]);
+        int t1m = (time1HH * 60) + time1MM;
+        int t2m = (time2HH * 60) + (time2MM % 100);
+        int sub = t2m - t1m;
+        return sub >= 0;
+    }
+
+    public String validateMED(String date) {
+        String isValid = "";
+        DateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            dateFormatter.setLenient(false);
+            dateFormatter.parse(date);
+        } catch (ParseException e) {
+            isValid = "Invalid Medical Expiry Date! Should be in DD/MM/YYYY format.";
+        }
+        return isValid;
+    }
+
+    public String validateSeats(String seats) {
+        String isValid = "";
+
+        try {
+            int seat = Integer.valueOf(seats);
+            if (seat == 0) {
+                isValid = " No. of seats cannot be 0!";
+            } else if (seat < 1 && seat > 20) {
+                isValid = "No. of seats cannot be less than 1 or more than 20";
+            }
+        } catch (Exception e) {
+            isValid = "No. seats should be a number";
+        }
+
+        return isValid;
+    }
+
+    public String validateAvailableSeats(String seats) {
+        String isValid = "";
+        try {
+            int seat = Integer.valueOf(seats);
+            if (seat == 0) {
+                isValid = "Available seats cannot be 0!";
+            } else if (seat < 1 && seat > 20) {
+                isValid = "Available seats cannot be less than 1 or more than 20";
+            }
+        } catch (Exception e) {
+            isValid = "No. seats should be a number";
+        }
+
+        return isValid;
+    }
+
+    public String validateCity(String city) {
+        String isValid = "";
+        if (city.equals("")) {
+            isValid = "City cannot be empty!";
+        } else if (city.length() < 2 || city.length() > 20) {
+            isValid = "City should be of minimum 2 characters and maximum 20 character!";
+        } else if (!city.matches("[a-zA-Z ]{2,20}")) {
+            isValid = "Invalid City!";
+        }
+        return isValid;
+    }
+
+    public String validateSerialNo(String serialNo) {
+        String isValid = "";
+        if (serialNo.equals("")) {
+            isValid = "Serial No. cannot be empty!";
+        } else if (serialNo.length() < 4 || serialNo.length() > 10) {
+            isValid = "Serial No. should be minimum 4 characters and maximum 10 characters!";
+        } else if (!serialNo.matches("[a-zA-Z0-9]{4,10}")) {
+            isValid = "Invalid Serial No!";
+        }
+        return isValid;
+    }
 
     /**
      * @return the id

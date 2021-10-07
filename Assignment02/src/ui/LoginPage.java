@@ -147,7 +147,6 @@ public class LoginPage extends javax.swing.JPanel {
                 for (User admin : MainJFrame.adminLists) {
                     if (admin.getPassword().equals(passwordJField.getText()) && admin.email.equals(emailIDJField.getText())) {
                         System.out.println("admin logged in!!!");
-                        jSplitPane.setDividerLocation((int) (0.3 * (new Dimension(Toolkit.getDefaultToolkit().getScreenSize()).width - 300)));
                         AdminDashboard adminDashboard = new AdminDashboard(jSplitPane);
                         AdminLeftSection adminOptions = new AdminLeftSection(jSplitPane, leftJPanel, rightJPanel);
                         jSplitPane.setRightComponent(adminDashboard);
@@ -159,8 +158,6 @@ public class LoginPage extends javax.swing.JPanel {
                 for (User user : MainJFrame.usersLists) {
                     if (user.getPassword().equals(passwordJField.getText()) && user.email.equals(emailIDJField.getText())) {
                         System.out.println("user logged in!!!");
-                        jSplitPane.setDividerLocation((int) (0.3 * (new Dimension(Toolkit.getDefaultToolkit().getScreenSize()).width) - 300));
-
                     }
                 }
             }
