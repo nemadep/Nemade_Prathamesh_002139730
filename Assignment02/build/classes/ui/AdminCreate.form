@@ -17,51 +17,51 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="availableFromJLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="availableTillJLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="brandJLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="manufacturerYearJLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="seatsJLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="seatsJLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="serialNoJLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="modelNoJLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="manufacturerJLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="cityJLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="maintenanceExpiryJLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="cardentifierJLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="manufacturerJComboBox" alignment="0" max="32767" attributes="0"/>
+                  <Component id="modelNoJComboBox" alignment="0" max="32767" attributes="0"/>
+                  <Component id="manufactureYearJComboBox" alignment="0" max="32767" attributes="0"/>
+                  <Component id="brandJComboBox" alignment="0" max="32767" attributes="0"/>
+                  <Component id="availableSeatsJField" alignment="0" pref="456" max="32767" attributes="0"/>
+                  <Component id="seatsJField" alignment="0" max="32767" attributes="0"/>
+                  <Component id="serialNoJField" alignment="0" max="32767" attributes="0"/>
+                  <Component id="cityJField" alignment="0" max="32767" attributes="0"/>
+                  <Component id="carIdentifierJLabel" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="medDayJField" min="-2" pref="31" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="dummyJField3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="medMonthJField" min="-2" pref="33" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="dummyJField2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="medYearJField" min="-2" pref="52" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace pref="164" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="availableFromJLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="availableTillJLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="brandJLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="manufacturerYearJLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="seatsJLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="seatsJLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="serialNoJLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="modelNoJLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="manufacturerJLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="cityJLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="maintenanceExpiryJLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="cardentifierJLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="brandJComboBox" alignment="0" max="32767" attributes="0"/>
-                          <Component id="manufactureYearJComboBox" alignment="0" max="32767" attributes="0"/>
-                          <Component id="seatsJField" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
-                          <Component id="availableSeatsJField" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
-                          <Component id="serialNoJField" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
-                          <Component id="modelNoJComboBox" alignment="0" max="32767" attributes="0"/>
-                          <Component id="manufacturerJComboBox" alignment="0" max="32767" attributes="0"/>
-                          <Component id="cityJField" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="186" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="196" pref="196" max="-2" attributes="0"/>
-                      <Component id="availableFromHHJField" min="-2" pref="31" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="dummyJField4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="availableFromMMJField" min="-2" pref="33" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="availableFromAMJCheckBox" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="availableFromPMJCheckBox" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="196" pref="196" max="-2" attributes="0"/>
@@ -77,26 +77,22 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="196" pref="196" max="-2" attributes="0"/>
-                      <Component id="medDayJField" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="availableFromHHJField" min="-2" pref="31" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="dummyJField3" min="-2" max="-2" attributes="0"/>
+                      <Component id="dummyJField4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="medMonthJField" min="-2" pref="33" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="dummyJField2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="medYearJField" min="-2" pref="52" max="-2" attributes="0"/>
+                      <Component id="availableFromMMJField" min="-2" pref="33" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="availableFromAMJCheckBox" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="availableFromPMJCheckBox" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="196" pref="196" max="-2" attributes="0"/>
-                      <Component id="carIdentifierJLabel" min="-2" pref="303" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="196" pref="196" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="186" max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="145" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -105,7 +101,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="availableFromJLabel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -186,7 +182,7 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="248" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

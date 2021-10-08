@@ -6,6 +6,8 @@
 package ui;
 
 import classes.Car;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.List;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -18,6 +20,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
+import javax.swing.JSplitPane;
 import org.json.simple.JSONObject;
 
 /**
@@ -30,6 +33,8 @@ public class AdminCreate extends javax.swing.JPanel {
 
     /**
      * Creates new form AdminCreate
+     *
+     * @param jSplitPane
      */
     public AdminCreate() {
         initComponents();
@@ -58,6 +63,7 @@ public class AdminCreate extends javax.swing.JPanel {
         String[] brandSDropdown = brandDropdown.toArray(new String[brandDropdown.size()]);
         DefaultComboBoxModel<String> brandSDropdownModel = new DefaultComboBoxModel<>(brandSDropdown);
         brandJComboBox.setModel(brandSDropdownModel);
+        setDropdownBasedValues(brandJComboBox.getSelectedItem());
     }
 
     /**
@@ -460,47 +466,47 @@ public class AdminCreate extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(availableFromJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(availableTillJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(brandJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(manufacturerYearJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(seatsJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(seatsJLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(serialNoJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(modelNoJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(manufacturerJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cityJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(maintenanceExpiryJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cardentifierJLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(manufacturerJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(modelNoJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(manufactureYearJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(brandJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(availableSeatsJField, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
+                    .addComponent(seatsJField)
+                    .addComponent(serialNoJField)
+                    .addComponent(cityJField)
+                    .addComponent(carIdentifierJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(medDayJField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dummyJField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(medMonthJField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dummyJField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(medYearJField, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(164, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(availableFromJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(availableTillJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(brandJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(manufacturerYearJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(seatsJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(seatsJLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(serialNoJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(modelNoJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(manufacturerJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cityJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(maintenanceExpiryJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cardentifierJLabel, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(brandJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(manufactureYearJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(seatsJField, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(availableSeatsJField, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(serialNoJField, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(modelNoJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(manufacturerJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cityJField, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(3, 3, 3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(186, 186, 186)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(196, 196, 196)
-                        .addComponent(availableFromHHJField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dummyJField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(availableFromMMJField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(availableFromAMJCheckBox)
-                        .addGap(18, 18, 18)
-                        .addComponent(availableFromPMJCheckBox))
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(196, 196, 196)
                         .addComponent(availableTillHHJField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -514,29 +520,26 @@ public class AdminCreate extends javax.swing.JPanel {
                         .addComponent(availableTillPMJCheckBox))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(196, 196, 196)
-                        .addComponent(medDayJField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(availableFromHHJField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dummyJField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dummyJField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(medMonthJField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dummyJField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(medYearJField, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(availableFromMMJField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(availableFromAMJCheckBox)
+                        .addGap(18, 18, 18)
+                        .addComponent(availableFromPMJCheckBox))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(196, 196, 196)
-                        .addComponent(carIdentifierJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(196, 196, 196)
-                        .addComponent(jLabel1)))
-                .addContainerGap(145, Short.MAX_VALUE))
+                        .addGap(186, 186, 186)
+                        .addComponent(jButton1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1)
-                .addGap(41, 41, 41)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(availableFromJLabel)
@@ -602,7 +605,7 @@ public class AdminCreate extends javax.swing.JPanel {
                     .addComponent(cardentifierJLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addContainerGap(248, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -924,12 +927,16 @@ public class AdminCreate extends javax.swing.JPanel {
 
 
     private void brandJComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_brandJComboBoxItemStateChanged
+        setDropdownBasedValues(brandJComboBox.getSelectedItem());
+    }//GEN-LAST:event_brandJComboBoxItemStateChanged
+
+    public void setDropdownBasedValues(Object value) {
         ArrayList<String> makeDropdown = new ArrayList<>();
         ArrayList<Object> modelDropdown = new ArrayList<>();
         for (int i = 0; i < MainJFrame.allDropdownLists.size(); i++) {
             JSONObject jsonObject = (JSONObject) MainJFrame.allDropdownLists.get(i);
             String adminList = (String) jsonObject.get("make_display");
-            if (adminList == brandJComboBox.getSelectedItem()) {
+            if (adminList == value) {
                 adminList = (String) jsonObject.get("make_country");
                 makeDropdown.add(adminList);
 
@@ -950,9 +957,7 @@ public class AdminCreate extends javax.swing.JPanel {
         String[] modelSDropdown = modelDropdown.toArray(new String[modelDropdown.size()]);
         DefaultComboBoxModel<String> modelSDropdownModel = new DefaultComboBoxModel<>(modelSDropdown);
         modelNoJComboBox.setModel(modelSDropdownModel);
-
-    }//GEN-LAST:event_brandJComboBoxItemStateChanged
-
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox availableFromAMJCheckBox;

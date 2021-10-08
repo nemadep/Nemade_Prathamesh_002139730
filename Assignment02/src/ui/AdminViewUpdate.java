@@ -5,17 +5,56 @@
  */
 package ui;
 
+import classes.Car;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
+import org.json.simple.JSONObject;
+
 /**
  *
  * @author prathameshnemade
  */
 public class AdminViewUpdate extends javax.swing.JPanel {
 
+    Car selectedCar;
+    int selectedIndex;
+
     /**
      * Creates new form AdminViewUpdate
      */
     public AdminViewUpdate() {
         initComponents();
+        jSplitPane1.setDividerLocation((int) (0.2 * (new Dimension(Toolkit.getDefaultToolkit().getScreenSize()).width - 300)));
+        generateDropdown();
+        getDefaultList();
+    }
+
+    public void getDefaultList() {
+        DefaultListModel model = new DefaultListModel();
+        if (MainJFrame.allCars.isEmpty()) {
+            uploadedJList.setModel(model);
+            JOptionPane.showMessageDialog(this, "No Cars Available!!", "View Car Details", ERROR_MESSAGE);
+        } else {
+            MainJFrame.allCars.forEach(car -> {
+                model.addElement(car.id + " - " + car.getSerialNo());
+            });
+            uploadedJList.setModel(model);
+            uploadedJList.setSelectedIndex(0);
+            openSelectedProfile();
+
+        }
     }
 
     /**
@@ -27,19 +66,1081 @@ public class AdminViewUpdate extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jSplitPane1 = new javax.swing.JSplitPane();
+        jPanel1 = new javax.swing.JPanel();
+        availableFromJLabel = new javax.swing.JLabel();
+        availableTillJLabel = new javax.swing.JLabel();
+        brandJLabel = new javax.swing.JLabel();
+        manufactureYearJComboBox = new javax.swing.JComboBox<>();
+        manufacturerYearJLabel = new javax.swing.JLabel();
+        brandJComboBox = new javax.swing.JComboBox<>();
+        modelNoJLabel = new javax.swing.JLabel();
+        seatsJLabel = new javax.swing.JLabel();
+        seatsJField = new javax.swing.JTextField();
+        serialNoJLabel = new javax.swing.JLabel();
+        serialNoJField = new javax.swing.JTextField();
+        manufacturerJLabel = new javax.swing.JLabel();
+        manufacturerJComboBox = new javax.swing.JComboBox<>();
+        cityJLabel = new javax.swing.JLabel();
+        cityJField = new javax.swing.JTextField();
+        maintenanceExpiryJLabel = new javax.swing.JLabel();
+        medDayJField = new javax.swing.JTextField();
+        medMonthJField = new javax.swing.JTextField();
+        dummyJField3 = new javax.swing.JTextField();
+        dummyJField2 = new javax.swing.JTextField();
+        medYearJField = new javax.swing.JTextField();
+        availableFromHHJField = new javax.swing.JTextField();
+        dummyJField4 = new javax.swing.JTextField();
+        availableFromMMJField = new javax.swing.JTextField();
+        dummyJField7 = new javax.swing.JTextField();
+        availableTillMMJField = new javax.swing.JTextField();
+        availableTillHHJField = new javax.swing.JTextField();
+        cardentifierJLabel = new javax.swing.JLabel();
+        carIdentifierJLabel = new javax.swing.JTextField();
+        availableFromPMJCheckBox = new javax.swing.JCheckBox();
+        availableFromAMJCheckBox = new javax.swing.JCheckBox();
+        availableTillAMJCheckBox = new javax.swing.JCheckBox();
+        availableTillPMJCheckBox = new javax.swing.JCheckBox();
+        jButton1 = new javax.swing.JButton();
+        modelNoJComboBox = new javax.swing.JComboBox<>();
+        seatsJLabel1 = new javax.swing.JLabel();
+        availableSeatsJField = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        uploadedJList = new javax.swing.JList<>();
+
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Update Cars");
+
+        availableFromJLabel.setText("Available From:");
+
+        availableTillJLabel.setText("Available Till:");
+
+        brandJLabel.setText("Brand:");
+
+        manufacturerYearJLabel.setText("Manufacture Year:");
+
+        brandJComboBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                brandJComboBoxItemStateChanged(evt);
+            }
+        });
+        brandJComboBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                brandJComboBoxFocusGained(evt);
+            }
+        });
+        brandJComboBox.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                brandJComboBoxPropertyChange(evt);
+            }
+        });
+
+        modelNoJLabel.setText("Model No.:");
+
+        seatsJLabel.setText("No. of Seats:");
+
+        seatsJField.setBackground(new java.awt.Color(238, 238, 238));
+        seatsJField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        seatsJField.setText("Enter here");
+        seatsJField.setToolTipText("Click to enter your name.");
+        seatsJField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
+        seatsJField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                seatsJFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                seatsJFieldnameChangeHandler(evt);
+            }
+        });
+        seatsJField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                seatsJFieldActionPerformed(evt);
+            }
+        });
+
+        serialNoJLabel.setText("Serial No:");
+
+        serialNoJField.setBackground(new java.awt.Color(238, 238, 238));
+        serialNoJField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        serialNoJField.setText("Enter here");
+        serialNoJField.setToolTipText("Click to enter your name.");
+        serialNoJField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
+        serialNoJField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                serialNoJFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                serialNoJFieldnameChangeHandler(evt);
+            }
+        });
+        serialNoJField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                serialNoJFieldActionPerformed(evt);
+            }
+        });
+
+        manufacturerJLabel.setText("Manufacturer:");
+
+        cityJLabel.setText("City:");
+
+        cityJField.setBackground(new java.awt.Color(238, 238, 238));
+        cityJField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        cityJField.setText("Enter here");
+        cityJField.setToolTipText("Click to enter your name.");
+        cityJField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
+        cityJField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                cityJFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cityJFieldnameChangeHandler(evt);
+            }
+        });
+        cityJField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cityJFieldActionPerformed(evt);
+            }
+        });
+
+        maintenanceExpiryJLabel.setText("Maintenance Expiry Date:");
+
+        medDayJField.setBackground(new java.awt.Color(238, 238, 238));
+        medDayJField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        medDayJField.setText("DD");
+        medDayJField.setToolTipText("Enter date of birth here.");
+        medDayJField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
+        medDayJField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                medDayJFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                medDayJFielddateOfBirthFocusLost(evt);
+            }
+        });
+        medDayJField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                medDayJFieldActionPerformed(evt);
+            }
+        });
+
+        medMonthJField.setBackground(new java.awt.Color(238, 238, 238));
+        medMonthJField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        medMonthJField.setText("MM");
+        medMonthJField.setToolTipText("Enter date of birth here.");
+        medMonthJField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
+        medMonthJField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                medMonthJFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                medMonthJFielddateOfBirthFocusLost(evt);
+            }
+        });
+        medMonthJField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                medMonthJFieldActionPerformed(evt);
+            }
+        });
+
+        dummyJField3.setEditable(false);
+        dummyJField3.setBackground(new java.awt.Color(216, 220, 228));
+        dummyJField3.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        dummyJField3.setText("/");
+        dummyJField3.setToolTipText("");
+        dummyJField3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
+        dummyJField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dummyJField3ActionPerformed(evt);
+            }
+        });
+
+        dummyJField2.setEditable(false);
+        dummyJField2.setBackground(new java.awt.Color(216, 220, 228));
+        dummyJField2.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        dummyJField2.setText("/");
+        dummyJField2.setToolTipText("");
+        dummyJField2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
+        dummyJField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dummyJField2ActionPerformed(evt);
+            }
+        });
+
+        medYearJField.setBackground(new java.awt.Color(238, 238, 238));
+        medYearJField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        medYearJField.setText("YYYY");
+        medYearJField.setToolTipText("Enter date of birth here.");
+        medYearJField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
+        medYearJField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                medYearJFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                medYearJFielddateOfBirthFocusLost(evt);
+            }
+        });
+        medYearJField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                medYearJFieldActionPerformed(evt);
+            }
+        });
+
+        availableFromHHJField.setBackground(new java.awt.Color(238, 238, 238));
+        availableFromHHJField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        availableFromHHJField.setText("HH");
+        availableFromHHJField.setToolTipText("Enter date of birth here.");
+        availableFromHHJField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
+        availableFromHHJField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                availableFromHHJFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                availableFromHHJFielddateOfBirthFocusLost(evt);
+            }
+        });
+        availableFromHHJField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                availableFromHHJFieldActionPerformed(evt);
+            }
+        });
+
+        dummyJField4.setEditable(false);
+        dummyJField4.setBackground(new java.awt.Color(216, 220, 228));
+        dummyJField4.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        dummyJField4.setText(":");
+        dummyJField4.setToolTipText("");
+        dummyJField4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
+        dummyJField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dummyJField4ActionPerformed(evt);
+            }
+        });
+
+        availableFromMMJField.setBackground(new java.awt.Color(238, 238, 238));
+        availableFromMMJField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        availableFromMMJField.setText("MM");
+        availableFromMMJField.setToolTipText("Enter date of birth here.");
+        availableFromMMJField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
+        availableFromMMJField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                availableFromMMJFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                availableFromMMJFielddateOfBirthFocusLost(evt);
+            }
+        });
+        availableFromMMJField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                availableFromMMJFieldActionPerformed(evt);
+            }
+        });
+
+        dummyJField7.setEditable(false);
+        dummyJField7.setBackground(new java.awt.Color(216, 220, 228));
+        dummyJField7.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        dummyJField7.setText(":");
+        dummyJField7.setToolTipText("");
+        dummyJField7.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
+        dummyJField7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dummyJField7ActionPerformed(evt);
+            }
+        });
+
+        availableTillMMJField.setBackground(new java.awt.Color(238, 238, 238));
+        availableTillMMJField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        availableTillMMJField.setText("MM");
+        availableTillMMJField.setToolTipText("Enter date of birth here.");
+        availableTillMMJField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
+        availableTillMMJField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                availableTillMMJFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                availableTillMMJFielddateOfBirthFocusLost(evt);
+            }
+        });
+        availableTillMMJField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                availableTillMMJFieldActionPerformed(evt);
+            }
+        });
+
+        availableTillHHJField.setBackground(new java.awt.Color(238, 238, 238));
+        availableTillHHJField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        availableTillHHJField.setText("HH");
+        availableTillHHJField.setToolTipText("Enter date of birth here.");
+        availableTillHHJField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
+        availableTillHHJField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                availableTillHHJFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                availableTillHHJFielddateOfBirthFocusLost(evt);
+            }
+        });
+        availableTillHHJField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                availableTillHHJFieldActionPerformed(evt);
+            }
+        });
+
+        cardentifierJLabel.setText("Car Identifier :");
+
+        carIdentifierJLabel.setEditable(false);
+        carIdentifierJLabel.setBackground(new java.awt.Color(216, 220, 228));
+        carIdentifierJLabel.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        carIdentifierJLabel.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        carIdentifierJLabel.setToolTipText("This is your identifier.");
+        carIdentifierJLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
+        carIdentifierJLabel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                carIdentifierJLabelActionPerformed(evt);
+            }
+        });
+
+        availableFromPMJCheckBox.setText("PM");
+        availableFromPMJCheckBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                availableFromPMJCheckBoxFocusGained(evt);
+            }
+        });
+
+        availableFromAMJCheckBox.setText("AM");
+        availableFromAMJCheckBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                availableFromAMJCheckBoxFocusGained(evt);
+            }
+        });
+
+        availableTillAMJCheckBox.setText("AM");
+        availableTillAMJCheckBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                availableTillAMJCheckBoxFocusGained(evt);
+            }
+        });
+
+        availableTillPMJCheckBox.setText("PM");
+        availableTillPMJCheckBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                availableTillPMJCheckBoxFocusGained(evt);
+            }
+        });
+
+        jButton1.setText("UPADATE");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        seatsJLabel1.setText("Available Seats:");
+
+        availableSeatsJField.setBackground(new java.awt.Color(238, 238, 238));
+        availableSeatsJField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        availableSeatsJField.setText("Enter here");
+        availableSeatsJField.setToolTipText("Click to enter your name.");
+        availableSeatsJField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
+        availableSeatsJField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                availableSeatsJFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                availableSeatsJFieldnameChangeHandler(evt);
+            }
+        });
+        availableSeatsJField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                availableSeatsJFieldActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("DELETE CAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(availableFromJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(availableTillJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(brandJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(manufacturerYearJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(seatsJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(seatsJLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(serialNoJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(modelNoJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(manufacturerJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cityJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(maintenanceExpiryJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cardentifierJLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(manufacturerJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(modelNoJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(manufactureYearJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(brandJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(availableSeatsJField, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
+                    .addComponent(seatsJField)
+                    .addComponent(serialNoJField)
+                    .addComponent(cityJField)
+                    .addComponent(carIdentifierJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(medDayJField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dummyJField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(medMonthJField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dummyJField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(medYearJField, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(156, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(196, 196, 196)
+                        .addComponent(availableTillHHJField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dummyJField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(availableTillMMJField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(availableTillAMJCheckBox)
+                        .addGap(18, 18, 18)
+                        .addComponent(availableTillPMJCheckBox))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(196, 196, 196)
+                        .addComponent(availableFromHHJField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dummyJField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(availableFromMMJField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(availableFromAMJCheckBox)
+                        .addGap(18, 18, 18)
+                        .addComponent(availableFromPMJCheckBox))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(186, 186, 186)
+                        .addComponent(jButton1)
+                        .addGap(29, 29, 29)
+                        .addComponent(jButton2)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(availableFromJLabel)
+                        .addComponent(availableFromHHJField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dummyJField4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(availableFromMMJField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(availableFromAMJCheckBox)
+                            .addComponent(availableFromPMJCheckBox))
+                        .addGap(2, 2, 2)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(availableTillJLabel)
+                    .addComponent(availableTillHHJField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dummyJField7, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(availableTillMMJField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(availableTillAMJCheckBox)
+                    .addComponent(availableTillPMJCheckBox))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(brandJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(brandJLabel))
+                .addGap(6, 6, 6)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(manufacturerYearJLabel)
+                    .addComponent(manufactureYearJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(seatsJLabel)
+                    .addComponent(seatsJField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(seatsJLabel1)
+                    .addComponent(availableSeatsJField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(serialNoJField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(serialNoJLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(modelNoJLabel)
+                    .addComponent(modelNoJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(manufacturerJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(manufacturerJLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cityJField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cityJLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(maintenanceExpiryJLabel)
+                    .addComponent(medDayJField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dummyJField3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(medMonthJField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dummyJField2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(medYearJField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(carIdentifierJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cardentifierJLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap(176, Short.MAX_VALUE))
+        );
+
+        jSplitPane1.setRightComponent(jPanel1);
+
+        uploadedJList.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                uploadedJListFocusGained(evt);
+            }
+        });
+        uploadedJList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                uploadedJListMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(uploadedJList);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)
+        );
+
+        jSplitPane1.setLeftComponent(jPanel2);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 816, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 810, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 826, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(21, 21, 21)
+                    .addComponent(jLabel1)
+                    .addGap(18, 18, 18)
+                    .addComponent(jSplitPane1)
+                    .addGap(22, 22, 22)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void uploadedJListFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_uploadedJListFocusGained
+        openSelectedProfile();
+    }//GEN-LAST:event_uploadedJListFocusGained
+
+    private void uploadedJListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_uploadedJListMouseClicked
+        openSelectedProfile();
+    }//GEN-LAST:event_uploadedJListMouseClicked
+
+    private void brandJComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_brandJComboBoxItemStateChanged
+        setSelectedDropdownValues(brandJComboBox.getSelectedItem());
+    }//GEN-LAST:event_brandJComboBoxItemStateChanged
+
+    public void setSelectedDropdownValues(Object value) {
+        ArrayList<String> makeDropdown = new ArrayList<>();
+        ArrayList<Object> modelDropdown = new ArrayList<>();
+        for (int i = 0; i < MainJFrame.allDropdownLists.size(); i++) {
+            JSONObject jsonObject = (JSONObject) MainJFrame.allDropdownLists.get(i);
+            String adminList = (String) jsonObject.get("make_display");
+            if (adminList == value) {
+                adminList = (String) jsonObject.get("make_country");
+                makeDropdown.add(adminList);
+
+                ArrayList<Object> modelsTemp = (ArrayList) jsonObject.get("Models");
+
+                for (int j = 0; j < modelsTemp.size(); j++) {
+                    JSONObject jsonObject1 = (JSONObject) modelsTemp.get(j);
+                    String adminList1 = (String) jsonObject1.get("model_trim");
+                    modelDropdown.add(adminList1);
+                }
+            }
+        }
+
+        String[] makeSDropdown = makeDropdown.toArray(new String[makeDropdown.size()]);
+        DefaultComboBoxModel<String> makeSDropdownModel = new DefaultComboBoxModel<>(makeSDropdown);
+        manufacturerJComboBox.setModel(makeSDropdownModel);
+
+        String[] modelSDropdown = modelDropdown.toArray(new String[modelDropdown.size()]);
+        DefaultComboBoxModel<String> modelSDropdownModel = new DefaultComboBoxModel<>(modelSDropdown);
+        modelNoJComboBox.setModel(modelSDropdownModel);
+    }
+    private void brandJComboBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_brandJComboBoxFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_brandJComboBoxFocusGained
+
+    private void brandJComboBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_brandJComboBoxPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_brandJComboBoxPropertyChange
+
+    private void seatsJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_seatsJFieldFocusGained
+        if (seatsJField.getText().equals("Enter here")) {
+            seatsJField.setText("");
+        }
+    }//GEN-LAST:event_seatsJFieldFocusGained
+
+    private void seatsJFieldnameChangeHandler(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_seatsJFieldnameChangeHandler
+        // TODO add your handling code here:
+    }//GEN-LAST:event_seatsJFieldnameChangeHandler
+
+    private void seatsJFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seatsJFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_seatsJFieldActionPerformed
+
+    private void serialNoJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_serialNoJFieldFocusGained
+        if (serialNoJField.getText().equals("Enter here")) {
+            serialNoJField.setText("");
+        }
+    }//GEN-LAST:event_serialNoJFieldFocusGained
+
+    private void serialNoJFieldnameChangeHandler(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_serialNoJFieldnameChangeHandler
+        // TODO add your handling code here:
+    }//GEN-LAST:event_serialNoJFieldnameChangeHandler
+
+    private void serialNoJFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serialNoJFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_serialNoJFieldActionPerformed
+
+    private void cityJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cityJFieldFocusGained
+        if (cityJField.getText().equals("Enter here")) {
+            cityJField.setText("");
+        }
+    }//GEN-LAST:event_cityJFieldFocusGained
+
+    private void cityJFieldnameChangeHandler(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cityJFieldnameChangeHandler
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cityJFieldnameChangeHandler
+
+    private void cityJFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityJFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cityJFieldActionPerformed
+
+    private void medDayJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_medDayJFieldFocusGained
+        if (medDayJField.getText().equals("DD")) {
+            medDayJField.setText("");
+        }
+    }//GEN-LAST:event_medDayJFieldFocusGained
+
+    private void medDayJFielddateOfBirthFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_medDayJFielddateOfBirthFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_medDayJFielddateOfBirthFocusLost
+
+    private void medDayJFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_medDayJFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_medDayJFieldActionPerformed
+
+    private void medMonthJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_medMonthJFieldFocusGained
+        if (medMonthJField.getText().equals("MM")) {
+            medMonthJField.setText("");
+        }
+    }//GEN-LAST:event_medMonthJFieldFocusGained
+
+    private void medMonthJFielddateOfBirthFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_medMonthJFielddateOfBirthFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_medMonthJFielddateOfBirthFocusLost
+
+    private void medMonthJFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_medMonthJFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_medMonthJFieldActionPerformed
+
+    private void dummyJField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dummyJField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dummyJField3ActionPerformed
+
+    private void dummyJField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dummyJField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dummyJField2ActionPerformed
+
+    private void medYearJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_medYearJFieldFocusGained
+        if (medYearJField.getText().equals("YYYY")) {
+            medYearJField.setText("");
+        }
+    }//GEN-LAST:event_medYearJFieldFocusGained
+
+    private void medYearJFielddateOfBirthFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_medYearJFielddateOfBirthFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_medYearJFielddateOfBirthFocusLost
+
+    private void medYearJFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_medYearJFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_medYearJFieldActionPerformed
+
+    private void availableFromHHJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_availableFromHHJFieldFocusGained
+        if (availableFromHHJField.getText().equals("HH")) {
+            availableFromHHJField.setText("");
+        }
+    }//GEN-LAST:event_availableFromHHJFieldFocusGained
+
+    private void availableFromHHJFielddateOfBirthFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_availableFromHHJFielddateOfBirthFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_availableFromHHJFielddateOfBirthFocusLost
+
+    private void availableFromHHJFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_availableFromHHJFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_availableFromHHJFieldActionPerformed
+
+    private void dummyJField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dummyJField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dummyJField4ActionPerformed
+
+    private void availableFromMMJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_availableFromMMJFieldFocusGained
+        if (availableFromMMJField.getText().equals("MM")) {
+            availableFromMMJField.setText("");
+        }
+    }//GEN-LAST:event_availableFromMMJFieldFocusGained
+
+    private void availableFromMMJFielddateOfBirthFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_availableFromMMJFielddateOfBirthFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_availableFromMMJFielddateOfBirthFocusLost
+
+    private void availableFromMMJFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_availableFromMMJFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_availableFromMMJFieldActionPerformed
+
+    private void dummyJField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dummyJField7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dummyJField7ActionPerformed
+
+    private void availableTillMMJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_availableTillMMJFieldFocusGained
+        if (availableTillMMJField.getText().equals("MM")) {
+            availableTillMMJField.setText("");
+        }
+    }//GEN-LAST:event_availableTillMMJFieldFocusGained
+
+    private void availableTillMMJFielddateOfBirthFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_availableTillMMJFielddateOfBirthFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_availableTillMMJFielddateOfBirthFocusLost
+
+    private void availableTillMMJFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_availableTillMMJFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_availableTillMMJFieldActionPerformed
+
+    private void availableTillHHJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_availableTillHHJFieldFocusGained
+        if (availableTillHHJField.getText().equals("HH")) {
+            availableTillHHJField.setText("");
+        }
+    }//GEN-LAST:event_availableTillHHJFieldFocusGained
+
+    private void availableTillHHJFielddateOfBirthFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_availableTillHHJFielddateOfBirthFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_availableTillHHJFielddateOfBirthFocusLost
+
+    private void availableTillHHJFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_availableTillHHJFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_availableTillHHJFieldActionPerformed
+
+    private void carIdentifierJLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carIdentifierJLabelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_carIdentifierJLabelActionPerformed
+
+    private void availableFromPMJCheckBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_availableFromPMJCheckBoxFocusGained
+        availableFromAMJCheckBox.setSelected(false);
+    }//GEN-LAST:event_availableFromPMJCheckBoxFocusGained
+
+    private void availableFromAMJCheckBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_availableFromAMJCheckBoxFocusGained
+        availableFromPMJCheckBox.setSelected(false);
+    }//GEN-LAST:event_availableFromAMJCheckBoxFocusGained
+
+    private void availableTillAMJCheckBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_availableTillAMJCheckBoxFocusGained
+        availableTillPMJCheckBox.setSelected(false);
+    }//GEN-LAST:event_availableTillAMJCheckBoxFocusGained
+
+    private void availableTillPMJCheckBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_availableTillPMJCheckBoxFocusGained
+        availableTillAMJCheckBox.setSelected(false);
+    }//GEN-LAST:event_availableTillPMJCheckBoxFocusGained
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (selectedCar == null) {
+            JOptionPane.showMessageDialog(this, "Please select a car to edit!", "Update Car", ERROR_MESSAGE);
+            return;
+        }
+
+        String errorMessage = "";
+        String fromTime = availableFromHHJField.getText() + ":" + availableFromMMJField.getText();
+        String tillTime = availableTillHHJField.getText() + ":" + availableTillMMJField.getText();
+        String fromTimeErrorMessage = selectedCar.validate12HourTime(fromTime, "Availability From");
+        String tillTimeErrorMessage = selectedCar.validate12HourTime(tillTime, "Availability Till");
+
+        if (fromTimeErrorMessage != "") {
+            errorMessage += fromTimeErrorMessage + "\n";
+        } else if (tillTimeErrorMessage != "") {
+            errorMessage += tillTimeErrorMessage + "\n";
+        }
+
+        if (errorMessage.length() != 0) {
+            JOptionPane.showMessageDialog(this, errorMessage, "Validations", ERROR_MESSAGE);
+            return;
+        }
+
+        if (availableFromPMJCheckBox.isSelected()) {
+            fromTime = String.valueOf(Integer.valueOf(fromTime.split(":")[0]) + 12) + ":" + fromTime.split(":")[1];
+        }
+        if (availableTillPMJCheckBox.isSelected()) {
+            tillTime = String.valueOf(Integer.valueOf(tillTime.split(":")[0]) + 12) + ":" + tillTime.split(":")[1];
+        }
+
+        if (errorMessage.length() == 0) {
+            if (!"".equals(selectedCar.validateStartEndTime(fromTime, tillTime))) {
+                errorMessage += "End time should be greater than the start time! \n";
+            }
+        }
+        String medErrorMessage = selectedCar.validateMED(medDayJField.getText().trim() + "/" + medMonthJField.getText().trim() + "/" + medYearJField.getText().trim());
+
+        if (medErrorMessage != "") {
+            errorMessage += medErrorMessage + "\n";
+        }
+
+        if (brandJComboBox.getSelectedItem() == null) {
+            errorMessage += "Please select Brand!" + "\n";
+        }
+
+        if (manufactureYearJComboBox.getSelectedItem() == null) {
+            errorMessage += "Please select manufacture year!" + "\n";
+        }
+
+        String seatsErrorMessage = selectedCar.validateSeats(seatsJField.getText());
+
+        if (seatsErrorMessage != "") {
+            errorMessage += seatsErrorMessage + "\n";
+        }
+
+        String availableSeatsErrorMessage = selectedCar.validateAvailableSeats(availableSeatsJField.getText());
+
+        if (availableSeatsErrorMessage != "") {
+            errorMessage += availableSeatsErrorMessage + "\n";
+        }
+
+        try {
+            if (seatsJField.getText() != "" && availableSeatsJField.getText() != "") {
+                int availableSeats = Integer.valueOf(availableSeatsJField.getText());
+                int seatsTotal = Integer.valueOf(seatsJField.getText());
+                if (availableSeats > seatsTotal) {
+                    errorMessage += "Available seats cannot be more than no. of seats. \n";
+                }
+            }
+        } catch (Exception e) {
+            errorMessage += "Available seats required! \n";
+        }
+
+        if (modelNoJComboBox.getSelectedItem() == null) {
+            errorMessage += "Please select model no.! First select Brand name to choose this. \n";
+        }
+
+        String cityErrorMessage = selectedCar.validateCity(cityJField.getText());
+        if (cityErrorMessage != "") {
+            errorMessage += cityErrorMessage;
+        }
+
+        String serialNoErrorMessage = selectedCar.validateSerialNo(serialNoJField.getText());
+        if (serialNoErrorMessage != "") {
+            errorMessage += serialNoErrorMessage;
+        }
+
+        if (manufacturerJComboBox.getSelectedItem() == null) {
+            errorMessage += "Please select manufacturer! First select Brand name to choose this.\n";
+        }
+
+        System.out.println("final errorMessage" + errorMessage);
+
+        if (errorMessage.length() != 0) {
+            JOptionPane.showMessageDialog(this, errorMessage, "Validations", ERROR_MESSAGE);
+        } else {
+            selectedCar.availabilityFrom = fromTime;
+            selectedCar.availabilityTo = tillTime;
+            selectedCar.brand = (String) brandJComboBox.getSelectedItem();
+            selectedCar.manufactureYear = Long.parseLong((String) manufactureYearJComboBox.getSelectedItem());
+            selectedCar.seats = Integer.valueOf(seatsJField.getText());
+            selectedCar.modelNo = (String) String.valueOf(modelNoJComboBox.getSelectedItem());
+            selectedCar.manufacturer = (String) manufacturerJComboBox.getSelectedItem();
+            selectedCar.updatedAt = new Date();
+            selectedCar.createdAt = selectedCar.createdAt;
+            selectedCar.city = cityJField.getText();
+            selectedCar.setAvailableSeats(Integer.valueOf(availableSeatsJField.getText()));
+            String mce = medDayJField.getText().trim() + "/" + medMonthJField.getText().trim() + "/" + medYearJField.getText().trim();
+            DateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+            dateFormatter.setLenient(false);
+            try {
+                selectedCar.setMaintenanceCerticateExpiry(dateFormatter.parse(mce));
+            } catch (ParseException ex) {
+                System.out.println("Parsing error" + ex);
+            }
+            selectedCar.setSerialNo(serialNoJField.getText());
+            MainJFrame.allCars.set(selectedIndex, selectedCar);
+            getDefaultList();
+            JOptionPane.showMessageDialog(this, "Updated successfully!", "Update Car", INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void availableSeatsJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_availableSeatsJFieldFocusGained
+        if (availableSeatsJField.getText().equals("Enter here")) {
+            availableSeatsJField.setText("");
+        }
+    }//GEN-LAST:event_availableSeatsJFieldFocusGained
+
+    private void availableSeatsJFieldnameChangeHandler(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_availableSeatsJFieldnameChangeHandler
+        // TODO add your handling code here:
+    }//GEN-LAST:event_availableSeatsJFieldnameChangeHandler
+
+    private void availableSeatsJFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_availableSeatsJFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_availableSeatsJFieldActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (selectedCar == null) {
+            JOptionPane.showMessageDialog(this, "Please select a car to delete!", "Delete Car", ERROR_MESSAGE);
+            return;
+        }
+        MainJFrame.allCars.remove(selectedIndex);
+        getDefaultList();
+        JOptionPane.showMessageDialog(this, "Deleted successfully!!", "Delete Car Details", INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void openSelectedProfile() {
+        selectedIndex = uploadedJList.getSelectedIndex();//get the index of the selection made in the left section.
+        if (selectedIndex != -1) {
+            selectedCar = MainJFrame.allCars.get(selectedIndex);
+
+            carIdentifierJLabel.setText(String.valueOf(selectedCar.id));
+            brandJComboBox.setSelectedItem(String.valueOf(selectedCar.brand));
+            setSelectedDropdownValues(brandJComboBox.getSelectedItem());
+            manufactureYearJComboBox.setSelectedItem(String.valueOf(selectedCar.manufactureYear));
+            seatsJField.setText(String.valueOf(selectedCar.seats));
+            availableSeatsJField.setText(String.valueOf(selectedCar.getAvailableSeats()));
+            serialNoJField.setText(String.valueOf(selectedCar.getSerialNo()));
+            modelNoJComboBox.setSelectedItem(String.valueOf(selectedCar.modelNo));
+            manufacturerJComboBox.setSelectedItem(String.valueOf(selectedCar.manufacturer));
+            cityJField.setText(String.valueOf(selectedCar.city));
+
+            String availablefrom = convert24to12hours(String.valueOf(selectedCar.availabilityFrom));
+            availableFromHHJField.setText((availablefrom.split(" ")[0]).split(":")[0]);
+            availableFromMMJField.setText((availablefrom.split(" ")[0]).split(":")[1]);
+            availableFromAMJCheckBox.setSelected("AM".equals(availablefrom.split(" ")[1]));
+            availableFromPMJCheckBox.setSelected("PM".equals(availablefrom.split(" ")[1]));
+
+            String availabletill = convert24to12hours(String.valueOf(selectedCar.availabilityTo));
+            availableTillHHJField.setText((availabletill.split(" ")[0]).split(":")[0]);
+            availableTillMMJField.setText((availabletill.split(" ")[0]).split(":")[1]);
+            availableTillAMJCheckBox.setSelected("AM".equals(availabletill.split(" ")[1]));
+            availableTillPMJCheckBox.setSelected("PM".equals(availabletill.split(" ")[1]));
+
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            String mec = formatter.format(selectedCar.getMaintenanceCerticateExpiry());
+            medDayJField.setText((String) mec.split("/")[0]);
+            medMonthJField.setText((String) mec.split("/")[1]);
+            medYearJField.setText((String) mec.split("/")[2]);
+
+        }
+    }
+
+    public void generateDropdown() {
+        ArrayList<String> yearsDropdown = new ArrayList<>();
+        for (int i = 2000; i < 2010; i++) {
+            yearsDropdown.add(String.valueOf(i));
+        }
+        String[] yearsSDropdown = yearsDropdown.toArray(new String[yearsDropdown.size()]);
+        DefaultComboBoxModel<String> yearsSDropdownModel = new DefaultComboBoxModel<>(yearsSDropdown);
+        manufactureYearJComboBox.setModel(yearsSDropdownModel);
+
+        ArrayList<String> brandDropdown = new ArrayList<>();
+        for (int i = 0; i < MainJFrame.allDropdownLists.size(); i++) {
+            JSONObject jsonObject = (JSONObject) MainJFrame.allDropdownLists.get(i);
+            String adminList = (String) jsonObject.get("make_display");
+            brandDropdown.add(adminList);
+        }
+        String[] brandSDropdown = brandDropdown.toArray(new String[brandDropdown.size()]);
+        DefaultComboBoxModel<String> brandSDropdownModel = new DefaultComboBoxModel<>(brandSDropdown);
+        brandJComboBox.setModel(brandSDropdownModel);
+    }
+
+    public String convert24to12hours(String value) {
+        int HH = Integer.valueOf(value.split(":")[0]);
+        int MM = Integer.valueOf(value.split(":")[1]);
+        return ((HH > 12) ? HH % 12 : HH) + ":" + (MM < 10 ? ("0" + MM) : MM) + " " + ((HH >= 12) ? "PM" : "AM");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox availableFromAMJCheckBox;
+    private javax.swing.JTextField availableFromHHJField;
+    private javax.swing.JLabel availableFromJLabel;
+    private javax.swing.JTextField availableFromMMJField;
+    private javax.swing.JCheckBox availableFromPMJCheckBox;
+    private javax.swing.JTextField availableSeatsJField;
+    private javax.swing.JCheckBox availableTillAMJCheckBox;
+    private javax.swing.JTextField availableTillHHJField;
+    private javax.swing.JLabel availableTillJLabel;
+    private javax.swing.JTextField availableTillMMJField;
+    private javax.swing.JCheckBox availableTillPMJCheckBox;
+    private javax.swing.JComboBox<String> brandJComboBox;
+    private javax.swing.JLabel brandJLabel;
+    private javax.swing.JTextField carIdentifierJLabel;
+    private javax.swing.JLabel cardentifierJLabel;
+    private javax.swing.JTextField cityJField;
+    private javax.swing.JLabel cityJLabel;
+    private javax.swing.JTextField dummyJField2;
+    private javax.swing.JTextField dummyJField3;
+    private javax.swing.JTextField dummyJField4;
+    private javax.swing.JTextField dummyJField7;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JLabel maintenanceExpiryJLabel;
+    private javax.swing.JComboBox<String> manufactureYearJComboBox;
+    private javax.swing.JComboBox<String> manufacturerJComboBox;
+    private javax.swing.JLabel manufacturerJLabel;
+    private javax.swing.JLabel manufacturerYearJLabel;
+    private javax.swing.JTextField medDayJField;
+    private javax.swing.JTextField medMonthJField;
+    private javax.swing.JTextField medYearJField;
+    private javax.swing.JComboBox<String> modelNoJComboBox;
+    private javax.swing.JLabel modelNoJLabel;
+    private javax.swing.JTextField seatsJField;
+    private javax.swing.JLabel seatsJLabel;
+    private javax.swing.JLabel seatsJLabel1;
+    private javax.swing.JTextField serialNoJField;
+    private javax.swing.JLabel serialNoJLabel;
+    private javax.swing.JList<String> uploadedJList;
     // End of variables declaration//GEN-END:variables
 }

@@ -8,9 +8,15 @@ package ui;
 import classes.Car;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import javax.swing.JSplitPane;
 
 /**
  *
@@ -23,7 +29,7 @@ public class AdminView extends javax.swing.JPanel {
      */
     public AdminView() {
         initComponents();
-        jSplitPane1.setDividerLocation((int) (0.4 * (new Dimension(Toolkit.getDefaultToolkit().getScreenSize()).width - 300)));
+        jSplitPane1.setDividerLocation((int) (0.2 * (new Dimension(Toolkit.getDefaultToolkit().getScreenSize()).width - 300)));
         DefaultListModel model = new DefaultListModel();
         if (MainJFrame.allCars.isEmpty()) {
             uploadedJList.setModel(model);
@@ -33,6 +39,12 @@ public class AdminView extends javax.swing.JPanel {
                 model.addElement(car.id + " - " + car.getSerialNo());
             });
             uploadedJList.setModel(model);
+            uploadedJList.setSelectedIndex(0);
+            try {
+                openSelectedProfile();
+            } catch (ParseException ex) {
+                Logger.getLogger(AdminView.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
@@ -45,6 +57,7 @@ public class AdminView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -71,11 +84,17 @@ public class AdminView extends javax.swing.JPanel {
         serialNoJLabel = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         availableSeatsJLabel = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        createdAtJLabel = new javax.swing.JLabel();
+        updatedAtJLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         uploadedJList = new javax.swing.JList<>();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("View All Cars");
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel2.setText("Available From:");
@@ -149,6 +168,18 @@ public class AdminView extends javax.swing.JPanel {
         availableSeatsJLabel.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         availableSeatsJLabel.setText("-");
 
+        jLabel14.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel14.setText("Created At:");
+
+        jLabel15.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel15.setText("Updated At:");
+
+        createdAtJLabel.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        createdAtJLabel.setText("-");
+
+        updatedAtJLabel.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        updatedAtJLabel.setText("-");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -156,18 +187,20 @@ public class AdminView extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(availableFromJLabel)
@@ -181,8 +214,10 @@ public class AdminView extends javax.swing.JPanel {
                     .addComponent(manufacturerJLabel)
                     .addComponent(mceJLabel)
                     .addComponent(serialNoJLabel)
-                    .addComponent(availableSeatsJLabel))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(availableSeatsJLabel)
+                    .addComponent(createdAtJLabel)
+                    .addComponent(updatedAtJLabel))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,12 +270,18 @@ public class AdminView extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(availableSeatsJLabel))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(createdAtJLabel))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(updatedAtJLabel))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(jPanel1);
-
-        jPanel2.setPreferredSize(new java.awt.Dimension(150, 365));
 
         uploadedJList.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -258,63 +299,57 @@ public class AdminView extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
         );
 
         jSplitPane1.setLeftComponent(jPanel2);
-
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("View All Cars");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1))
-        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSplitPane1))
-                .addContainerGap())
+            .addGap(0, 431, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jSplitPane1))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSplitPane1)
-                .addContainerGap())
+            .addGap(0, 490, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(21, 21, 21)
+                    .addComponent(jLabel1)
+                    .addGap(18, 18, 18)
+                    .addComponent(jSplitPane1)
+                    .addGap(22, 22, 22)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void uploadedJListFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_uploadedJListFocusGained
-        openSelectedProfile();
+        try {
+            openSelectedProfile();
+        } catch (ParseException ex) {
+            Logger.getLogger(AdminView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_uploadedJListFocusGained
 
     private void uploadedJListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_uploadedJListMouseClicked
-        openSelectedProfile();
+        try {
+            openSelectedProfile();
+        } catch (ParseException ex) {
+            Logger.getLogger(AdminView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_uploadedJListMouseClicked
 
-    private void openSelectedProfile() {
+    private void openSelectedProfile() throws ParseException {
         int seletedCarIndex = uploadedJList.getSelectedIndex();//get the index of the selection made in the left section.
         if (seletedCarIndex != -1) {
             Car selectedCar = MainJFrame.allCars.get(seletedCarIndex);
@@ -327,9 +362,11 @@ public class AdminView extends javax.swing.JPanel {
             modelNoJLabel.setText(String.valueOf(selectedCar.modelNo));
             manufacturerJLabel.setText(String.valueOf(selectedCar.manufacturer));
             cityJLabel.setText(String.valueOf(selectedCar.city));
-            mceJLabel.setText(String.valueOf(selectedCar.getMaintenanceCerticateExpiry()));
+            mceJLabel.setText(String.valueOf((new SimpleDateFormat("MM/dd/yyyy", Locale.US)).format((selectedCar.getMaintenanceCerticateExpiry()))));
             serialNoJLabel.setText(String.valueOf(selectedCar.getSerialNo()));
             availableSeatsJLabel.setText(String.valueOf(selectedCar.getAvailableSeats()));
+            createdAtJLabel.setText(String.valueOf((new SimpleDateFormat("MM/dd/yyyy hh:mm:ss", Locale.US)).format((selectedCar.createdAt))));
+            updatedAtJLabel.setText(String.valueOf((new SimpleDateFormat("MM/dd/yyyy hh:mm:ss", Locale.US)).format((selectedCar.updatedAt))));
         }
     }
 
@@ -339,12 +376,15 @@ public class AdminView extends javax.swing.JPanel {
     private javax.swing.JLabel availableTillJLabel;
     private javax.swing.JLabel brandJLabel;
     private javax.swing.JLabel cityJLabel;
+    private javax.swing.JLabel createdAtJLabel;
     private javax.swing.JLabel identifierJLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -355,7 +395,6 @@ public class AdminView extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel manufacturerJLabel;
@@ -364,6 +403,7 @@ public class AdminView extends javax.swing.JPanel {
     private javax.swing.JLabel modelNoJLabel;
     private javax.swing.JLabel seatsJLabel;
     private javax.swing.JLabel serialNoJLabel;
+    private javax.swing.JLabel updatedAtJLabel;
     private javax.swing.JList<String> uploadedJList;
     // End of variables declaration//GEN-END:variables
 }

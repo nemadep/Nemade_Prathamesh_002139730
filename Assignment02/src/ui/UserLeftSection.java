@@ -5,17 +5,23 @@
  */
 package ui;
 
+import javax.swing.JPanel;
+import javax.swing.JSplitPane;
+
 /**
  *
  * @author prathameshnemade
  */
 public class UserLeftSection extends javax.swing.JPanel {
 
+    JSplitPane jSplitPane;
+
     /**
      * Creates new form UserLeftSection
      */
-    public UserLeftSection() {
+    public UserLeftSection(JSplitPane jSplitPane) {
         initComponents();
+        this.jSplitPane = jSplitPane;
     }
 
     /**

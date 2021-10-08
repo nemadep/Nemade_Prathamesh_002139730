@@ -5,6 +5,8 @@
  */
 package ui;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
@@ -28,6 +30,8 @@ public class AdminLeftSection extends javax.swing.JPanel {
         this.jSplitMainPane = jSplitPane;
         this.jPanelMainLeft = leftPanel;
         this.jPanelMainRight = rightPanel;
+        jSplitPane.setDividerLocation((int) (0.4 * (new Dimension(Toolkit.getDefaultToolkit().getScreenSize()).width - 300)));
+
     }
 
     /**
@@ -127,11 +131,12 @@ public class AdminLeftSection extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        AdminViewUpdate viewUpdateDashboard = new AdminViewUpdate();
+        this.jSplitMainPane.setRightComponent(viewUpdateDashboard);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        AdminDashboard adminDashboard = new AdminDashboard(jSplitMainPane);
+        AdminDashboard adminDashboard = new AdminDashboard();
         this.jSplitMainPane.setRightComponent(adminDashboard);
     }//GEN-LAST:event_jButton5ActionPerformed
 

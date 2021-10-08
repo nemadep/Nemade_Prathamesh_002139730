@@ -16,6 +16,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -44,10 +45,7 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
     public AdminAdvanceAdd(JPanel jPanelMainRight) {
         initComponents();
         this.jPanelMainRight = jPanelMainRight;
-        DefaultListModel model = new DefaultListModel();
-        uploadedJList.setModel(model);
-        jSplitPane1.setDividerLocation((int) (0.4 * (new Dimension(Toolkit.getDefaultToolkit().getScreenSize()).width - 300)));
-
+        jSplitPane1.setDividerLocation((int) (0.2 * (new Dimension(Toolkit.getDefaultToolkit().getScreenSize()).width - 300)));
     }
 
     /**
@@ -87,6 +85,10 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
         serialNoJLabel = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         availableSeatsJLabel = new javax.swing.JLabel();
+        updatedAtJLabel = new javax.swing.JLabel();
+        createdAtJLabel = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         uploadedJList = new javax.swing.JList<>();
@@ -172,25 +174,39 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
         availableSeatsJLabel.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         availableSeatsJLabel.setText("-");
 
+        updatedAtJLabel.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        updatedAtJLabel.setText("-");
+
+        createdAtJLabel.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        createdAtJLabel.setText("-");
+
+        jLabel15.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel15.setText("Updated At:");
+
+        jLabel14.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel14.setText("Created At:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel13))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(availableFromJLabel)
@@ -204,7 +220,9 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
                     .addComponent(manufacturerJLabel)
                     .addComponent(mceJLabel)
                     .addComponent(serialNoJLabel)
-                    .addComponent(availableSeatsJLabel))
+                    .addComponent(availableSeatsJLabel)
+                    .addComponent(updatedAtJLabel)
+                    .addComponent(createdAtJLabel))
                 .addContainerGap(144, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -258,16 +276,19 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(availableSeatsJLabel))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(createdAtJLabel)
+                    .addComponent(jLabel14))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(updatedAtJLabel))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(jPanel1);
 
-        uploadedJList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         uploadedJList.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 uploadedJListFocusGained(evt);
@@ -288,7 +309,7 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
         );
 
         jSplitPane1.setLeftComponent(jPanel2);
@@ -357,9 +378,11 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
             modelNoJLabel.setText(String.valueOf(selectedCar.modelNo));
             manufacturerJLabel.setText(String.valueOf(selectedCar.manufacturer));
             cityJLabel.setText(String.valueOf(selectedCar.city));
-            mceJLabel.setText(String.valueOf(selectedCar.getMaintenanceCerticateExpiry()));
+            mceJLabel.setText(String.valueOf((new SimpleDateFormat("MM/dd/yyyy", Locale.US)).format((selectedCar.getMaintenanceCerticateExpiry()))));
             serialNoJLabel.setText(String.valueOf(selectedCar.getSerialNo()));
             availableSeatsJLabel.setText(String.valueOf(selectedCar.getAvailableSeats()));
+            createdAtJLabel.setText(String.valueOf((new SimpleDateFormat("MM/dd/yyyy hh:mm:ss", Locale.US)).format((selectedCar.createdAt))));
+            updatedAtJLabel.setText(String.valueOf((new SimpleDateFormat("MM/dd/yyyy hh:mm:ss", Locale.US)).format((selectedCar.updatedAt))));
         }
     }
 
@@ -419,12 +442,15 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
     private javax.swing.JLabel availableTillJLabel;
     private javax.swing.JLabel brandJLabel;
     private javax.swing.JLabel cityJLabel;
+    private javax.swing.JLabel createdAtJLabel;
     private javax.swing.JLabel identifierJLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -443,6 +469,7 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
     private javax.swing.JLabel modelNoJLabel;
     private javax.swing.JLabel seatsJLabel;
     private javax.swing.JLabel serialNoJLabel;
+    private javax.swing.JLabel updatedAtJLabel;
     private javax.swing.JButton uploadFileJButton;
     private javax.swing.JList<String> uploadedJList;
     // End of variables declaration//GEN-END:variables
