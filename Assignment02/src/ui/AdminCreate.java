@@ -6,9 +6,6 @@
 package ui;
 
 import classes.Car;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.util.List;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -30,14 +27,16 @@ import org.json.simple.JSONObject;
 public class AdminCreate extends javax.swing.JPanel {
 
     Car createdCar = new Car();
+    JSplitPane jSplitMainPane;
 
     /**
      * Creates new form AdminCreate
      *
      * @param jSplitPane
      */
-    public AdminCreate() {
+    public AdminCreate(JSplitPane jSplitMainPane) {
         initComponents();
+        this.jSplitMainPane = jSplitMainPane;
         availableFromAMJCheckBox.setSelected(true);
         availableTillAMJCheckBox.setSelected(true);
         carIdentifierJLabel.setText(String.valueOf(MainJFrame.allCars.size()));
@@ -803,13 +802,44 @@ public class AdminCreate extends javax.swing.JPanel {
             return;
         }
 
+        SimpleDateFormat displayFormat = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat parseFormat = new SimpleDateFormat("hh:mm a");
+
         if (availableFromPMJCheckBox.isSelected()) {
-            fromTime = String.valueOf(Integer.valueOf(fromTime.split(":")[0]) + 12) + ":" + fromTime.split(":")[1];
-        }
-        if (availableTillPMJCheckBox.isSelected()) {
-            tillTime = String.valueOf(Integer.valueOf(tillTime.split(":")[0]) + 12) + ":" + tillTime.split(":")[1];
+            try {
+                Date date = parseFormat.parse(fromTime.split(":")[0] + ":" + fromTime.split(":")[1] + " PM");
+                fromTime = String.valueOf(displayFormat.format(date));
+            } catch (ParseException ex) {
+                Logger.getLogger(AdminCreate.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            try {
+                Date date = parseFormat.parse(fromTime.split(":")[0] + ":" + fromTime.split(":")[1] + " AM");
+                fromTime = String.valueOf(displayFormat.format(date));
+            } catch (ParseException ex) {
+                Logger.getLogger(AdminCreate.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
+        if (availableTillPMJCheckBox.isSelected()) {
+            try {
+                Date date = parseFormat.parse(tillTime.split(":")[0] + ":" + tillTime.split(":")[1] + " PM");
+                tillTime = String.valueOf(displayFormat.format(date));
+            } catch (ParseException ex) {
+                Logger.getLogger(AdminCreate.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else {
+            try {
+                Date date = parseFormat.parse(tillTime.split(":")[0] + ":" + tillTime.split(":")[1] + " AM");
+                tillTime = String.valueOf(displayFormat.format(date));
+            } catch (ParseException ex) {
+                Logger.getLogger(AdminCreate.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        System.out.println("fromTime" + fromTime);
+        System.out.println("tillTime" + tillTime);
         if (errorMessage.length() == 0) {
             if (!"".equals(createdCar.validateStartEndTime(fromTime, tillTime))) {
                 errorMessage += "End time should be greater than the start time! \n";
@@ -897,9 +927,10 @@ public class AdminCreate extends javax.swing.JPanel {
             }
 
             createdCar.setSerialNo(serialNoJField.getText());
-            JOptionPane.showMessageDialog(this, "Added successfully!", "Addition", INFORMATION_MESSAGE);
-
             MainJFrame.allCars.add(createdCar);
+            JOptionPane.showMessageDialog(this, "Added successfully!", "Addition", INFORMATION_MESSAGE);
+            AdminView adminViewPage = new AdminView();
+            jSplitMainPane.setRightComponent(adminViewPage);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

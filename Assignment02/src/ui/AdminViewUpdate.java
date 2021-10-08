@@ -8,8 +8,6 @@ package ui;
 import classes.Car;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.lang.System.Logger;
-import java.lang.System.Logger.Level;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -1007,6 +1005,9 @@ public class AdminViewUpdate extends javax.swing.JPanel {
             MainJFrame.allCars.set(selectedIndex, selectedCar);
             getDefaultList();
             JOptionPane.showMessageDialog(this, "Updated successfully!", "Update Car", INFORMATION_MESSAGE);
+            if (MainJFrame.allCars.isEmpty()) {
+                resetValues();
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -1032,6 +1033,9 @@ public class AdminViewUpdate extends javax.swing.JPanel {
         MainJFrame.allCars.remove(selectedIndex);
         getDefaultList();
         JOptionPane.showMessageDialog(this, "Deleted successfully!!", "Delete Car Details", INFORMATION_MESSAGE);
+        if (MainJFrame.allCars.isEmpty()) {
+            resetValues();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void openSelectedProfile() {
@@ -1069,6 +1073,32 @@ public class AdminViewUpdate extends javax.swing.JPanel {
             medYearJField.setText((String) mec.split("/")[2]);
 
         }
+    }
+
+    public void resetValues() {
+        carIdentifierJLabel.setText("");
+        brandJComboBox.setSelectedItem("");
+        manufactureYearJComboBox.setSelectedItem("");
+        seatsJField.setText("Enter here");
+        availableSeatsJField.setText("Enter here");
+        serialNoJField.setText("Enter here");
+        modelNoJComboBox.setSelectedItem("");
+        manufacturerJComboBox.setSelectedItem("");
+        cityJField.setText("Enter here");
+
+        availableFromHHJField.setText("HH");
+        availableFromMMJField.setText("MM");
+        availableFromAMJCheckBox.setSelected(false);
+        availableFromPMJCheckBox.setSelected(false);
+
+        availableTillHHJField.setText("HH");
+        availableTillMMJField.setText("MM");
+        availableTillAMJCheckBox.setSelected(false);
+        availableTillPMJCheckBox.setSelected(false);
+
+        medDayJField.setText("DD");
+        medMonthJField.setText("MM");
+        medYearJField.setText("YYYY");
     }
 
     public void generateDropdown() {
