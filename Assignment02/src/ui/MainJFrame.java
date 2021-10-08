@@ -29,7 +29,8 @@ public class MainJFrame extends javax.swing.JFrame {
     public static ArrayList<User> adminLists = new ArrayList<User>();
     public static ArrayList<User> usersLists = new ArrayList<User>();
     public static ArrayList<Car> allCars = new ArrayList<Car>();
-    
+    public static ArrayList<Object> allDropdownLists = new ArrayList<Object>();
+
     /**
      * Creates new form MainJFrame
      */
@@ -37,6 +38,8 @@ public class MainJFrame extends javax.swing.JFrame {
         initComponents();
         try {
             parseJSON("/Users/prathameshnemade/Desktop/NEU/AED/Nemade_Prathamesh_002139730/Assignment02/src/ui/AuthenticationConfig.json");
+            parseDropdownJSON("/Users/prathameshnemade/Desktop/NEU/AED/Nemade_Prathamesh_002139730/Assignment02/src/ui/carsDropdown.json");
+
         } catch (IOException ex) {
             Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParseException ex) {
@@ -101,6 +104,17 @@ public class MainJFrame extends javax.swing.JFrame {
 
             System.out.println(String.valueOf(usersList));
             System.out.println(String.valueOf(adminList));
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void parseDropdownJSON(String path) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        try {
+            Object obj = jsonParser.parse(new FileReader(path));
+            JSONObject jsonObject = (JSONObject) obj;
+            allDropdownLists = (ArrayList<Object>) jsonObject.get("Makes");
         } catch (FileNotFoundException ex) {
             Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }

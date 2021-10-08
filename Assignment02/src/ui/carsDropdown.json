@@ -1,0 +1,64 @@
+{
+  "Makes": [
+    {
+      "make_display": "Acura",
+      "make_country": "USA",
+      "Models": [
+        {
+          "model_trim": "4dr Sedan (2.0L 4cyl 5A)"
+        },
+        {
+          "model_trim": "Premium Package 4dr Sedan (2.0L 4cyl 5A)"
+        },
+        {
+          "model_trim": "Premium Package 4dr Sedan (2.4L 4cyl 6M)"
+        },
+        {
+          "model_trim": "Technology Package 4dr Sedan (2.0L 4cyl 5A)"
+        }
+      ]
+    },
+    {
+      "make_display": "Audi",
+      "make_country": "Germany",
+      "Models": [
+        {
+          "model_trim": "1.8 TFSI Premium 2dr Convertible (1.8L 4cyl Turbo 6AM)"
+        },
+        {
+          "model_trim": "1.8 TFSI Premium 4dr Sedan (1.8L 4cyl Turbo 6AM)"
+        },
+        {
+          "model_trim": "1.8 TFSI Premium Plus 2dr Convertible (1.8L 4cyl Turbo 6AM)"
+        }
+      ]
+    },
+    {
+      "make_display": "Bentley",
+      "make_country": "UK",
+      "Models": [
+        {
+          "model_trim": "2dr Convertible AWD (6.0L 12cyl Turbo 8A)"
+        },
+        {
+          "model_trim": "2dr Coupe AWD (6.0L 12cyl Turbo 8A)"
+        },
+        {
+          "model_trim": "Speed 2dr Convertible AWD (6.0L 12cyl Turbo 8A)"
+        }
+      ]
+    },
+    {
+      "make_display": "BMW",
+      "make_country": "Germany",
+      "Models": [
+        {
+          "model_trim": "228i 2dr Convertible (2.0L 4cyl Turbo 8A)"
+        },
+        {
+          "model_trim": "228i 2dr Coupe (2.0L 4cyl Turbo 8A)"
+        }
+      ]
+    }
+  ]
+}

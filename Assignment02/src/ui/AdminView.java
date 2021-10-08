@@ -182,7 +182,7 @@ public class AdminView extends javax.swing.JPanel {
                     .addComponent(mceJLabel)
                     .addComponent(serialNoJLabel)
                     .addComponent(availableSeatsJLabel))
-                .addContainerGap(190, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,11 +240,8 @@ public class AdminView extends javax.swing.JPanel {
 
         jSplitPane1.setRightComponent(jPanel1);
 
-        uploadedJList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        jPanel2.setPreferredSize(new java.awt.Dimension(150, 365));
+
         uploadedJList.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 uploadedJListFocusGained(evt);
@@ -265,7 +262,7 @@ public class AdminView extends javax.swing.JPanel {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
 
         jSplitPane1.setLeftComponent(jPanel2);
