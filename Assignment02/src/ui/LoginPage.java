@@ -8,6 +8,8 @@ package ui;
 import classes.User;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
@@ -142,10 +144,11 @@ public class LoginPage extends javax.swing.JPanel {
 
         if (passwordJField != null && emailIDJField != null) {
             String roleSelected = (String) roleJComboBox.getSelectedItem();
-
+            Boolean found = false;
             if ("Admin".equals(roleSelected)) {
                 for (User admin : MainJFrame.adminLists) {
                     if (admin.getPassword().equals(passwordJField.getText()) && admin.email.equals(emailIDJField.getText())) {
+                        found = true;
                         System.out.println("admin logged in!!!");
                         AdminDashboard adminDashboard = new AdminDashboard(jSplitPane);
                         AdminLeftSection adminOptions = new AdminLeftSection(jSplitPane, leftJPanel, rightJPanel);
@@ -157,10 +160,16 @@ public class LoginPage extends javax.swing.JPanel {
             } else {
                 for (User user : MainJFrame.usersLists) {
                     if (user.getPassword().equals(passwordJField.getText()) && user.email.equals(emailIDJField.getText())) {
+                        found = true;
                         System.out.println("user logged in!!!");
                     }
                 }
             }
+            if (!found) {
+                JOptionPane.showMessageDialog(this, "Invalid Username or Password!", "Login", ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Username or Password requried.", "Login", ERROR_MESSAGE);
         }
     }//GEN-LAST:event_loginJButtonActionPerformed
 

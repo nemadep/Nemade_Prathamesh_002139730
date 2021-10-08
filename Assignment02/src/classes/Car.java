@@ -67,7 +67,7 @@ public class Car {
         int t1m = (time1HH * 60) + time1MM;
         int t2m = (time2HH * 60) + (time2MM % 100);
         int sub = t2m - t1m;
-        return sub >= 0;
+        return sub > 0;
     }
 
     public String validateMED(String date) {
@@ -84,18 +84,17 @@ public class Car {
 
     public String validateSeats(String seats) {
         String isValid = "";
-
         try {
             int seat = Integer.valueOf(seats);
             if (seat == 0) {
                 isValid = " No. of seats cannot be 0!";
-            } else if (seat < 1 && seat > 20) {
+            }
+            if (seat < 1 || seat > 20) {
                 isValid = "No. of seats cannot be less than 1 or more than 20";
             }
         } catch (Exception e) {
-            isValid = "No. seats should be a number";
+            isValid = "No. of seats should be a number";
         }
-
         return isValid;
     }
 
@@ -105,11 +104,12 @@ public class Car {
             int seat = Integer.valueOf(seats);
             if (seat == 0) {
                 isValid = "Available seats cannot be 0!";
-            } else if (seat < 1 && seat > 20) {
+            }
+            if (seat < 1 || seat > 20) {
                 isValid = "Available seats cannot be less than 1 or more than 20";
             }
         } catch (Exception e) {
-            isValid = "No. seats should be a number";
+            isValid = "Available seats should be a number";
         }
 
         return isValid;

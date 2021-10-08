@@ -793,37 +793,43 @@ public class AdminCreate extends javax.swing.JPanel {
         String seatsErrorMessage = createdCar.validateSeats(seatsJField.getText());
 
         if (seatsErrorMessage != "") {
-            errorMessage += seatsErrorMessage;
+            errorMessage += seatsErrorMessage + "\n";
         }
 
         String availableSeatsErrorMessage = createdCar.validateAvailableSeats(availableSeatsJField.getText());
 
         if (availableSeatsErrorMessage != "") {
-            errorMessage += availableSeatsErrorMessage;
+            errorMessage += availableSeatsErrorMessage + "\n";
         }
 
-        if (seatsJField.getText() != "" && availableSeatsJField.getText() != "" && seatsErrorMessage != "" && availableSeatsErrorMessage != "") {
-            if (Integer.valueOf(availableSeatsJField.getText()) > Integer.valueOf(seatsJField.getText())) {
-                errorMessage += "Available seats cannot be more than no. of seats";
+        try {
+            if (seatsJField.getText() != "" && availableSeatsJField.getText() != "") {
+                int availableSeats = Integer.valueOf(availableSeatsJField.getText());
+                int seatsTotal = Integer.valueOf(seatsJField.getText());
+                if (availableSeats > seatsTotal) {
+                    errorMessage += "Available seats cannot be more than no. of seats. \n";
+                }
             }
+        } catch (Exception e) {
+            errorMessage += "Available seats required! \n";
         }
 
         if (modelNoJField.getSelectedItem() == "") {
-            errorMessage += "Please select model no.!" + "\n";
+            errorMessage += "Please select model no.! \n";
         }
 
-        String cityErrorMessage = createdCar.validateSeats(cityJField.getText());
+        String cityErrorMessage = createdCar.validateCity(cityJField.getText());
         if (cityErrorMessage != "") {
             errorMessage += cityErrorMessage;
         }
 
-        String serialNoErrorMessage = createdCar.validateSeats(serialNoJField.getText());
+        String serialNoErrorMessage = createdCar.validateSerialNo(serialNoJField.getText());
         if (serialNoErrorMessage != "") {
             errorMessage += serialNoErrorMessage;
         }
 
         if (manufacturerJComboBox.getSelectedItem() == "") {
-            errorMessage += "Please select manufacturer!" + "\n";
+            errorMessage += "Please select manufacturer! \n";
         }
 
         System.out.println("final errorMessage" + errorMessage);
@@ -858,7 +864,9 @@ public class AdminCreate extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void availableSeatsJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_availableSeatsJFieldFocusGained
-        // TODO add your handling code here:
+        if (availableSeatsJField.getText().equals("Enter here")) {
+            availableSeatsJField.setText("");
+        }
     }//GEN-LAST:event_availableSeatsJFieldFocusGained
 
     private void availableSeatsJFieldnameChangeHandler(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_availableSeatsJFieldnameChangeHandler
