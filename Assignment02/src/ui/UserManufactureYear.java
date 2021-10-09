@@ -40,14 +40,15 @@ public class UserManufactureYear extends javax.swing.JPanel {
                 new Object[][]{},
                 columns
         ));
+        setDropdownBasedValues(String.valueOf(manufactureYearJComboBox.getSelectedItem()));
     }
 
     public void getYearValues() {
         for (int i = 0; i < MainJFrame.allCars.size(); i++) {
             Car temp = MainJFrame.allCars.get(i);
-            allMakes.add(temp.brand);
-            if (!allMakes.contains(temp.brand)) {
-                allMakes.add(temp.brand);
+            String tempValue = String.valueOf(temp.manufactureYear);
+            if (allMakes.indexOf(tempValue) == -1) {
+                allMakes.add(tempValue);
             }
         }
         String[] makesSDropdown = allMakes.toArray(new String[allMakes.size()]);
@@ -147,7 +148,7 @@ public class UserManufactureYear extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void manufactureYearJComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_manufactureYearJComboBoxItemStateChanged
-        setDropdownBasedValues((Long) manufactureYearJComboBox.getSelectedItem());
+        setDropdownBasedValues(String.valueOf(manufactureYearJComboBox.getSelectedItem()));
     }//GEN-LAST:event_manufactureYearJComboBoxItemStateChanged
 
     private void manufactureYearJComboBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_manufactureYearJComboBoxFocusGained
@@ -162,14 +163,18 @@ public class UserManufactureYear extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_manufactureYearJComboBoxActionPerformed
 
-    public void setDropdownBasedValues(Long value) {
+    public void setDropdownBasedValues(String value) {
+        value = String.valueOf(value);
         ArrayList<Car> brandTable = new ArrayList<Car>();
         for (int i = 0; i < MainJFrame.allCars.size(); i++) {
             Car temp = MainJFrame.allCars.get(i);
-            if (temp.manufactureYear == value) {
+            String tempValue = String.valueOf(temp.manufactureYear);
+
+            if (tempValue.equals(value)) {
                 brandTable.add(temp);
             }
         }
+        System.out.println("brandTablebrandTable" + brandTable);
 
         String[][] tableColumnNA = new String[brandTable.size()][11];
         for (int j = 0; j < brandTable.size(); j++) {
