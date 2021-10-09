@@ -108,17 +108,30 @@ public class AdminViewUpdate extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         uploadedJList = new javax.swing.JList<>();
+        jLabel2 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Update Cars");
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        availableFromJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 0, 14)); // NOI18N
+        availableFromJLabel.setForeground(new java.awt.Color(67, 100, 100));
         availableFromJLabel.setText("Available From:");
 
+        availableTillJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 0, 14)); // NOI18N
+        availableTillJLabel.setForeground(new java.awt.Color(67, 100, 100));
         availableTillJLabel.setText("Available Till:");
 
+        brandJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 0, 14)); // NOI18N
+        brandJLabel.setForeground(new java.awt.Color(67, 100, 100));
         brandJLabel.setText("Brand:");
 
+        manufacturerYearJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 0, 14)); // NOI18N
+        manufacturerYearJLabel.setForeground(new java.awt.Color(67, 100, 100));
         manufacturerYearJLabel.setText("Manufacture Year:");
 
         brandJComboBox.addItemListener(new java.awt.event.ItemListener() {
@@ -137,8 +150,12 @@ public class AdminViewUpdate extends javax.swing.JPanel {
             }
         });
 
+        modelNoJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 0, 14)); // NOI18N
+        modelNoJLabel.setForeground(new java.awt.Color(67, 100, 100));
         modelNoJLabel.setText("Model No.:");
 
+        seatsJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 0, 14)); // NOI18N
+        seatsJLabel.setForeground(new java.awt.Color(67, 100, 100));
         seatsJLabel.setText("No. of Seats:");
 
         seatsJField.setBackground(new java.awt.Color(238, 238, 238));
@@ -160,6 +177,8 @@ public class AdminViewUpdate extends javax.swing.JPanel {
             }
         });
 
+        serialNoJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 0, 14)); // NOI18N
+        serialNoJLabel.setForeground(new java.awt.Color(67, 100, 100));
         serialNoJLabel.setText("Serial No:");
 
         serialNoJField.setEditable(false);
@@ -182,8 +201,12 @@ public class AdminViewUpdate extends javax.swing.JPanel {
             }
         });
 
+        manufacturerJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 0, 14)); // NOI18N
+        manufacturerJLabel.setForeground(new java.awt.Color(67, 100, 100));
         manufacturerJLabel.setText("Manufacturer:");
 
+        cityJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 0, 14)); // NOI18N
+        cityJLabel.setForeground(new java.awt.Color(67, 100, 100));
         cityJLabel.setText("City:");
 
         cityJField.setBackground(new java.awt.Color(238, 238, 238));
@@ -205,6 +228,8 @@ public class AdminViewUpdate extends javax.swing.JPanel {
             }
         });
 
+        maintenanceExpiryJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 0, 14)); // NOI18N
+        maintenanceExpiryJLabel.setForeground(new java.awt.Color(67, 100, 100));
         maintenanceExpiryJLabel.setText("Maintenance Expiry Date:");
 
         medDayJField.setBackground(new java.awt.Color(238, 238, 238));
@@ -388,6 +413,8 @@ public class AdminViewUpdate extends javax.swing.JPanel {
             }
         });
 
+        cardentifierJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 0, 14)); // NOI18N
+        cardentifierJLabel.setForeground(new java.awt.Color(67, 100, 100));
         cardentifierJLabel.setText("Car Identifier :");
 
         carIdentifierJLabel.setEditable(false);
@@ -430,6 +457,9 @@ public class AdminViewUpdate extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(200, 203, 178));
+        jButton1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(67, 100, 100));
         jButton1.setText("UPADATE");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -437,6 +467,8 @@ public class AdminViewUpdate extends javax.swing.JPanel {
             }
         });
 
+        seatsJLabel1.setFont(new java.awt.Font("Noto Sans Kannada", 0, 14)); // NOI18N
+        seatsJLabel1.setForeground(new java.awt.Color(67, 100, 100));
         seatsJLabel1.setText("Available Seats:");
 
         availableSeatsJField.setBackground(new java.awt.Color(238, 238, 238));
@@ -458,6 +490,9 @@ public class AdminViewUpdate extends javax.swing.JPanel {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(67, 100, 100));
+        jButton2.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("DELETE CAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -470,7 +505,7 @@ public class AdminViewUpdate extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(availableFromJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(availableTillJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -490,7 +525,7 @@ public class AdminViewUpdate extends javax.swing.JPanel {
                     .addComponent(modelNoJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(manufactureYearJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(brandJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(availableSeatsJField, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
+                    .addComponent(availableSeatsJField, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
                     .addComponent(seatsJField)
                     .addComponent(serialNoJField)
                     .addComponent(cityJField)
@@ -505,7 +540,7 @@ public class AdminViewUpdate extends javax.swing.JPanel {
                         .addComponent(dummyJField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(medYearJField, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addContainerGap(114, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -605,12 +640,14 @@ public class AdminViewUpdate extends javax.swing.JPanel {
                     .addComponent(cardentifierJLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(jPanel1);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         uploadedJList.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -624,15 +661,27 @@ public class AdminViewUpdate extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(uploadedJList);
 
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Car Details:");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(100, 100, 100))
         );
 
         jSplitPane1.setLeftComponent(jPanel2);
@@ -651,7 +700,7 @@ public class AdminViewUpdate extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 650, Short.MAX_VALUE)
+            .addGap(0, 720, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(21, 21, 21)
@@ -1152,6 +1201,7 @@ public class AdminViewUpdate extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

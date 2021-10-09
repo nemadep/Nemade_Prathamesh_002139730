@@ -51,6 +51,11 @@ public class LoginPage extends javax.swing.JPanel {
         UserJRadioButton = new javax.swing.JRadioButton();
         AdminJRadioButton = new javax.swing.JRadioButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        loginJButton.setBackground(new java.awt.Color(200, 203, 178));
+        loginJButton.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        loginJButton.setForeground(new java.awt.Color(67, 100, 100));
         loginJButton.setText("Login");
         loginJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,7 +64,7 @@ public class LoginPage extends javax.swing.JPanel {
         });
 
         passwordJField.setBackground(new java.awt.Color(238, 238, 238));
-        passwordJField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        passwordJField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         passwordJField.setText("Enter password");
         passwordJField.setToolTipText("Click to enter your Password.");
         passwordJField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
@@ -78,7 +83,7 @@ public class LoginPage extends javax.swing.JPanel {
         });
 
         emailIDJField.setBackground(new java.awt.Color(238, 238, 238));
-        emailIDJField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        emailIDJField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         emailIDJField.setText("Enter email id");
         emailIDJField.setToolTipText("Click to enter your Email ID.");
         emailIDJField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
@@ -120,7 +125,7 @@ public class LoginPage extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(368, 368, 368)
+                .addGap(309, 309, 309)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(emailIDJField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(AdminJRadioButton)
@@ -143,9 +148,9 @@ public class LoginPage extends javax.swing.JPanel {
                 .addComponent(AdminJRadioButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(UserJRadioButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(loginJButton)
-                .addContainerGap(188, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(loginJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(172, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

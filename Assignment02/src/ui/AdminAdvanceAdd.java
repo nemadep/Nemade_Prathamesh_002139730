@@ -45,7 +45,7 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
     public AdminAdvanceAdd(JPanel jPanelMainRight) {
         initComponents();
         this.jPanelMainRight = jPanelMainRight;
-        jSplitPane1.setDividerLocation((int) (0.2 * (new Dimension(Toolkit.getDefaultToolkit().getScreenSize()).width - 300)));
+        jSplitPane1.setDividerLocation((int) (0.35 * (new Dimension(Toolkit.getDefaultToolkit().getScreenSize()).width - 300)));
     }
 
     /**
@@ -92,6 +92,9 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         uploadedJList = new javax.swing.JList<>();
+        jLabel16 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
 
         uploadFileJButton.setText("Upload File");
         uploadFileJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -102,88 +105,118 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
 
         jLabel1.setText("Click to upload file: ");
 
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel2.setFont(new java.awt.Font("Noto Sans Oriya", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(67, 100, 100));
         jLabel2.setText("Available From:");
 
-        availableFromJLabel.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        availableFromJLabel.setText("-");
+        availableFromJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 1, 14)); // NOI18N
+        availableFromJLabel.setForeground(new java.awt.Color(67, 100, 100));
+        availableFromJLabel.setText("Select a record!");
 
-        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Noto Sans Oriya", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(67, 100, 100));
         jLabel3.setText("Available Till:");
 
-        availableTillJLabel.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        availableTillJLabel.setText("-");
+        availableTillJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 1, 14)); // NOI18N
+        availableTillJLabel.setForeground(new java.awt.Color(67, 100, 100));
+        availableTillJLabel.setText("Select a record!");
 
-        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Noto Sans Oriya", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(67, 100, 100));
         jLabel4.setText("ID:");
 
-        identifierJLabel.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        identifierJLabel.setText("-");
+        identifierJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 1, 14)); // NOI18N
+        identifierJLabel.setForeground(new java.awt.Color(67, 100, 100));
+        identifierJLabel.setText("Select a record!");
 
-        jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Noto Sans Oriya", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(67, 100, 100));
         jLabel5.setText("Brand:");
 
-        brandJLabel.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        brandJLabel.setText("-");
+        brandJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 1, 14)); // NOI18N
+        brandJLabel.setForeground(new java.awt.Color(67, 100, 100));
+        brandJLabel.setText("Select a record!");
 
-        jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Noto Sans Oriya", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(67, 100, 100));
         jLabel6.setText("Manufacturer Year:");
 
-        manufacturerYearJLabel.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        manufacturerYearJLabel.setText("-");
+        manufacturerYearJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 1, 14)); // NOI18N
+        manufacturerYearJLabel.setForeground(new java.awt.Color(67, 100, 100));
+        manufacturerYearJLabel.setText("Select a record!");
 
-        jLabel7.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Noto Sans Oriya", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(67, 100, 100));
         jLabel7.setText("Total Seats:");
 
-        seatsJLabel.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        seatsJLabel.setText("-");
+        seatsJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 1, 14)); // NOI18N
+        seatsJLabel.setForeground(new java.awt.Color(67, 100, 100));
+        seatsJLabel.setText("Select a record!");
 
-        jLabel8.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Noto Sans Oriya", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(67, 100, 100));
         jLabel8.setText("Model No.:");
 
-        modelNoJLabel.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        modelNoJLabel.setText("-");
+        modelNoJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 1, 14)); // NOI18N
+        modelNoJLabel.setForeground(new java.awt.Color(67, 100, 100));
+        modelNoJLabel.setText("Select a record!");
 
-        jLabel9.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Noto Sans Oriya", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(67, 100, 100));
         jLabel9.setText("Manufacturer:");
 
-        manufacturerJLabel.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        manufacturerJLabel.setText("-");
+        manufacturerJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 1, 14)); // NOI18N
+        manufacturerJLabel.setForeground(new java.awt.Color(67, 100, 100));
+        manufacturerJLabel.setText("Select a record!");
 
-        jLabel10.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Noto Sans Oriya", 0, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(67, 100, 100));
         jLabel10.setText("City:");
 
-        cityJLabel.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        cityJLabel.setText("-");
+        cityJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 1, 14)); // NOI18N
+        cityJLabel.setForeground(new java.awt.Color(67, 100, 100));
+        cityJLabel.setText("Select a record!");
 
-        jLabel11.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Noto Sans Oriya", 0, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(67, 100, 100));
         jLabel11.setText("Maintenance Expiry:");
 
-        mceJLabel.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        mceJLabel.setText("-");
+        mceJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 1, 14)); // NOI18N
+        mceJLabel.setForeground(new java.awt.Color(67, 100, 100));
+        mceJLabel.setText("Select a record!");
 
-        jLabel12.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Noto Sans Oriya", 0, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(67, 100, 100));
         jLabel12.setText("Serial No.:");
 
-        serialNoJLabel.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        serialNoJLabel.setText("-");
+        serialNoJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 1, 14)); // NOI18N
+        serialNoJLabel.setForeground(new java.awt.Color(67, 100, 100));
+        serialNoJLabel.setText("Select a record!");
 
-        jLabel13.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Noto Sans Oriya", 0, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(67, 100, 100));
         jLabel13.setText("Available Seats:");
 
-        availableSeatsJLabel.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        availableSeatsJLabel.setText("-");
+        availableSeatsJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 1, 14)); // NOI18N
+        availableSeatsJLabel.setForeground(new java.awt.Color(67, 100, 100));
+        availableSeatsJLabel.setText("Select a record!");
 
-        updatedAtJLabel.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        updatedAtJLabel.setText("-");
+        updatedAtJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 1, 14)); // NOI18N
+        updatedAtJLabel.setForeground(new java.awt.Color(67, 100, 100));
+        updatedAtJLabel.setText("Select a record!");
 
-        createdAtJLabel.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        createdAtJLabel.setText("-");
+        createdAtJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 1, 14)); // NOI18N
+        createdAtJLabel.setForeground(new java.awt.Color(67, 100, 100));
+        createdAtJLabel.setText("Select a record!");
 
-        jLabel15.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Noto Sans Oriya", 0, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(67, 100, 100));
         jLabel15.setText("Updated At:");
 
-        jLabel14.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Noto Sans Oriya", 0, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(67, 100, 100));
         jLabel14.setText("Created At:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -191,7 +224,7 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel15)
                     .addComponent(jLabel14)
@@ -207,7 +240,7 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
                     .addComponent(jLabel11)
                     .addComponent(jLabel12)
                     .addComponent(jLabel13))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(availableFromJLabel)
                     .addComponent(availableTillJLabel)
@@ -223,7 +256,7 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
                     .addComponent(availableSeatsJLabel)
                     .addComponent(updatedAtJLabel)
                     .addComponent(createdAtJLabel))
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,62 +265,64 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(identifierJLabel))
-                .addGap(10, 10, 10)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(availableFromJLabel))
-                .addGap(10, 10, 10)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(availableTillJLabel))
-                .addGap(10, 10, 10)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(brandJLabel))
-                .addGap(10, 10, 10)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(manufacturerYearJLabel))
-                .addGap(10, 10, 10)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(seatsJLabel))
-                .addGap(10, 10, 10)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(modelNoJLabel))
-                .addGap(10, 10, 10)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(manufacturerJLabel))
-                .addGap(10, 10, 10)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(cityJLabel))
-                .addGap(10, 10, 10)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(mceJLabel))
-                .addGap(10, 10, 10)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(serialNoJLabel)
                     .addComponent(jLabel12))
-                .addGap(10, 10, 10)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(availableSeatsJLabel))
-                .addGap(10, 10, 10)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(createdAtJLabel)
                     .addComponent(jLabel14))
-                .addGap(10, 10, 10)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(updatedAtJLabel))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(jPanel1);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         uploadedJList.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -301,15 +336,27 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(uploadedJList);
 
+        jLabel16.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("Car Details:");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel16)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(172, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel2);
@@ -324,7 +371,7 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(uploadFileJButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jSplitPane1)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -453,6 +500,7 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -111,7 +111,7 @@ public class AdminLeftSection extends javax.swing.JPanel {
         jLabel1.setText("Hello,");
 
         jLabel2.setFont(new java.awt.Font("Noto Sans Oriya", 1, 36)); // NOI18N
-        jLabel2.setText("Admin.");
+        jLabel2.setText("Admin!");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -135,7 +135,7 @@ public class AdminLeftSection extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(82, 82, 82)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
