@@ -162,6 +162,7 @@ public class AdminViewUpdate extends javax.swing.JPanel {
 
         serialNoJLabel.setText("Serial No:");
 
+        serialNoJField.setEditable(false);
         serialNoJField.setBackground(new java.awt.Color(238, 238, 238));
         serialNoJField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         serialNoJField.setText("Enter here");
