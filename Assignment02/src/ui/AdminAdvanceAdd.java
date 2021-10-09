@@ -428,7 +428,9 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
 
             });
             uploadedJList.setModel(model);
+            uploadedJList.setSelectedIndex(0);
             JOptionPane.showMessageDialog(this, "Uploaded successfully!!", "Upload Car Details", INFORMATION_MESSAGE);
+            openSelectedProfile();
 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(AdminAdvanceAdd.class.getName()).log(Level.SEVERE, null, ex);

@@ -30,8 +30,6 @@ public class AdminLeftSection extends javax.swing.JPanel {
         this.jSplitMainPane = jSplitPane;
         this.jPanelMainLeft = leftPanel;
         this.jPanelMainRight = rightPanel;
-        jSplitPane.setDividerLocation((int) (0.4 * (new Dimension(Toolkit.getDefaultToolkit().getScreenSize()).width - 300)));
-
     }
 
     /**

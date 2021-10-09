@@ -162,6 +162,8 @@ public class LoginPage extends javax.swing.JPanel {
                         found = true;
                         UserLeftSection userDashboard = new UserLeftSection(jSplitPane);
                         jSplitPane.setLeftComponent(userDashboard);
+                        UserAvailability userAvailablePage = new UserAvailability();
+                        jSplitPane.setRightComponent(userAvailablePage);
                     }
                 }
             }
