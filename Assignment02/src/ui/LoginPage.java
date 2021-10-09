@@ -99,6 +99,11 @@ public class LoginPage extends javax.swing.JPanel {
 
         roleJComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         roleJComboBox.setFocusable(false);
+        roleJComboBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                roleJComboBoxFocusGained(evt);
+            }
+        });
         roleJComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 roleJComboBoxActionPerformed(evt);
@@ -206,6 +211,10 @@ public class LoginPage extends javax.swing.JPanel {
     private void roleJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleJComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_roleJComboBoxActionPerformed
+
+    private void roleJComboBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_roleJComboBoxFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_roleJComboBoxFocusGained
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
