@@ -25,6 +25,7 @@ import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import javax.swing.JPanel;
+import javax.swing.JSplitPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -37,14 +38,16 @@ import org.json.simple.parser.ParseException;
 public class AdminAdvanceAdd extends javax.swing.JPanel {
 
     public JPanel jPanelMainRight;
+    public JSplitPane jSplitMainPane;
     ArrayList<Car> allUploadedCars = new ArrayList<Car>();
 
     /**
      * Creates new form AdminAdvanceAdd
      */
-    public AdminAdvanceAdd(JPanel jPanelMainRight) {
+    public AdminAdvanceAdd(JPanel jPanelMainRight, JSplitPane jSplitMainPane) {
         initComponents();
         this.jPanelMainRight = jPanelMainRight;
+        this.jSplitMainPane = jSplitMainPane;
         jSplitPane1.setDividerLocation((int) (0.35 * (new Dimension(Toolkit.getDefaultToolkit().getScreenSize()).width - 300)));
     }
 
@@ -103,6 +106,7 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 3, 14)); // NOI18N
         jLabel1.setText("Click to upload file: ");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -371,7 +375,7 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(uploadFileJButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
+            .addComponent(jSplitPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -478,7 +482,8 @@ public class AdminAdvanceAdd extends javax.swing.JPanel {
             uploadedJList.setSelectedIndex(0);
             JOptionPane.showMessageDialog(this, "Uploaded successfully!!", "Upload Car Details", INFORMATION_MESSAGE);
             openSelectedProfile();
-
+//            AdminView adminViewPage = new AdminView();
+//            jSplitMainPane.setRightComponent(adminViewPage);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(AdminAdvanceAdd.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, "Invalid JSON!", "Upload Car Details", ERROR_MESSAGE);
