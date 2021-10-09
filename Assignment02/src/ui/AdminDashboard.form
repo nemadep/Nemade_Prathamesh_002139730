@@ -152,7 +152,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel6" pref="343" max="32767" attributes="0"/>
-                      <Component id="totalCarModelsJLabel1" max="32767" attributes="0"/>
+                      <Component id="totalCarModelsJLabel" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -164,7 +164,7 @@
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="totalCarModelsJLabel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="totalCarModelsJLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="20" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -180,10 +180,10 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Total Car Models:"/>
+            <Property name="text" type="java.lang.String" value="Total Car Brands:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="totalCarModelsJLabel1">
+        <Component class="javax.swing.JLabel" name="totalCarModelsJLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Lucida Grande" size="60" style="0"/>

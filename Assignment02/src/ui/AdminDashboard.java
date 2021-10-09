@@ -5,8 +5,11 @@
  */
 package ui;
 
+import classes.Car;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JSplitPane;
 
 /**
@@ -22,6 +25,47 @@ public class AdminDashboard extends javax.swing.JPanel {
      */
     public AdminDashboard() {
         initComponents();
+        getTotalCars();
+        getCarModels();
+        getCities();
+        getMEC();
+    }
+
+    public void getTotalCars() {
+        totalCarsJLabel.setText(String.valueOf(MainJFrame.allCars.size()));
+    }
+
+    public void getCarModels() {
+        ArrayList<String> carModels = new ArrayList<>();
+        for (int i = 0; i < MainJFrame.allCars.size(); i++) {
+            Car temp = MainJFrame.allCars.get(i);
+            if (!carModels.contains(temp.brand)) {
+                carModels.add(temp.brand);
+            }
+        }
+        totalCarModelsJLabel.setText(String.valueOf(carModels.size()));
+    }
+
+    public void getCities() {
+        ArrayList<String> citiesModels = new ArrayList<>();
+        for (int i = 0; i < MainJFrame.allCars.size(); i++) {
+            Car temp = MainJFrame.allCars.get(i);
+            if (!citiesModels.contains(temp.city)) {
+                citiesModels.add(temp.city);
+            }
+        }
+        totalCitiesJLabel.setText(String.valueOf(citiesModels.size()));
+    }
+
+    public void getMEC() {
+        ArrayList<Car> mecModels = new ArrayList<>();
+        for (int i = 0; i < MainJFrame.allCars.size(); i++) {
+            Car temp = MainJFrame.allCars.get(i);
+            if ((new Date()).after(temp.getMaintenanceCerticateExpiry())) {
+                mecModels.add(temp);
+            }
+        }
+        tmecJLabel.setText(String.valueOf(mecModels.size()));
     }
 
     /**
@@ -38,7 +82,7 @@ public class AdminDashboard extends javax.swing.JPanel {
         totalCarsJLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        totalCarModelsJLabel1 = new javax.swing.JLabel();
+        totalCarModelsJLabel = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         totalCitiesJLabel = new javax.swing.JLabel();
@@ -91,12 +135,12 @@ public class AdminDashboard extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Noto Sans Myanmar", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Total Car Models:");
+        jLabel6.setText("Total Car Brands:");
 
-        totalCarModelsJLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 60)); // NOI18N
-        totalCarModelsJLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        totalCarModelsJLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        totalCarModelsJLabel1.setText("0");
+        totalCarModelsJLabel.setFont(new java.awt.Font("Lucida Grande", 0, 60)); // NOI18N
+        totalCarModelsJLabel.setForeground(new java.awt.Color(255, 255, 255));
+        totalCarModelsJLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        totalCarModelsJLabel.setText("0");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -106,7 +150,7 @@ public class AdminDashboard extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
-                    .addComponent(totalCarModelsJLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(totalCarModelsJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -115,7 +159,7 @@ public class AdminDashboard extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(totalCarModelsJLabel1)
+                .addComponent(totalCarModelsJLabel)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -231,7 +275,7 @@ public class AdminDashboard extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel tmecJLabel;
-    private javax.swing.JLabel totalCarModelsJLabel1;
+    private javax.swing.JLabel totalCarModelsJLabel;
     private javax.swing.JLabel totalCarsJLabel;
     private javax.swing.JLabel totalCitiesJLabel;
     // End of variables declaration//GEN-END:variables

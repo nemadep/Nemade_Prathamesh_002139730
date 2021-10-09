@@ -6,6 +6,7 @@
 package ui;
 
 import classes.Car;
+import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -75,7 +76,12 @@ public class UserAvailability extends javax.swing.JPanel {
         allJCheckBox = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        availableFromJLabel.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        availableFromJLabel.setForeground(new java.awt.Color(67, 100, 100));
         availableFromJLabel.setText("Available From:");
 
         availableFromHHJField.setBackground(new java.awt.Color(238, 238, 238));
@@ -143,6 +149,8 @@ public class UserAvailability extends javax.swing.JPanel {
             }
         });
 
+        availableTillJLabel.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        availableTillJLabel.setForeground(new java.awt.Color(67, 100, 100));
         availableTillJLabel.setText("Available Till:");
 
         availableTillHHJField.setBackground(new java.awt.Color(238, 238, 238));
@@ -210,6 +218,9 @@ public class UserAvailability extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(200, 203, 178));
+        jButton1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(67, 100, 100));
         jButton1.setText("Search");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -217,6 +228,8 @@ public class UserAvailability extends javax.swing.JPanel {
             }
         });
 
+        availableJCheckBox.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        availableJCheckBox.setForeground(new java.awt.Color(67, 100, 100));
         availableJCheckBox.setSelected(true);
         availableJCheckBox.setText("Available");
         availableJCheckBox.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -225,6 +238,8 @@ public class UserAvailability extends javax.swing.JPanel {
             }
         });
 
+        notAvailableJCheckBox.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        notAvailableJCheckBox.setForeground(new java.awt.Color(67, 100, 100));
         notAvailableJCheckBox.setText("Not Available");
         notAvailableJCheckBox.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -232,6 +247,8 @@ public class UserAvailability extends javax.swing.JPanel {
             }
         });
 
+        firstJCheckBox.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        firstJCheckBox.setForeground(new java.awt.Color(67, 100, 100));
         firstJCheckBox.setSelected(true);
         firstJCheckBox.setText("First Car");
         firstJCheckBox.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -240,6 +257,8 @@ public class UserAvailability extends javax.swing.JPanel {
             }
         });
 
+        allJCheckBox.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        allJCheckBox.setForeground(new java.awt.Color(67, 100, 100));
         allJCheckBox.setText("All Cars");
         allJCheckBox.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -249,6 +268,7 @@ public class UserAvailability extends javax.swing.JPanel {
 
         jScrollPane1.setAutoscrolls(true);
 
+        jTable1.setForeground(new java.awt.Color(1, 1, 1));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -262,6 +282,9 @@ public class UserAvailability extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 15)); // NOI18N
+        jLabel1.setText("Filter Car Records based on Available From and Available Till time:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -269,22 +292,12 @@ public class UserAvailability extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(availableFromJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(availableTillJLabel, javax.swing.GroupLayout.Alignment.TRAILING))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(103, 103, 103)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(availableTillHHJField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dummyJField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(availableTillMMJField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(availableTillAMJCheckBox)
-                                .addGap(18, 18, 18)
-                                .addComponent(availableTillPMJCheckBox))
+                            .addComponent(availableFromJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(availableTillJLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(availableFromHHJField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -296,15 +309,28 @@ public class UserAvailability extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(availableFromPMJCheckBox))
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(availableTillHHJField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dummyJField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(availableTillMMJField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(availableTillAMJCheckBox)
+                                .addGap(18, 18, 18)
+                                .addComponent(availableTillPMJCheckBox))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(firstJCheckBox)
                                 .addGap(18, 18, 18)
                                 .addComponent(allJCheckBox))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(availableJCheckBox)
                                 .addGap(18, 18, 18)
-                                .addComponent(notAvailableJCheckBox))
-                            .addComponent(jButton1))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(notAvailableJCheckBox))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(103, 103, 103)
+                        .addComponent(jButton1))
+                    .addComponent(jLabel1))
+                .addContainerGap(273, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 812, Short.MAX_VALUE))
@@ -312,19 +338,20 @@ public class UserAvailability extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(22, 22, 22)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(availableFromJLabel)
                         .addComponent(availableFromHHJField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(dummyJField4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(availableFromMMJField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(availableFromMMJField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(availableFromJLabel))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(availableFromAMJCheckBox)
                             .addComponent(availableFromPMJCheckBox))
                         .addGap(2, 2, 2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(availableTillJLabel)
                     .addComponent(availableTillHHJField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -332,19 +359,19 @@ public class UserAvailability extends javax.swing.JPanel {
                     .addComponent(availableTillMMJField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(availableTillAMJCheckBox)
                     .addComponent(availableTillPMJCheckBox))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(availableJCheckBox)
                     .addComponent(notAvailableJCheckBox))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(firstJCheckBox)
                     .addComponent(allJCheckBox))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -527,8 +554,9 @@ public class UserAvailability extends javax.swing.JPanel {
                 }
             }
 
-            String[][] tableColumn = new String[allAvailableFilteredCars.size()][11];
-            for (int j = 0; j < allAvailableFilteredCars.size(); j++) {
+            String[][] tableColumn = new String[firstJCheckBox.isSelected() ? 1 : allAvailableFilteredCars.size()][11];
+
+            for (int j = 0; j < (firstJCheckBox.isSelected() ? 1 : allAvailableFilteredCars.size()); j++) {
                 Car temp = allAvailableFilteredCars.get(j);
                 tableColumn[j][0] = String.valueOf(temp.id);
                 tableColumn[j][1] = temp.availabilityFrom + " - " + temp.availabilityTo;
@@ -543,8 +571,9 @@ public class UserAvailability extends javax.swing.JPanel {
                 tableColumn[j][10] = String.valueOf(temp.getMaintenanceCerticateExpiry());
             }
 
-            String[][] tableColumnNA = new String[allNonAvailableFilteredCars.size()][11];
-            for (int j = 0; j < allNonAvailableFilteredCars.size(); j++) {
+            String[][] tableColumnNA = new String[firstJCheckBox.isSelected() ? 1 : allNonAvailableFilteredCars.size()][11];
+
+            for (int j = 0; j < (firstJCheckBox.isSelected() ? 1 : allNonAvailableFilteredCars.size()); j++) {
                 Car temp = allNonAvailableFilteredCars.get(j);
                 tableColumnNA[j][0] = String.valueOf(temp.id);
                 tableColumnNA[j][1] = temp.availabilityFrom + " - " + temp.availabilityTo;
@@ -561,8 +590,8 @@ public class UserAvailability extends javax.swing.JPanel {
 
             jTable1.setModel(new javax.swing.table.DefaultTableModel(
                     availableJCheckBox.isSelected()
-                    ? firstJCheckBox.isSelected() ? tableColumn : tableColumn
-                    : firstJCheckBox.isSelected() ? tableColumnNA : tableColumnNA,
+                    ? tableColumn
+                    : tableColumnNA,
                     columns
             ));
         }
@@ -602,6 +631,7 @@ public class UserAvailability extends javax.swing.JPanel {
     private javax.swing.JTextField dummyJField7;
     private javax.swing.JCheckBox firstJCheckBox;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JCheckBox notAvailableJCheckBox;
