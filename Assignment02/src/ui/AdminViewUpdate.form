@@ -36,7 +36,7 @@
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jSplitPane1" pref="567" max="32767" attributes="0"/>
+                  <Component id="jSplitPane1" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -89,7 +89,7 @@
                           <Component id="modelNoJComboBox" alignment="0" max="32767" attributes="0"/>
                           <Component id="manufactureYearJComboBox" alignment="0" max="32767" attributes="0"/>
                           <Component id="brandJComboBox" alignment="0" max="32767" attributes="0"/>
-                          <Component id="availableSeatsJField" alignment="0" pref="447" max="32767" attributes="0"/>
+                          <Component id="availableSeatsJField" alignment="0" pref="448" max="32767" attributes="0"/>
                           <Component id="seatsJField" alignment="0" max="32767" attributes="0"/>
                           <Component id="serialNoJField" alignment="0" max="32767" attributes="0"/>
                           <Component id="cityJField" alignment="0" max="32767" attributes="0"/>
@@ -106,7 +106,7 @@
                               <Component id="medYearJField" min="-2" pref="52" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="156" max="32767" attributes="0"/>
+                      <EmptySpace pref="155" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">

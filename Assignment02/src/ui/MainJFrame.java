@@ -142,7 +142,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jSplitPane.setEnabled(false);
 
         leftJPanel.setPreferredSize(new java.awt.Dimension(483, 762));
-        leftJPanel.setSize(new java.awt.Dimension(483, 762));
+        leftJPanel.setSize(new java.awt.Dimension(200, 762));
 
         javax.swing.GroupLayout leftJPanelLayout = new javax.swing.GroupLayout(leftJPanel);
         leftJPanel.setLayout(leftJPanelLayout);
@@ -161,11 +161,11 @@ public class MainJFrame extends javax.swing.JFrame {
         rightJPanel.setLayout(rightJPanelLayout);
         rightJPanelLayout.setHorizontalGroup(
             rightJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 808, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         rightJPanelLayout.setVerticalGroup(
             rightJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 829, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jSplitPane.setRightComponent(rightJPanel);
@@ -190,7 +190,7 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGroup(logoutJPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

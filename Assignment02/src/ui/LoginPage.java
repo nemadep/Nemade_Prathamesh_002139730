@@ -32,9 +32,7 @@ public class LoginPage extends javax.swing.JPanel {
         this.jSplitPane = jSplitPane;
         this.leftJPanel = leftJPanel;
         this.rightJPanel = rightJPanel;
-        roleJComboBox.setModel(new javax.swing.DefaultComboBoxModel<String>(ROLE));
-        roleJComboBox.setSelectedIndex(0);
-        jSplitPane.setDividerLocation((int) (0 * (new Dimension(Toolkit.getDefaultToolkit().getScreenSize()).width)));
+        jSplitPane.setDividerLocation(0);
     }
 
     /**
@@ -49,8 +47,9 @@ public class LoginPage extends javax.swing.JPanel {
         loginJButton = new javax.swing.JButton();
         passwordJField = new javax.swing.JTextField();
         emailIDJField = new javax.swing.JTextField();
-        roleJComboBox = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
+        UserJRadioButton = new javax.swing.JRadioButton();
+        AdminJRadioButton = new javax.swing.JRadioButton();
 
         loginJButton.setText("Login");
         loginJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -97,36 +96,39 @@ public class LoginPage extends javax.swing.JPanel {
             }
         });
 
-        roleJComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        roleJComboBox.setFocusable(false);
-        roleJComboBox.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                roleJComboBoxFocusGained(evt);
-            }
-        });
-        roleJComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                roleJComboBoxActionPerformed(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("LOGIN");
+
+        UserJRadioButton.setText("User");
+        UserJRadioButton.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                UserJRadioButtonFocusGained(evt);
+            }
+        });
+
+        AdminJRadioButton.setSelected(true);
+        AdminJRadioButton.setText("Admin");
+        AdminJRadioButton.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                AdminJRadioButtonFocusGained(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(362, 362, 362)
+                .addGap(368, 368, 368)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(emailIDJField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AdminJRadioButton)
                     .addComponent(passwordJField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(roleJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loginJButton))
-                .addGap(238, 238, 238))
+                    .addComponent(UserJRadioButton)
+                    .addComponent(loginJButton)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(300, 300, 300))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,20 +139,21 @@ public class LoginPage extends javax.swing.JPanel {
                 .addComponent(emailIDJField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(passwordJField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(roleJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(AdminJRadioButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(UserJRadioButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(loginJButton)
-                .addContainerGap(189, Short.MAX_VALUE))
+                .addContainerGap(188, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginJButtonActionPerformed
 
         if (passwordJField != null && emailIDJField != null) {
-            String roleSelected = (String) roleJComboBox.getSelectedItem();
             Boolean found = false;
-            if ("Admin".equals(roleSelected)) {
+            if (AdminJRadioButton.isSelected()) {
                 for (User admin : MainJFrame.adminLists) {
                     if (admin.getPassword().equals(passwordJField.getText()) && admin.email.equals(emailIDJField.getText())) {
                         found = true;
@@ -208,20 +211,21 @@ public class LoginPage extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_emailIDJFieldActionPerformed
 
-    private void roleJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleJComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_roleJComboBoxActionPerformed
+    private void AdminJRadioButtonFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_AdminJRadioButtonFocusGained
+        UserJRadioButton.setSelected(false);
+    }//GEN-LAST:event_AdminJRadioButtonFocusGained
 
-    private void roleJComboBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_roleJComboBoxFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_roleJComboBoxFocusGained
+    private void UserJRadioButtonFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserJRadioButtonFocusGained
+        AdminJRadioButton.setSelected(false);
+    }//GEN-LAST:event_UserJRadioButtonFocusGained
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton AdminJRadioButton;
+    private javax.swing.JRadioButton UserJRadioButton;
     private javax.swing.JTextField emailIDJField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton loginJButton;
     private javax.swing.JTextField passwordJField;
-    private javax.swing.JComboBox<String> roleJComboBox;
     // End of variables declaration//GEN-END:variables
 }
