@@ -555,37 +555,39 @@ public class UserAvailability extends javax.swing.JPanel {
             }
 
             String[][] tableColumn = new String[firstJCheckBox.isSelected() ? 1 : allAvailableFilteredCars.size()][11];
-
-            for (int j = 0; j < (firstJCheckBox.isSelected() ? 1 : allAvailableFilteredCars.size()); j++) {
-                Car temp = allAvailableFilteredCars.get(j);
-                tableColumn[j][0] = String.valueOf(temp.id);
-                tableColumn[j][1] = temp.availabilityFrom + " - " + temp.availabilityTo;
-                tableColumn[j][2] = temp.brand;
-                tableColumn[j][3] = String.valueOf(temp.manufactureYear);
-                tableColumn[j][4] = String.valueOf(temp.seats);
-                tableColumn[j][5] = String.valueOf(temp.getAvailableSeats());
-                tableColumn[j][6] = String.valueOf(temp.getSerialNo());
-                tableColumn[j][7] = String.valueOf(temp.modelNo);
-                tableColumn[j][8] = String.valueOf(temp.manufacturer);
-                tableColumn[j][9] = String.valueOf(temp.city);
-                tableColumn[j][10] = String.valueOf(temp.getMaintenanceCerticateExpiry());
+            if (allAvailableFilteredCars.size() != 0) {
+                for (int j = 0; j < (firstJCheckBox.isSelected() ? 1 : allAvailableFilteredCars.size()); j++) {
+                    Car temp = allAvailableFilteredCars.get(j);
+                    tableColumn[j][0] = String.valueOf(temp.id);
+                    tableColumn[j][1] = temp.availabilityFrom + " - " + temp.availabilityTo;
+                    tableColumn[j][2] = temp.brand;
+                    tableColumn[j][3] = String.valueOf(temp.manufactureYear);
+                    tableColumn[j][4] = String.valueOf(temp.seats);
+                    tableColumn[j][5] = String.valueOf(temp.getAvailableSeats());
+                    tableColumn[j][6] = String.valueOf(temp.getSerialNo());
+                    tableColumn[j][7] = String.valueOf(temp.modelNo);
+                    tableColumn[j][8] = String.valueOf(temp.manufacturer);
+                    tableColumn[j][9] = String.valueOf(temp.city);
+                    tableColumn[j][10] = String.valueOf(temp.getMaintenanceCerticateExpiry());
+                }
             }
 
             String[][] tableColumnNA = new String[firstJCheckBox.isSelected() ? 1 : allNonAvailableFilteredCars.size()][11];
-
-            for (int j = 0; j < (firstJCheckBox.isSelected() ? 1 : allNonAvailableFilteredCars.size()); j++) {
-                Car temp = allNonAvailableFilteredCars.get(j);
-                tableColumnNA[j][0] = String.valueOf(temp.id);
-                tableColumnNA[j][1] = temp.availabilityFrom + " - " + temp.availabilityTo;
-                tableColumnNA[j][2] = temp.brand;
-                tableColumnNA[j][3] = String.valueOf(temp.manufactureYear);
-                tableColumnNA[j][4] = String.valueOf(temp.seats);
-                tableColumnNA[j][5] = String.valueOf(temp.getAvailableSeats());
-                tableColumnNA[j][6] = String.valueOf(temp.getSerialNo());
-                tableColumnNA[j][7] = String.valueOf(temp.modelNo);
-                tableColumnNA[j][8] = String.valueOf(temp.manufacturer);
-                tableColumnNA[j][9] = String.valueOf(temp.city);
-                tableColumnNA[j][10] = String.valueOf(temp.getMaintenanceCerticateExpiry());
+            if (allNonAvailableFilteredCars.size() != 0) {
+                for (int j = 0; j < (firstJCheckBox.isSelected() ? 1 : allNonAvailableFilteredCars.size()); j++) {
+                    Car temp = allNonAvailableFilteredCars.get(j);
+                    tableColumnNA[j][0] = String.valueOf(temp.id);
+                    tableColumnNA[j][1] = temp.availabilityFrom + " - " + temp.availabilityTo;
+                    tableColumnNA[j][2] = temp.brand;
+                    tableColumnNA[j][3] = String.valueOf(temp.manufactureYear);
+                    tableColumnNA[j][4] = String.valueOf(temp.seats);
+                    tableColumnNA[j][5] = String.valueOf(temp.getAvailableSeats());
+                    tableColumnNA[j][6] = String.valueOf(temp.getSerialNo());
+                    tableColumnNA[j][7] = String.valueOf(temp.modelNo);
+                    tableColumnNA[j][8] = String.valueOf(temp.manufacturer);
+                    tableColumnNA[j][9] = String.valueOf(temp.city);
+                    tableColumnNA[j][10] = String.valueOf(temp.getMaintenanceCerticateExpiry());
+                }
             }
 
             jTable1.setModel(new javax.swing.table.DefaultTableModel(
