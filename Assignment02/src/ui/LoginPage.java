@@ -8,6 +8,7 @@ package ui;
 import classes.User;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import javax.swing.JPanel;
@@ -22,16 +23,18 @@ public class LoginPage extends javax.swing.JPanel {
     public JSplitPane jSplitPane;
     public JPanel leftJPanel;
     public JPanel rightJPanel;
+    public JButton logoutJButton;
     final String[] ROLE = {"Admin", "User"};
 
     /**
      * Creates new form LoginPage
      */
-    public LoginPage(JSplitPane jSplitPane, JPanel leftJPanel, JPanel rightJPanel) {
+    public LoginPage(JSplitPane jSplitPane, JPanel leftJPanel, JPanel rightJPanel,JButton logoutJButton) {
         initComponents();
         this.jSplitPane = jSplitPane;
         this.leftJPanel = leftJPanel;
         this.rightJPanel = rightJPanel;
+        this.logoutJButton= logoutJButton;
         jSplitPane.setDividerLocation(0);
     }
 
@@ -182,6 +185,8 @@ public class LoginPage extends javax.swing.JPanel {
             }
             if (!found) {
                 JOptionPane.showMessageDialog(this, "Invalid Username or Password!", "Login", ERROR_MESSAGE);
+            }else{
+                logoutJButton.setVisible(true);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Username or Password requried.", "Login", ERROR_MESSAGE);
