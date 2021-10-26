@@ -24,7 +24,7 @@ public class Person {
     public House address;
     public int personId;
     public String email;
-    public String type;
+    public int type;
     public Date dob;
     public String mobileNo;
 

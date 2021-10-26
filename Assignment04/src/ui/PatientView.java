@@ -5,8 +5,8 @@
  */
 package ui;
 
+import assignment04.PatientDirectory;
 import assignment04.Person;
-import assignment04.PersonDirectory;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.text.ParseException;
@@ -22,28 +22,28 @@ import static javax.swing.JOptionPane.ERROR_MESSAGE;
  *
  * @author prathameshnemade
  */
-public class AdminView extends javax.swing.JPanel {
+public class PatientView extends javax.swing.JPanel {
 
     /**
      * Creates new form AdminView
      */
-    public AdminView() {
+    public PatientView() {
         initComponents();
         jSplitPane1.setDividerLocation((int) (0.35 * (new Dimension(Toolkit.getDefaultToolkit().getScreenSize()).width - 300)));
         DefaultListModel model = new DefaultListModel();
-        if (PersonDirectory.allPeople.isEmpty()) {
+        if (PatientDirectory.patientDirectory.isEmpty()) {
             uploadedJList.setModel(model);
             JOptionPane.showMessageDialog(this, "People Directory Empty!", "View Details", ERROR_MESSAGE);
         } else {
-            PersonDirectory.allPeople.forEach(car -> {
-                model.addElement(car.personId + " - " + car.name);
+            PatientDirectory.patientDirectory.forEach(patient -> {
+                model.addElement(patient.personId + " - " + patient.name);
             });
             uploadedJList.setModel(model);
             uploadedJList.setSelectedIndex(0);
             try {
                 openSelectedProfile();
             } catch (ParseException ex) {
-                Logger.getLogger(AdminView.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PatientView.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -318,7 +318,7 @@ public class AdminView extends javax.swing.JPanel {
         try {
             openSelectedProfile();
         } catch (ParseException ex) {
-            Logger.getLogger(AdminView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PatientView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_uploadedJListFocusGained
 
@@ -326,14 +326,14 @@ public class AdminView extends javax.swing.JPanel {
         try {
             openSelectedProfile();
         } catch (ParseException ex) {
-            Logger.getLogger(AdminView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PatientView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_uploadedJListMouseClicked
-    
+
     private void openSelectedProfile() throws ParseException {
         int seletedPersonIndex = uploadedJList.getSelectedIndex();//get the index of the selection made in the left section.
         if (seletedPersonIndex != -1) {
-            Person selectedPerson = PersonDirectory.allPeople.get(seletedPersonIndex);
+            Person selectedPerson = PatientDirectory.patientDirectory.get(seletedPersonIndex);
             identifierJLabel.setText(String.valueOf(selectedPerson.personId));
             nameJLabel.setText(String.valueOf(selectedPerson.name));
             addressJLabel.setText(String.valueOf(selectedPerson.address));

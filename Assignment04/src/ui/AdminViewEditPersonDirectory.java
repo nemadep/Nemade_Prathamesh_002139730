@@ -936,7 +936,7 @@ public class AdminViewEditPersonDirectory extends javax.swing.JPanel {
         selectedProfile.community.communityName = this.communityNameJField.getText();
         selectedProfile.mobileNo = phoneNoJField1.getText().trim() + "-" + phoneNoJField2.getText().trim() + "-" + phoneNoJField3.getText().trim();
         selectedProfile.email = emailJField.getText();
-        selectedProfile.type = "DEFAULT";
+        selectedProfile.type = 0;
         DateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
         try {
             dateFormatter.setLenient(false);
@@ -944,7 +944,7 @@ public class AdminViewEditPersonDirectory extends javax.swing.JPanel {
         } catch (ParseException ex) {
             System.out.println(ex);
         }
-
+//        selectedProfile.type = isPatientJCheckBox.isSelected() ? 1 : 0;
         PersonDirectory.allPeople.set(selectedIndex, selectedProfile);
         JOptionPane.showMessageDialog(this, "Updated successfully!", "Update Profile", INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -999,6 +999,8 @@ public class AdminViewEditPersonDirectory extends javax.swing.JPanel {
             dobDayJField.setText((String) mec.split("/")[0]);
             dobMonthJField.setText((String) mec.split("/")[1]);
             dobYearJField.setText((String) mec.split("/")[2]);
+
+//            isPatientJCheckBox.setSelected(selectedProfile.type == 1);
         }
     }
     private void uploadedJListFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_uploadedJListFocusGained

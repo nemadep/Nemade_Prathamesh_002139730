@@ -33,6 +33,8 @@ public class NewPersonAddition extends javax.swing.JPanel {
         this.newPersonAddition = new Person();
         this.personIdentifierJLabel.setText(String.valueOf(Person.PERSON_ID));
         this.newPersonAddition.personId = Person.PERSON_ID;
+//        this.newPersonAddition.type = 0;
+
     }
 
     /**
@@ -579,7 +581,7 @@ public class NewPersonAddition extends javax.swing.JPanel {
                     .addComponent(cardentifierJLabel))
                 .addGap(18, 18, 18)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -819,7 +821,6 @@ public class NewPersonAddition extends javax.swing.JPanel {
         newPersonAddition.community.communityName = this.communityNameJField.getText();
         newPersonAddition.mobileNo = phoneNoJField1.getText().trim() + "-" + phoneNoJField2.getText().trim() + "-" + phoneNoJField3.getText().trim();
         newPersonAddition.email = emailJField.getText();
-        newPersonAddition.type = "DEFAULT";
         DateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
         try {
             dateFormatter.setLenient(false);

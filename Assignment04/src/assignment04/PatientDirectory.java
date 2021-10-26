@@ -13,6 +13,6 @@ import java.util.ArrayList;
  */
 public class PatientDirectory {
 
-    static ArrayList<Patient> patientDirectory = new ArrayList<>();
+    public static ArrayList<Patient> patientDirectory = new ArrayList<>();
 
 }
