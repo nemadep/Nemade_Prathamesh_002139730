@@ -1,0 +1,19 @@
+{
+    "admin": {
+        "admin@gmail.com": {
+            "name": "Admin 0",
+            "email": "admin@gmail.com",
+            "password": "Admin@123"
+        },
+        "admin1@gmail.com": {
+            "name": "Admin 1",
+            "email": "admin1@gmail.com",
+            "password": "Admin@123"
+        },
+        "admin": {
+            "name": "Admin 2",
+            "email": "admin",
+            "password": "admin"
+        }
+    }
+}
