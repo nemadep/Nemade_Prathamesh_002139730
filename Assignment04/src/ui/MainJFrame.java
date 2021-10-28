@@ -5,14 +5,12 @@
  */
 package ui;
 
-import assignment04.Person;
 import assignment04.User;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
@@ -36,7 +34,6 @@ public class MainJFrame extends javax.swing.JFrame {
         logoutJButton.setVisible(false);
         parseJSON("/Users/prathameshnemade/Desktop/NEU/AED/Nemade_Prathamesh_002139730/Assignment04/src/ui/AuthenticationConfig.json");
         injectComponents();
-
     }
 
     private void injectComponents() {

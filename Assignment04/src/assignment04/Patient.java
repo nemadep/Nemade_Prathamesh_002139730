@@ -5,11 +5,24 @@
  */
 package assignment04;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 /**
  *
  * @author prathameshnemade
  */
 public class Patient extends Person {
 
-    static int PATIENT_ID = 0;
+    public static int PATIENT_ID = 1000;
+
+    public Person personDetails;
+    public EncounterHistory allVisitsHistory;
+    public VitalSigns vitalSigns;
+    public int patientIdentifier;
+    
+    public Patient() {
+        allVisitsHistory = new EncounterHistory();
+    }
+
 }

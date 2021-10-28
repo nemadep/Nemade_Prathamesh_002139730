@@ -13,5 +13,5 @@ import java.util.ArrayList;
  */
 public class EncounterHistory {
 
-    static ArrayList<String> encounterHistory = new ArrayList<>();
+    public ArrayList<Encounter> encounterHistory = new ArrayList<>();
 }
