@@ -5,12 +5,15 @@
  */
 package assignment04;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author prathameshnemade
  */
 public class City {
-
+    public static String[] cityValues = {"Boston", "Salem", "Cambridge", "Worcester", "Plymouth", "Lowell"};
+    public static ArrayList<Community> allCities = new ArrayList<>();
     public String city;
     public String state;
 

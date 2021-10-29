@@ -5,6 +5,8 @@
  */
 package assignment04;
 
+import java.util.Date;
+
 /**
  *
  * @author prathameshnemade
@@ -12,7 +14,8 @@ package assignment04;
 public class Community extends City {
 
     public String communityName ;
-
+    public Date createdAt;
+    
     public String validateCommunityName(String name) {
         String isValid = "";
         if (name.equals("")) {
@@ -25,5 +28,15 @@ public class Community extends City {
             isValid = "Invalid Name \n";
         }
         return isValid;
+    }
+    
+    public Boolean alreadtExists(String city, String community) {
+        Boolean found = false;
+        for (int i = 0; i < City.allCities.size(); i++) {
+            if (city.equals(City.allCities.get(i).city) && community.equals(City.allCities.get(i).communityName)) {
+                found = true;
+            }
+        }
+        return found;
     }
 }
