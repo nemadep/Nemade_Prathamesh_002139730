@@ -11,8 +11,6 @@ import assignment04.PatientDirectory;
 import assignment04.Person;
 import assignment04.PersonDirectory;
 import assignment04.VitalSigns;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -659,7 +657,7 @@ public class AddPatientVisit extends javax.swing.JPanel {
     }//GEN-LAST:event_patientIdentifierJLabelActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
+        Boolean isAlreadyAPatient = isAlreadyPatient();
         String errorMessage = "";
         VitalSigns vitals = new VitalSigns();
         String respiratoryErrorMessage = vitals.validateRespiratoryRate(String.valueOf(this.respiratoryRateJField.getText()));
@@ -676,23 +674,62 @@ public class AddPatientVisit extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, errorMessage, "Create Patient's visit", ERROR_MESSAGE);
             return;
         }
-
         selectedPatient.personDetails = selectedPerson;
+
         vitals.age = Integer.valueOf(this.ageJField.getText());
         vitals.respiratoryRate = Integer.valueOf(this.respiratoryRateJField.getText());
         vitals.heartRate = Integer.valueOf(this.heartRateJField.getText());
         vitals.bloodPressure = Integer.valueOf(this.bloodPressureJField.getText());
+
         Encounter encounter = new Encounter();
         encounter.findings = vitals;
         encounter.visitDate = new Date();
         selectedPatient.allVisitsHistory.encounterHistory.add(encounter);
-        selectedPatient.patientIdentifier = Patient.PATIENT_ID;
+        int getID = getPatientId();
+        selectedPatient.patientIdentifier = getID;
+
         visitJPanel.setVisible(false);
-        Patient.PATIENT_ID++;
-        PatientDirectory.patientDirectory.add(selectedPatient);
-        System.out.println("toStringtoString" + PatientDirectory.patientDirectory.toString());
+
+        patientIdentifierJLabel.setText(String.valueOf(getID));
+
+        if (!isAlreadyAPatient) {
+            PatientDirectory.patientDirectory.add(selectedPatient);
+        }
+
         JOptionPane.showMessageDialog(this, "Patient's history created successfully!!", "Create Visit", INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    public int getPatientId() {
+        int foundID = PatientDirectory.patientDirectory.size();
+        for (int i = 0; i < PatientDirectory.patientDirectory.size(); i++) {
+            if (PatientDirectory.patientDirectory.get(i).personDetails.personId == selectedPerson.personId) {
+                System.out.println("Already a patient");
+                foundID = PatientDirectory.patientDirectory.get(i).patientIdentifier;
+            }
+        }
+        System.out.println("new patient");
+        return foundID;
+    }
+
+    public Boolean isAlreadyPatient() {
+        Boolean found = false;
+        for (int i = 0; i < PatientDirectory.patientDirectory.size(); i++) {
+            if (PatientDirectory.patientDirectory.get(i).personDetails.personId == selectedPerson.personId) {
+                found = true;
+            }
+        }
+        return found;
+    }
+
+    public Patient getPatient() {
+        Patient found = new Patient();
+        for (int i = 0; i < PatientDirectory.patientDirectory.size(); i++) {
+            if (PatientDirectory.patientDirectory.get(i).personDetails.personId == selectedPerson.personId) {
+                found = PatientDirectory.patientDirectory.get(i);
+            }
+        }
+        return found;
+    }
 
     private void addVisitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addVisitJButtonActionPerformed
         visitJPanel.setVisible(true);
@@ -702,7 +739,7 @@ public class AddPatientVisit extends javax.swing.JPanel {
         int seletedPersonIndex = filteredJList.getSelectedIndex();//get the index of the selection made in the left section.
         if (seletedPersonIndex != -1) {
             selectedPerson = PersonDirectory.allPeople.get(seletedPersonIndex);
-            selectedPatient = new Patient();
+            selectedPatient = getPatient();
             detailsJPanel.setVisible(true);
             identifierJLabel.setText(String.valueOf(selectedPerson.personId));
             nameJLabel.setText(String.valueOf(selectedPerson.name));
@@ -714,7 +751,8 @@ public class AddPatientVisit extends javax.swing.JPanel {
             dobJLabel.setText((String.valueOf((new SimpleDateFormat("MM/dd/yyyy", Locale.US)).format(selectedPerson.dob))));
             emailJLabel.setText(String.valueOf(selectedPerson.email));
             mobileNoJLabel.setText(String.valueOf(selectedPerson.mobileNo));
-            patientIdentifierJLabel.setText(String.valueOf(Patient.PATIENT_ID));
+            //Patient Identifier
+            patientIdentifierJLabel.setText(String.valueOf(getPatientId()));
         }
     }
 
