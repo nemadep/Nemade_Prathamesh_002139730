@@ -69,7 +69,7 @@ public class Person {
             isValid = "Email cannot be empty! \n";
         } else if (!email.matches("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")) {
             isValid = "Invalid Email ID! \n";
-        }else if (email.equals("Enter here")) {
+        } else if (email.equals("Enter here")) {
             isValid = "Invalid Name \n";
         }
         return isValid;
@@ -78,9 +78,18 @@ public class Person {
     public String validateMobileNo(String value) {
         String isValid = "";
         String[] tempValue = value.split("-");
-        String areaCode = tempValue[0];
-        String rand1 = tempValue[1];
-        String rand2 = tempValue[2];
+        System.out.println("tempValue" + tempValue);
+        System.out.println("value" + value);
+        String areaCode = null;
+        String rand1 = null;
+        String rand2 = null;
+        try {
+            areaCode = tempValue[0];
+            rand1 = tempValue[1];
+            rand2 = tempValue[2];
+        } catch (Exception e) {
+            isValid = "Invalid Mobile No. ! \n";
+        }
         try {
             Integer.parseInt(areaCode);
             Integer.parseInt(rand1);

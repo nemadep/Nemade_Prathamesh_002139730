@@ -57,11 +57,11 @@ public class PatientView extends javax.swing.JPanel {
             });
             uploadedJList.setModel(model);
             uploadedJList.setSelectedIndex(0);
-//            try {
-//                openSelectedProfile();
-//            } catch (ParseException ex) {
-//                Logger.getLogger(PatientView.class.getName()).log(Level.SEVERE, null, ex);
-//            }
+            try {
+                openSelectedProfile();
+            } catch (ParseException ex) {
+                Logger.getLogger(PatientView.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

@@ -695,19 +695,26 @@ public class AddPatientVisit extends javax.swing.JPanel {
         if (!isAlreadyAPatient) {
             PatientDirectory.patientDirectory.add(selectedPatient);
         }
-
+        restVitals();
         JOptionPane.showMessageDialog(this, "Patient's history created successfully!!", "Create Visit", INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    public void restVitals() {
+        ageJField.setText("Enter here");
+        respiratoryRateJField.setText("Enter here");
+        heartRateJField.setText("Enter here");
+        bloodPressureJField.setText("Enter here");
+    }
 
     public int getPatientId() {
         int foundID = PatientDirectory.patientDirectory.size();
         for (int i = 0; i < PatientDirectory.patientDirectory.size(); i++) {
             if (PatientDirectory.patientDirectory.get(i).personDetails.personId == selectedPerson.personId) {
-                System.out.println("Already a patient");
+                System.out.println("--Already a patient");
                 foundID = PatientDirectory.patientDirectory.get(i).patientIdentifier;
             }
         }
-        System.out.println("new patient");
+        System.out.println("new patient--");
         return foundID;
     }
 
