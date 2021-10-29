@@ -32,6 +32,7 @@ public class AdminUpdateCityCommunity extends javax.swing.JPanel {
 
     /**
      * Creates new form AdminUpdateCityCommunity
+     * @param jSplitMainPane
      */
     public AdminUpdateCityCommunity(JSplitPane jSplitMainPane) {
         initComponents();

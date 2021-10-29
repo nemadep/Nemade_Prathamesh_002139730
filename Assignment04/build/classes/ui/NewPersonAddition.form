@@ -23,65 +23,62 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="seatsJLabel7" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="seatsJLabel2" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="seatsJLabel3" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="seatsJLabel4" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="cardentifierJLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="seatsJLabel5" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="seatsJLabel7" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="seatsJLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="maintenanceExpiryJLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="seatsJLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="seatsJLabel6" alignment="1" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="nameJField" alignment="0" max="32767" attributes="0"/>
+                  <Component id="addressJField" alignment="0" max="32767" attributes="0"/>
+                  <Component id="zipJField" alignment="0" max="32767" attributes="0"/>
+                  <Component id="cityJComboBox" alignment="0" max="32767" attributes="0"/>
+                  <Component id="stateJField" alignment="0" max="32767" attributes="0"/>
+                  <Component id="communityJComboBox" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="dobDayJField" min="-2" pref="31" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="cityJField" min="-2" pref="323" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="cardentifierJLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="seatsJLabel6" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="seatsJLabel5" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="maintenanceExpiryJLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="seatsJLabel4" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="seatsJLabel3" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="seatsJLabel2" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="seatsJLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="seatsJLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="dummyJField3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton2" min="-2" pref="89" max="-2" attributes="0"/>
-                          <Component id="nameJField" alignment="0" min="-2" pref="323" max="-2" attributes="0"/>
-                          <Component id="addressJField" alignment="0" min="-2" pref="323" max="-2" attributes="0"/>
-                          <Component id="zipJField" alignment="0" min="-2" pref="323" max="-2" attributes="0"/>
-                          <Component id="stateJField" alignment="0" min="-2" pref="323" max="-2" attributes="0"/>
-                          <Component id="communityNameJField" alignment="0" min="-2" pref="323" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="dobDayJField" min="-2" pref="31" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="dummyJField3" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="dobMonthJField" min="-2" pref="33" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="dummyJField2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="dobYearJField" min="-2" pref="52" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="emailJField" alignment="0" min="-2" pref="323" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="dummyJField4" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="dummyJField5" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="phoneNoJField1" min="-2" pref="38" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="dummyJField6" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="phoneNoJField2" min="-2" pref="35" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="dummyJField7" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="phoneNoJField3" min="-2" pref="52" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="personIdentifierJLabel" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="dobMonthJField" min="-2" pref="33" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="dummyJField2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="dobYearJField" min="-2" pref="52" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="emailJField" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="dummyJField4" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="dummyJField5" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="phoneNoJField1" min="-2" pref="38" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="dummyJField6" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="phoneNoJField2" min="-2" pref="35" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="dummyJField7" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="phoneNoJField3" min="-2" pref="52" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="personIdentifierJLabel" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
+                  <Component id="jButton2" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace min="299" pref="299" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="317" pref="317" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -107,8 +104,8 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="cityJField" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                   <Component id="seatsJLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cityJComboBox" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -117,7 +114,7 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="communityNameJField" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                  <Component id="communityJComboBox" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   <Component id="seatsJLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -152,7 +149,7 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jButton2" min="-2" pref="40" max="-2" attributes="0"/>
-              <EmptySpace pref="47" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -402,26 +399,6 @@
         <Property name="text" type="java.lang.String" value="Community Name (*):"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="communityNameJField">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ee" green="ee" red="ee" type="rgb"/>
-        </Property>
-        <Property name="horizontalAlignment" type="int" value="2"/>
-        <Property name="text" type="java.lang.String" value="Enter here"/>
-        <Property name="toolTipText" type="java.lang.String" value="Click to enter your name."/>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
-            <EmptyBorder bottom="1" left="5" right="5" top="1"/>
-          </Border>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="communityNameJFieldFocusGained"/>
-        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="communityNameJFieldnameChangeHandler"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="communityNameJFieldActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="cardentifierJLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -657,26 +634,6 @@
         <Property name="text" type="java.lang.String" value="Add Person"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="cityJField">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ee" green="ee" red="ee" type="rgb"/>
-        </Property>
-        <Property name="horizontalAlignment" type="int" value="2"/>
-        <Property name="text" type="java.lang.String" value="Enter here"/>
-        <Property name="toolTipText" type="java.lang.String" value="Click to enter your name."/>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
-            <EmptyBorder bottom="1" left="5" right="5" top="1"/>
-          </Border>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="cityJFieldFocusGained"/>
-        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="cityJFieldnameChangeHandler"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cityJFieldActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="seatsJLabel7">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -687,6 +644,38 @@
         </Property>
         <Property name="text" type="java.lang.String" value="City (*):"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cityJComboBox">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cityJComboBoxItemStateChanged"/>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="cityJComboBoxFocusGained"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cityJComboBoxActionPerformed"/>
+        <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="cityJComboBoxPropertyChange"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="communityJComboBox">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="communityJComboBoxItemStateChanged"/>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="communityJComboBoxFocusGained"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="communityJComboBoxActionPerformed"/>
+        <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="communityJComboBoxPropertyChange"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
