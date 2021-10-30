@@ -500,7 +500,7 @@ public class NewPersonAddition extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(150, 150, 150)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(seatsJLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(seatsJLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -833,7 +833,7 @@ public class NewPersonAddition extends javax.swing.JPanel {
         newPersonAddition.address.zipcode = this.zipJField.getText();
         newPersonAddition.city.city = this.cityJComboBox.getSelectedItem().toString();
         newPersonAddition.city.state = this.stateJField.getText();
-        newPersonAddition.community.communityName = this.communityJComboBox.toString();
+        newPersonAddition.community.communityName = this.communityJComboBox.getSelectedItem().toString();
         newPersonAddition.mobileNo = phoneNoJField1.getText().trim() + "-" + phoneNoJField2.getText().trim() + "-" + phoneNoJField3.getText().trim();
         newPersonAddition.email = emailJField.getText();
         DateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");

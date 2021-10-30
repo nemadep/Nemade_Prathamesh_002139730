@@ -114,7 +114,7 @@ public class AdminUpdateCityCommunity extends javax.swing.JPanel {
         jButton2.setBackground(new java.awt.Color(67, 100, 100));
         jButton2.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("DELETE PROFILE");
+        jButton2.setText("DELETE CITY");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);

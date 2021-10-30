@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/prathameshnemade/Desktop/NEU/AED/Nemade_Prathamesh_002139730/Assignment04/src/ui/NewPersonAddition.java</file>
-            <file>file:/Users/prathameshnemade/Desktop/NEU/AED/Nemade_Prathamesh_002139730/Assignment04/src/assignment04/Person.java</file>
-            <file>file:/Users/prathameshnemade/Desktop/NEU/AED/Nemade_Prathamesh_002139730/Assignment04/src/ui/PatientView.java</file>
-            <file>file:/Users/prathameshnemade/Desktop/NEU/AED/Nemade_Prathamesh_002139730/Assignment04/src/assignment04/PatientDirectory.java</file>
-            <file>file:/Users/prathameshnemade/Desktop/NEU/AED/Nemade_Prathamesh_002139730/Assignment04/src/ui/AddPatientVisit.java</file>
-            <file>file:/Users/prathameshnemade/Desktop/NEU/AED/Nemade_Prathamesh_002139730/Assignment04/src/ui/AdminLeftSection.java</file>
-            <file>file:/Users/prathameshnemade/Desktop/NEU/AED/Nemade_Prathamesh_002139730/Assignment04/src/assignment04/PersonDirectory.java</file>
+            <file>file:/Users/prathameshnemade/Desktop/NEU/AED/Nemade_Prathamesh_002139730/Assignment04/src/ui/AdminDashboard.java</file>
+            <file>file:/Users/prathameshnemade/Desktop/NEU/AED/Nemade_Prathamesh_002139730/Assignment04/src/ui/AdminStatistics.java</file>
+            <file>file:/Users/prathameshnemade/Desktop/NEU/AED/Nemade_Prathamesh_002139730/Assignment04/src/assignment04/City.java</file>
+            <file>file:/Users/prathameshnemade/Desktop/NEU/AED/Nemade_Prathamesh_002139730/Assignment04/src/assignment04/Community.java</file>
         </group>
     </open-files>
 </project-private>
