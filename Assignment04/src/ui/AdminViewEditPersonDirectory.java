@@ -5,6 +5,7 @@
  */
 package ui;
 
+import assignment04.City;
 import assignment04.Person;
 import assignment04.PersonDirectory;
 import java.awt.Dimension;
@@ -12,6 +13,8 @@ import java.awt.Toolkit;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
@@ -43,8 +46,30 @@ public class AdminViewEditPersonDirectory extends javax.swing.JPanel {
             });
             uploadedJList.setModel(model);
             uploadedJList.setSelectedIndex(0);
+            generateDropdownCity();
+            generateDropdownCommunity();
             openSelectedProfile();
         }
+    }
+
+    public void generateDropdownCity() {
+        ArrayList<String> cityDropdown = new ArrayList<>();
+        for (String cityValue : City.cityValues) {
+            cityDropdown.add(String.valueOf(cityValue));
+        }
+        String[] citySDropdown = cityDropdown.toArray(new String[cityDropdown.size()]);
+        DefaultComboBoxModel<String> yearsSDropdownModel = new DefaultComboBoxModel<>(citySDropdown);
+        cityJComboBox.setModel(yearsSDropdownModel);
+    }
+
+    public void generateDropdownCommunity() {
+        ArrayList<String> communityDropdown = new ArrayList<>();
+        City.allCities.stream().filter(communityValue -> (communityValue.city == null ? cityJComboBox.getSelectedItem().toString() == null : communityValue.city.equals(cityJComboBox.getSelectedItem().toString()))).forEachOrdered(communityValue -> {
+            communityDropdown.add(String.valueOf(communityValue.communityName));
+        });
+        String[] citySDropdown = communityDropdown.toArray(new String[communityDropdown.size()]);
+        DefaultComboBoxModel<String> yearsSDropdownModel = new DefaultComboBoxModel<>(citySDropdown);
+        this.communityJComboBox.setModel(yearsSDropdownModel);
     }
 
     /**
@@ -74,7 +99,6 @@ public class AdminViewEditPersonDirectory extends javax.swing.JPanel {
         seatsJLabel3 = new javax.swing.JLabel();
         stateJField = new javax.swing.JTextField();
         seatsJLabel4 = new javax.swing.JLabel();
-        communityNameJField = new javax.swing.JTextField();
         cardentifierJLabel = new javax.swing.JLabel();
         personIdentifierJLabel = new javax.swing.JTextField();
         seatsJLabel5 = new javax.swing.JLabel();
@@ -87,10 +111,11 @@ public class AdminViewEditPersonDirectory extends javax.swing.JPanel {
         dummyJField7 = new javax.swing.JTextField();
         phoneNoJField3 = new javax.swing.JTextField();
         seatsJLabel6 = new javax.swing.JLabel();
-        cityJField = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         seatsJLabel7 = new javax.swing.JLabel();
+        cityJComboBox = new javax.swing.JComboBox<>();
+        communityJComboBox = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         uploadedJList = new javax.swing.JList<>();
@@ -285,25 +310,6 @@ public class AdminViewEditPersonDirectory extends javax.swing.JPanel {
         seatsJLabel4.setForeground(new java.awt.Color(67, 100, 100));
         seatsJLabel4.setText("Community Name (*):");
 
-        communityNameJField.setBackground(new java.awt.Color(238, 238, 238));
-        communityNameJField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        communityNameJField.setText("Enter here");
-        communityNameJField.setToolTipText("Click to enter your name.");
-        communityNameJField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
-        communityNameJField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                communityNameJFieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                communityNameJFieldnameChangeHandler(evt);
-            }
-        });
-        communityNameJField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                communityNameJFieldActionPerformed(evt);
-            }
-        });
-
         cardentifierJLabel.setFont(new java.awt.Font("PT Sans Caption", 0, 14)); // NOI18N
         cardentifierJLabel.setForeground(new java.awt.Color(67, 100, 100));
         cardentifierJLabel.setText("Person Identifier (*):");
@@ -452,25 +458,6 @@ public class AdminViewEditPersonDirectory extends javax.swing.JPanel {
         seatsJLabel6.setForeground(new java.awt.Color(67, 100, 100));
         seatsJLabel6.setText("Mobile No(*):");
 
-        cityJField.setBackground(new java.awt.Color(238, 238, 238));
-        cityJField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        cityJField.setText("Enter here");
-        cityJField.setToolTipText("Click to enter your name.");
-        cityJField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
-        cityJField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                cityJFieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                cityJFieldnameChangeHandler(evt);
-            }
-        });
-        cityJField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cityJFieldActionPerformed(evt);
-            }
-        });
-
         jButton1.setBackground(new java.awt.Color(200, 203, 178));
         jButton1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(67, 100, 100));
@@ -495,6 +482,48 @@ public class AdminViewEditPersonDirectory extends javax.swing.JPanel {
         seatsJLabel7.setForeground(new java.awt.Color(67, 100, 100));
         seatsJLabel7.setText("City (*):");
 
+        cityJComboBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cityJComboBoxItemStateChanged(evt);
+            }
+        });
+        cityJComboBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                cityJComboBoxFocusGained(evt);
+            }
+        });
+        cityJComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cityJComboBoxActionPerformed(evt);
+            }
+        });
+        cityJComboBox.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                cityJComboBoxPropertyChange(evt);
+            }
+        });
+
+        communityJComboBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                communityJComboBoxItemStateChanged(evt);
+            }
+        });
+        communityJComboBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                communityJComboBoxFocusGained(evt);
+            }
+        });
+        communityJComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                communityJComboBoxActionPerformed(evt);
+            }
+        });
+        communityJComboBox.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                communityJComboBoxPropertyChange(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -502,58 +531,54 @@ public class AdminViewEditPersonDirectory extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(118, 118, 118)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(seatsJLabel7)
+                    .addComponent(seatsJLabel7)
+                    .addComponent(cardentifierJLabel)
+                    .addComponent(seatsJLabel6)
+                    .addComponent(seatsJLabel5)
+                    .addComponent(maintenanceExpiryJLabel)
+                    .addComponent(seatsJLabel4)
+                    .addComponent(seatsJLabel3)
+                    .addComponent(seatsJLabel2)
+                    .addComponent(seatsJLabel1)
+                    .addComponent(seatsJLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(cityJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nameJField, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+                    .addComponent(addressJField, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+                    .addComponent(zipJField, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+                    .addComponent(stateJField, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(dobDayJField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cityJField, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cardentifierJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(seatsJLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(seatsJLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(maintenanceExpiryJLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(seatsJLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(seatsJLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(seatsJLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(seatsJLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(seatsJLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addComponent(dummyJField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nameJField, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addressJField, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(zipJField, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(stateJField, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(communityNameJField, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(dobDayJField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dummyJField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dobMonthJField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dummyJField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dobYearJField, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(emailJField, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(dummyJField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dummyJField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(phoneNoJField1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dummyJField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(phoneNoJField2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dummyJField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(phoneNoJField3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(personIdentifierJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(29, 29, 29)
-                                .addComponent(jButton2)))))
+                        .addComponent(dobMonthJField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dummyJField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dobYearJField, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(emailJField, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(dummyJField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dummyJField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(phoneNoJField1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dummyJField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(phoneNoJField2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dummyJField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(phoneNoJField3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(personIdentifierJLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(29, 29, 29)
+                        .addComponent(jButton2))
+                    .addComponent(communityJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(150, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -573,7 +598,7 @@ public class AdminViewEditPersonDirectory extends javax.swing.JPanel {
                     .addComponent(seatsJLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cityJField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cityJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(seatsJLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -581,8 +606,8 @@ public class AdminViewEditPersonDirectory extends javax.swing.JPanel {
                     .addComponent(seatsJLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(communityNameJField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(seatsJLabel4))
+                    .addComponent(seatsJLabel4)
+                    .addComponent(communityJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(maintenanceExpiryJLabel)
@@ -613,7 +638,7 @@ public class AdminViewEditPersonDirectory extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(jPanel1);
@@ -787,20 +812,6 @@ public class AdminViewEditPersonDirectory extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_stateJFieldActionPerformed
 
-    private void communityNameJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_communityNameJFieldFocusGained
-        if (communityNameJField.getText().equals("Enter here")) {
-            communityNameJField.setText("");
-        }
-    }//GEN-LAST:event_communityNameJFieldFocusGained
-
-    private void communityNameJFieldnameChangeHandler(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_communityNameJFieldnameChangeHandler
-        // TODO add your handling code here:
-    }//GEN-LAST:event_communityNameJFieldnameChangeHandler
-
-    private void communityNameJFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_communityNameJFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_communityNameJFieldActionPerformed
-
     private void personIdentifierJLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personIdentifierJLabelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_personIdentifierJLabelActionPerformed
@@ -877,20 +888,6 @@ public class AdminViewEditPersonDirectory extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_phoneNoJField3ActionPerformed
 
-    private void cityJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cityJFieldFocusGained
-        if (cityJField.getText().equals("Enter here")) {
-            cityJField.setText("");
-        }
-    }//GEN-LAST:event_cityJFieldFocusGained
-
-    private void cityJFieldnameChangeHandler(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cityJFieldnameChangeHandler
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cityJFieldnameChangeHandler
-
-    private void cityJFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityJFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cityJFieldActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (selectedProfile == null) {
             JOptionPane.showMessageDialog(this, "Please select a profile to edit!", "Update Profile", ERROR_MESSAGE);
@@ -901,9 +898,9 @@ public class AdminViewEditPersonDirectory extends javax.swing.JPanel {
         String nameErrorMessage = selectedProfile.validateName(this.nameJField.getText());
         String addressErrorMessage = selectedProfile.address.validateAddress(this.addressJField.getText());
         String zipCodeErrorMessage = selectedProfile.address.validateZipCode(this.zipJField.getText());
-        String cityErrorMessage = selectedProfile.city.validateCity(this.cityJField.getText());
+        String cityErrorMessage = selectedProfile.city.validateCity(this.cityJComboBox.getSelectedItem().toString());
         String stateErrorMessage = selectedProfile.city.validateState(this.stateJField.getText());
-        String communityNameErrorMessage = selectedProfile.community.validateCommunityName(this.communityNameJField.getText());
+        String communityNameErrorMessage = selectedProfile.community.validateCommunityName(this.communityJComboBox.getSelectedItem() != null ? this.communityJComboBox.getSelectedItem().toString() : "");
 
         String dobValue = dobDayJField.getText().trim() + "/" + dobMonthJField.getText().trim() + "/" + dobYearJField.getText().trim();
         String dobErrorMessage = selectedProfile.validateDOB(dobValue);
@@ -931,9 +928,9 @@ public class AdminViewEditPersonDirectory extends javax.swing.JPanel {
         selectedProfile.name = this.nameJField.getText();
         selectedProfile.address.address = this.addressJField.getText();
         selectedProfile.address.zipcode = this.zipJField.getText();
-        selectedProfile.city.city = this.cityJField.getText();
+        selectedProfile.city.city = this.cityJComboBox.getSelectedItem().toString();
         selectedProfile.city.state = this.stateJField.getText();
-        selectedProfile.community.communityName = this.communityNameJField.getText();
+        selectedProfile.community.communityName = this.communityJComboBox.getSelectedItem().toString();
         selectedProfile.mobileNo = phoneNoJField1.getText().trim() + "-" + phoneNoJField2.getText().trim() + "-" + phoneNoJField3.getText().trim();
         selectedProfile.email = emailJField.getText();
         selectedProfile.type = 0;
@@ -965,9 +962,9 @@ public class AdminViewEditPersonDirectory extends javax.swing.JPanel {
         nameJField.setText("Enter here");
         zipJField.setText("Enter here");
         addressJField.setText("Enter here");
-        cityJField.setText("Enter here");
+        cityJComboBox.setSelectedItem("Enter here");
         stateJField.setText("Enter here");
-        communityNameJField.setText("Enter here");
+        communityJComboBox.setSelectedItem("Enter here");
         emailJField.setText("Enter here");
         personIdentifierJLabel.setText("NA");
         phoneNoJField1.setText("000");
@@ -985,9 +982,9 @@ public class AdminViewEditPersonDirectory extends javax.swing.JPanel {
             nameJField.setText(String.valueOf(selectedProfile.name));
             zipJField.setText(String.valueOf(selectedProfile.address.zipcode));
             addressJField.setText(String.valueOf(selectedProfile.address.address));
-            cityJField.setText(String.valueOf(selectedProfile.city.city));
+            cityJComboBox.setSelectedItem(String.valueOf(selectedProfile.city.city));
             stateJField.setText(String.valueOf(selectedProfile.city.state));
-            communityNameJField.setText(String.valueOf(selectedProfile.community.communityName));
+            communityJComboBox.setSelectedItem(String.valueOf(selectedProfile.community.communityName));
             emailJField.setText(String.valueOf(selectedProfile.email));
             personIdentifierJLabel.setText(String.valueOf(selectedProfile.personId));
             phoneNoJField1.setText(String.valueOf(selectedProfile.mobileNo.split("-")[0]));
@@ -1011,12 +1008,44 @@ public class AdminViewEditPersonDirectory extends javax.swing.JPanel {
         openSelectedProfile();
     }//GEN-LAST:event_uploadedJListMouseClicked
 
+    private void cityJComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cityJComboBoxItemStateChanged
+        generateDropdownCommunity();
+    }//GEN-LAST:event_cityJComboBoxItemStateChanged
+
+    private void cityJComboBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cityJComboBoxFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cityJComboBoxFocusGained
+
+    private void cityJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityJComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cityJComboBoxActionPerformed
+
+    private void cityJComboBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cityJComboBoxPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cityJComboBoxPropertyChange
+
+    private void communityJComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_communityJComboBoxItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_communityJComboBoxItemStateChanged
+
+    private void communityJComboBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_communityJComboBoxFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_communityJComboBoxFocusGained
+
+    private void communityJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_communityJComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_communityJComboBoxActionPerformed
+
+    private void communityJComboBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_communityJComboBoxPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_communityJComboBoxPropertyChange
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addressJField;
     private javax.swing.JLabel cardentifierJLabel;
-    private javax.swing.JTextField cityJField;
-    private javax.swing.JTextField communityNameJField;
+    private javax.swing.JComboBox<String> cityJComboBox;
+    private javax.swing.JComboBox<String> communityJComboBox;
     private javax.swing.JTextField dobDayJField;
     private javax.swing.JTextField dobMonthJField;
     private javax.swing.JTextField dobYearJField;
