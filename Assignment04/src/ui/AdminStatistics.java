@@ -299,6 +299,7 @@ public class AdminStatistics extends javax.swing.JPanel {
 
     private void cityJComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cityJComboBoxItemStateChanged
         generateDropdownCommunity();
+        openSelectedProfile();
     }//GEN-LAST:event_cityJComboBoxItemStateChanged
 
     private void cityJComboBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cityJComboBoxFocusGained
