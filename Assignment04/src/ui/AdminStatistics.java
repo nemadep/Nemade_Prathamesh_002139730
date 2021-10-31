@@ -68,11 +68,14 @@ public class AdminStatistics extends javax.swing.JPanel {
 //        cityJComboBox.setModel(comSDropdownModel);
 //    }
     public void openSelectedProfile() {
-        String communityName = communityJComboBox.getSelectedItem().toString();
-        String cityName = cityJComboBox.getSelectedItem().toString();
+        Object communityName = communityJComboBox.getSelectedItem();
+        Object cityName = cityJComboBox.getSelectedItem();
 
         System.out.println("!!");
         if (communityName != null) {
+
+            communityName = communityJComboBox.getSelectedItem().toString();
+            cityName = cityJComboBox.getSelectedItem().toString();
             System.out.println("!!!");
 
             abnormalBPData = new HashMap<String, ArrayList<Patient>>();
@@ -95,8 +98,8 @@ public class AdminStatistics extends javax.swing.JPanel {
                     }
                 }
             }
+            updateTable();
         }
-        updateTable();
     }
 
     public void updateTable() {
@@ -168,7 +171,7 @@ public class AdminStatistics extends javax.swing.JPanel {
                 value.add(onGoingPatient);
             }
             System.out.println("7");
-            
+
         }
     }
 
