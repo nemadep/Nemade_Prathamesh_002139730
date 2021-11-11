@@ -6,13 +6,18 @@ import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 import com.db4o.config.EmbeddedConfiguration;
+import com.db4o.ext.DatabaseFileLockedException;
+import com.db4o.ext.DatabaseReadOnlyException;
+import com.db4o.ext.Db4oIOException;
+import com.db4o.ext.IncompatibleFileFormatException;
+import com.db4o.ext.OldFormatException;
+import com.db4o.query.Predicate;
 import com.db4o.ta.TransparentPersistenceSupport;
 import java.nio.file.Paths;
 
 /**
  *
  * @author rrheg
- * @author Lingfeng
  */
 public class DB4OUtil {
 
@@ -34,7 +39,6 @@ public class DB4OUtil {
 
     private ObjectContainer createConnection() {
         try {
-
             EmbeddedConfiguration config = Db4oEmbedded.newConfiguration();
             ObjectContainer db = Db4oEmbedded.openFile(config, FILENAME);
 
@@ -43,12 +47,11 @@ public class DB4OUtil {
             config.common().activationDepth(Integer.MAX_VALUE);
             //Controls the depth/level of updation of Object
             config.common().updateDepth(Integer.MAX_VALUE);
-
             //Register your top most Class here
-            config.common().objectClass(EcoSystem.class).cascadeOnUpdate(true); // Change to the object you want to save
-
+            config.common().objectClass(EcoSystem.class).cascadeOnUpdate(true);
+            // Change to the object you want to save
             return db;
-        } catch (Exception ex) {
+        } catch (DatabaseFileLockedException | DatabaseReadOnlyException | Db4oIOException | IncompatibleFileFormatException | OldFormatException ex) {
             System.out.print(ex.getMessage());
         }
         return null;
@@ -56,16 +59,29 @@ public class DB4OUtil {
 
     public synchronized void storeSystem(EcoSystem system) {
         ObjectContainer conn = createConnection();
+        deleteOldSystem(conn);
         conn.store(system);
         conn.commit();
         conn.close();
+    }
+
+    public void deleteOldSystem(ObjectContainer conn) {
+        ObjectSet<EcoSystem> systems = conn.query(new Predicate<EcoSystem>() {
+            @Override
+            public boolean match(EcoSystem et) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        systems.forEach(ecoSystem -> {
+            conn.delete(ecoSystem);
+        });
     }
 
     public EcoSystem retrieveSystem() {
         ObjectContainer conn = createConnection();
         ObjectSet<EcoSystem> systems = conn.query(EcoSystem.class); // Change to the object you want to save
         EcoSystem system;
-        if (systems.size() == 0) {
+        if (systems.isEmpty()) {
             system = ConfigureASystem.configure();  // If there's no System in the record, create a new one
         } else {
             system = systems.get(systems.size() - 1);

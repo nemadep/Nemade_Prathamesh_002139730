@@ -15,15 +15,16 @@ import javax.swing.JPanel;
  * @author raunak
  */
 public abstract class Role {
-    
-    public enum RoleType{
+
+    public enum RoleType {
         RestaurantAdmin("RestaurantAdmin"),
         Customer("Customer"),
         DeliveryMan("Delivery"),
         SysAdmin("Sysadmin");
-        
+
         private String value;
-        private RoleType(String value){
+
+        private RoleType(String value) {
             this.value = value;
         }
 
@@ -36,15 +37,20 @@ public abstract class Role {
             return value;
         }
     }
-    
-    public abstract JPanel createWorkArea(JPanel userProcessContainer, 
-            UserAccount account,  
+
+    RoleType roleType;
+
+    public void Role(RoleType role) {
+        this.roleType = role;
+    }
+
+    public abstract JPanel createWorkArea(JPanel userProcessContainer,
+            UserAccount account,
             EcoSystem business);
 
     @Override
     public String toString() {
         return this.getClass().getName();
     }
-    
-    
+
 }

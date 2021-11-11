@@ -9,7 +9,9 @@ package Business;
 import Business.Customer.CustomerDirectory;
 import Business.DeliveryMan.DeliveryManDirectory;
 import Business.Restaurant.RestaurantDirectory;
-import Business.Role.Role;
+import Business.Role
+        
+        .Role;
 import Business.Role.SystemAdminRole;
 import java.util.ArrayList;
 
@@ -44,7 +46,7 @@ public class EcoSystem extends Organization{
         roleList.add(new SystemAdminRole());
         return roleList;
     }
-    private EcoSystem(){
+    public EcoSystem(){
         super(null);
        // networkList=new ArrayList<Network>();
     }
