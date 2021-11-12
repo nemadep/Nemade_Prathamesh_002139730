@@ -6,16 +6,15 @@ package userinterface;
 
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.CardLayout;
 
 /**
  *
  * @author Lingfeng
  */
 public class MainJFrame extends javax.swing.JFrame {
-
-    private static EcoSystem system = DB4OUtil.getInstance().retrieveSystem();
+    
+    private static EcoSystem system;
     ;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
 
@@ -26,11 +25,12 @@ public class MainJFrame extends javax.swing.JFrame {
         initComponents();
         this.setSize(
                 1680, 1050);
-        logoutJButton.setVisible(
-                false);
-        LoginPage loginPage = new LoginPage(jSplitPane, leftJPanel, rightJPanel, logoutJButton, system);
-
-        jSplitPane.setRightComponent(loginPage);
+        this.logoutJButton.setVisible(false);
+        system = DB4OUtil.getInstance().retrieveSystem();
+        LoginPage loginPage = new LoginPage(this, this.rootJPanel, this.logoutJButton, system);
+        this.rootJPanel.add(loginPage);
+        CardLayout layout = (CardLayout) this.rootJPanel.getLayout();
+        layout.next(this.rootJPanel);
     }
 
     /**
@@ -42,50 +42,13 @@ public class MainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSplitPane = new javax.swing.JSplitPane();
-        leftJPanel = new javax.swing.JPanel();
-        rightJPanel = new javax.swing.JPanel();
         logoutJPanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         logoutJButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        rootJPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jSplitPane.setDividerSize(0);
-        jSplitPane.setEnabled(false);
-
-        leftJPanel.setBackground(new java.awt.Color(255, 255, 255));
-        leftJPanel.setPreferredSize(new java.awt.Dimension(483, 762));
-        leftJPanel.setSize(new java.awt.Dimension(200, 762));
-
-        javax.swing.GroupLayout leftJPanelLayout = new javax.swing.GroupLayout(leftJPanel);
-        leftJPanel.setLayout(leftJPanelLayout);
-        leftJPanelLayout.setHorizontalGroup(
-            leftJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        leftJPanelLayout.setVerticalGroup(
-            leftJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        jSplitPane.setLeftComponent(leftJPanel);
-
-        rightJPanel.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout rightJPanelLayout = new javax.swing.GroupLayout(rightJPanel);
-        rightJPanel.setLayout(rightJPanelLayout);
-        rightJPanelLayout.setHorizontalGroup(
-            rightJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        rightJPanelLayout.setVerticalGroup(
-            rightJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        jSplitPane.setRightComponent(rightJPanel);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -110,7 +73,7 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 250, Short.MAX_VALUE)
                 .addComponent(logoutJButton)
                 .addContainerGap())
         );
@@ -139,6 +102,8 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        rootJPanel.setLayout(new java.awt.CardLayout());
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -147,8 +112,8 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(logoutJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(rootJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -156,18 +121,19 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(logoutJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 735, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(rootJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void logoutJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutJButtonActionPerformed
-        LoginPage loginPage = new LoginPage(jSplitPane, leftJPanel, rightJPanel, logoutJButton, system);
-        logoutJButton.setVisible(false);
-        jSplitPane.setRightComponent(loginPage);
-        jSplitPane.setDividerLocation((int) (0 * (new Dimension(Toolkit.getDefaultToolkit().getScreenSize()).width)));
+        this.logoutJButton.setVisible(false);
+        this.dB4OUtil.storeSystem(system);
+        LoginPage loginPage = new LoginPage(this, this.rootJPanel, this.logoutJButton, system);
+        this.rootJPanel.add(loginPage);
+        CardLayout layout = (CardLayout) this.rootJPanel.getLayout();
+        layout.next(this.rootJPanel);
     }//GEN-LAST:event_logoutJButtonActionPerformed
 
     /**
@@ -208,13 +174,12 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSplitPane jSplitPane;
-    private javax.swing.JPanel leftJPanel;
     private javax.swing.JButton logoutJButton;
     private javax.swing.JPanel logoutJPanel;
-    private javax.swing.JPanel rightJPanel;
+    private javax.swing.JPanel rootJPanel;
     // End of variables declaration//GEN-END:variables
 }

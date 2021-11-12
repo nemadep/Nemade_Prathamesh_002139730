@@ -5,12 +5,17 @@
  */
 package userinterface;
 
+import Business.Customer.Customer;
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Role.AdminRole;
+import Business.Role.CustomerRole;
+import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
+import java.awt.CardLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
@@ -23,12 +28,10 @@ import javax.swing.JSplitPane;
  */
 public class RegisterPage extends javax.swing.JPanel {
 
-    public JSplitPane jSplitPane;
-    public JPanel leftJPanel;
-    public JPanel rightJPanel;
-    public JButton logoutJButton;
+    private JFrame rootFrame;
+    private JPanel rootJPanel;
+    private JButton logoutJButton;
     private EcoSystem system;
-    UserAccountDirectory newAccount;
 
     /**
      * Creates new form LoginPage
@@ -39,15 +42,12 @@ public class RegisterPage extends javax.swing.JPanel {
      * @param logoutJButton
      * @param system
      */
-    public RegisterPage(JSplitPane jSplitPane, JPanel leftJPanel, JPanel rightJPanel, JButton logoutJButton, EcoSystem system) {
+    public RegisterPage(JFrame rootFrame, JPanel rootJPanel, JButton logoutJButton, EcoSystem system) {
         initComponents();
-        this.system = system;
-        this.newAccount = new UserAccountDirectory();
-        this.jSplitPane = jSplitPane;
-        this.leftJPanel = leftJPanel;
-        this.rightJPanel = rightJPanel;
+        this.rootFrame = rootFrame;
+        this.rootJPanel = rootJPanel;
         this.logoutJButton = logoutJButton;
-        jSplitPane.setDividerLocation(0);
+        this.system = system;
     }
 
     /**
@@ -206,14 +206,22 @@ public class RegisterPage extends javax.swing.JPanel {
         if (isValid.equals("")) {
             Employee employee = new Employee();
             employee.setName(this.emailIDJField.getText());
-            
-            this.system.getUserAccountDirectory().createUserAccount(this.emailIDJField.getText(), this.passwordJField.getText(), employee, new AdminRole());
-            System.out.println("system" + system);
+//            this.system.getUserAccountDirectory().createUserAccount("admin", "admin", employee, new CustomerRole());
+//           
+            UserAccount user = new UserAccount();
+            user.setEmployee(employee);
+            user.setPassword(this.passwordJField.getText());
+            user.setUsername(this.emailIDJField.getText());
+            user.setRole(new AdminRole());
+            (DB4OUtil.getInstance()).storeSystem(system);
 
-            DB4OUtil.getInstance().storeSystem(system);
             JOptionPane.showMessageDialog(this, "Registered Successfully!", "Register", INFORMATION_MESSAGE);
-            LoginPage loginPage = new LoginPage(jSplitPane, leftJPanel, rightJPanel, logoutJButton, system);
-            this.jSplitPane.setRightComponent(loginPage);
+
+            LoginPage loginPage = new LoginPage(this.rootFrame, this.rootJPanel, this.logoutJButton, system);
+            this.rootJPanel.add(loginPage);
+            CardLayout layout = (CardLayout) this.rootJPanel.getLayout();
+            layout.next(this.rootJPanel);
+
         } else {
             JOptionPane.showMessageDialog(this, isValid, "Register", ERROR_MESSAGE);
         }
@@ -248,8 +256,10 @@ public class RegisterPage extends javax.swing.JPanel {
     }//GEN-LAST:event_emailIDJFieldActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        LoginPage loginPage = new LoginPage(jSplitPane, leftJPanel, rightJPanel, logoutJButton, system);
-        this.jSplitPane.setRightComponent(loginPage);
+        LoginPage loginPage = new LoginPage(this.rootFrame, this.rootJPanel, this.logoutJButton, system);
+        this.rootJPanel.add(loginPage);
+        CardLayout layout = (CardLayout) this.rootJPanel.getLayout();
+        layout.next(this.rootJPanel);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void confirmPasswordJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_confirmPasswordJFieldFocusGained

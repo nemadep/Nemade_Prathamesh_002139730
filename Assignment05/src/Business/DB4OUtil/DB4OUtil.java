@@ -69,7 +69,7 @@ public class DB4OUtil {
         ObjectSet<EcoSystem> systems = conn.query(new Predicate<EcoSystem>() {
             @Override
             public boolean match(EcoSystem et) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                throw new UnsupportedOperationException("Not supported yet.");
             }
         });
         systems.forEach(ecoSystem -> {
