@@ -129,11 +129,11 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void logoutJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutJButtonActionPerformed
         this.logoutJButton.setVisible(false);
-        this.dB4OUtil.storeSystem(system);
         LoginPage loginPage = new LoginPage(this, this.rootJPanel, this.logoutJButton, system);
         this.rootJPanel.add(loginPage);
         CardLayout layout = (CardLayout) this.rootJPanel.getLayout();
         layout.next(this.rootJPanel);
+        this.dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_logoutJButtonActionPerformed
 
     /**

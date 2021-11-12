@@ -180,6 +180,13 @@ public class LoginPage extends javax.swing.JPanel {
             CardLayout layout = (CardLayout) this.rootJPanel.getLayout();
             layout.next(this.rootJPanel);
         }
+//        else if (selectedAccount.getRole().toString() == "Business.Role.AdminRole") {
+//
+//        } else if (selectedAccount.getRole().toString() == "Business.Role.DeliverManROle") {
+//
+//        } else {
+//
+//        }
     }
 
     private void passwordJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordJFieldFocusGained

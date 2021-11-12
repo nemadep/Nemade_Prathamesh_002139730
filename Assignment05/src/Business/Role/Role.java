@@ -6,7 +6,6 @@ package Business.Role;
 
 import Business.EcoSystem;
 
-import Business.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 
