@@ -59,22 +59,9 @@ public class DB4OUtil {
 
     public synchronized void storeSystem(EcoSystem system) {
         ObjectContainer conn = createConnection();
-        deleteOldSystem(conn);
         conn.store(system);
         conn.commit();
         conn.close();
-    }
-
-    public void deleteOldSystem(ObjectContainer conn) {
-        ObjectSet<EcoSystem> systems = conn.query(new Predicate<EcoSystem>() {
-            @Override
-            public boolean match(EcoSystem et) {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-        });
-        systems.forEach(ecoSystem -> {
-            conn.delete(ecoSystem);
-        });
     }
 
     public EcoSystem retrieveSystem() {

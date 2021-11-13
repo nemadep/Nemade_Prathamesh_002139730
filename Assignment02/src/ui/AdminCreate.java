@@ -141,6 +141,11 @@ public class AdminCreate extends javax.swing.JPanel {
                 brandJComboBoxFocusGained(evt);
             }
         });
+        brandJComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                brandJComboBoxActionPerformed(evt);
+            }
+        });
         brandJComboBox.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 brandJComboBoxPropertyChange(evt);
@@ -992,6 +997,10 @@ public class AdminCreate extends javax.swing.JPanel {
     private void brandJComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_brandJComboBoxItemStateChanged
         setDropdownBasedValues(brandJComboBox.getSelectedItem());
     }//GEN-LAST:event_brandJComboBoxItemStateChanged
+
+    private void brandJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brandJComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_brandJComboBoxActionPerformed
 
     public void setDropdownBasedValues(Object value) {
         ArrayList<String> makeDropdown = new ArrayList<>();
