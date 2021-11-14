@@ -71,7 +71,7 @@ public class OrderCreationJPanel extends javax.swing.JPanel {
         restaurantNameJList.setModel(model);
         restaurantNameJList.setSelectedIndex(0);
         openSelectedRestuarant();
-//        updateMenu();
+        updateMenu();
     }
 
     private void openSelectedRestuarant() {
@@ -80,7 +80,7 @@ public class OrderCreationJPanel extends javax.swing.JPanel {
         orderGenerated = new HashMap<HashMap<String, Double>, Integer>();
 
         DefaultListModel model = new DefaultListModel();
-        restaurantNameJList.setModel(model);
+        receiptJList.setModel(model);
 
         selectedRestaurantIndex = restaurantNameJList.getSelectedIndex();
         totalPriceJLabel.setText("0");
@@ -124,11 +124,6 @@ public class OrderCreationJPanel extends javax.swing.JPanel {
                 value1 = order2.getValue();
             }
             net += value * value1;
-            System.out.println("-----------");
-            System.out.println("item name" + key1);
-            System.out.println("quantity" + value);
-            System.out.println("price each" + value1);
-            System.out.println("-----------");
             model.addElement(key1 + " - " + value + "quantity * " + value1);
         }
         receiptJList.setModel(model);
@@ -327,10 +322,7 @@ public class OrderCreationJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(menuJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(quantityJField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(menuJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jScrollPane1)
                                 .addComponent(customerJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -339,8 +331,10 @@ public class OrderCreationJPanel extends javax.swing.JPanel {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel8)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(addJButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(quantityJField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(addJButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE))))))
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(49, 49, 49)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -422,6 +416,7 @@ public class OrderCreationJPanel extends javax.swing.JPanel {
 
     private void createJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createJButtonActionPerformed
         // TODO add your handling code here:
+//        this.ecosystem.getWorkQueue().
     }//GEN-LAST:event_createJButtonActionPerformed
 
     private void customerJComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_customerJComboBoxItemStateChanged
@@ -435,7 +430,6 @@ public class OrderCreationJPanel extends javax.swing.JPanel {
             String key = menu.getKey();
             Double value = menu.getValue();
             if ((key + " - " + value + " each").equals(selectedObject)) {
-                System.out.println(key + "-" + value);
                 seletedMenu.put(key, value);
             }
         }

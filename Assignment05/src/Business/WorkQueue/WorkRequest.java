@@ -20,7 +20,8 @@ public abstract class WorkRequest {
     private String status; //overall status of order - inprogress/completed
     private Date requestDate; //ordered date
     private Date resolveDate; //order completed date
-    private HashMap<String, Double> orderedMenu;
+    private HashMap<String, Double> orderedMenu; //ordered items
+    private String address; //address to deliver
 
     public WorkRequest() {
         requestDate = new Date();
@@ -86,5 +87,19 @@ public abstract class WorkRequest {
      */
     public void setOrderedMenu(HashMap<String, Double> orderedMenu) {
         this.orderedMenu = orderedMenu;
+    }
+
+    /**
+     * @return the address
+     */
+    public String getAddress() {
+        return address;
+    }
+
+    /**
+     * @param address the address to set
+     */
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

@@ -28,11 +28,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="menuJComboBox" min="-2" pref="224" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="quantityJField" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="menuJComboBox" alignment="0" min="-2" pref="224" max="-2" attributes="0"/>
                               <Component id="jScrollPane1" max="32767" attributes="0"/>
                               <Component id="customerJComboBox" min="-2" pref="224" max="-2" attributes="0"/>
                               <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
@@ -41,8 +37,11 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="addJButton" alignment="1" min="-2" pref="89" max="-2" attributes="0"/>
                                           <Component id="jScrollPane3" alignment="1" min="-2" pref="339" max="-2" attributes="0"/>
+                                          <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="quantityJField" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="addJButton" alignment="1" pref="89" max="32767" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
                               </Group>

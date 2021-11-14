@@ -21,6 +21,9 @@ public class OrderWorkRequest extends WorkRequest {
     private Date orderCreationTime;
     private String orderRequestStatus;
 
+    
+//    public 
+    
     /**
      * @return the orderWorkRequestId
      */
