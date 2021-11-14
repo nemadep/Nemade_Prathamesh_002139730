@@ -36,6 +36,9 @@ public class AccountUpdateJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form AccountUpdateJPanel
+     * @param system
+     * @param account
+     * @param jSplitPane
      */
     public AccountUpdateJPanel(EcoSystem system, UserAccount account, JSplitPane jSplitPane) {
         initComponents();

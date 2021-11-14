@@ -329,7 +329,7 @@ public class CreateRestaurantJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public boolean validateMenuEntry() {
-        RestaurantDirectory dummy = new RestaurantDirectory();
+        RestaurantDirectory dummy = this.ecosystem.getRestaurantDirectory();
         String errorMessage = "";
         String errorName = dummy.validateName(this.menuNameJField.getText());
         String errorPrice = dummy.validatePrice(this.menuPriceJField.getText());
@@ -357,12 +357,23 @@ public class CreateRestaurantJPanel extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Boolean isValid = validateRestaurantDetails();
         if (isValid) {
-            Restaurant createRestaurant = new RestaurantDirectory().createrestaurant(this.restaurantNameJField.getText(),
+            Restaurant createRestaurant = this.ecosystem.getRestaurantDirectory().createrestaurant(this.restaurantNameJField.getText(),
                     this.managerJComboBox.getSelectedItem().toString(), this.menu, this.locationJField.getText(), this.contactNoJField.getText());
-            JOptionPane.showMessageDialog(this, "Restaurant created successfully!!", "Create Restaurant", INFORMATION_MESSAGE);
 
+            JOptionPane.showMessageDialog(this, "Restaurant created successfully!!", "Create Restaurant", INFORMATION_MESSAGE);
+            resetMe();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    public void resetMe() {
+        this.restaurantNameJField.setText("Enter here");
+        this.contactNoJField.setText("Enter here");
+        this.locationJField.setText("Enter here");
+        this.menuNameJField.setText("Enter here");
+        this.menuPriceJField.setText("Enter here");
+        this.menu = new HashMap<String, Double>();
+        this.generateList();
+    }
 
     private void contactNoJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_contactNoJFieldFocusGained
         if (contactNoJField.getText().equals("Enter here")) {

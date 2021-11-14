@@ -5,13 +5,10 @@
  */
 package Business;
 
-
 import Business.Customer.CustomerDirectory;
 import Business.DeliveryMan.DeliveryManDirectory;
 import Business.Restaurant.RestaurantDirectory;
-import Business.Role
-        
-        .Role;
+import Business.Role.Role;
 import Business.Role.SystemAdminRole;
 import java.util.ArrayList;
 
@@ -19,8 +16,8 @@ import java.util.ArrayList;
  *
  * @author MyPC1
  */
-public class EcoSystem extends Organization{
-    
+public class EcoSystem extends Organization {
+
     private static EcoSystem business;
     private RestaurantDirectory restaurantDirectory;
     private CustomerDirectory customerDirectory;
@@ -32,28 +29,35 @@ public class EcoSystem extends Organization{
         this.customerDirectory = customerDirectory;
         this.deliveryManDirectory = deliveryManDirectory;
     }
-    
-    public static EcoSystem getInstance(){
-        if(business==null){
-            business=new EcoSystem();
+
+    public static EcoSystem getInstance() {
+        if (business == null) {
+            business = new EcoSystem();
         }
         return business;
     }
-    
+
     @Override
     public ArrayList<Role> getSupportedRole() {
-        ArrayList<Role> roleList=new ArrayList<Role>();
+        ArrayList<Role> roleList = new ArrayList<Role>();
         roleList.add(new SystemAdminRole());
         return roleList;
     }
-    public EcoSystem(){
+
+    public EcoSystem() {
         super(null);
-       // networkList=new ArrayList<Network>();
+        this.restaurantDirectory = new RestaurantDirectory();
+        this.customerDirectory = new CustomerDirectory();
+        this.deliveryManDirectory = new DeliveryManDirectory();
+        // networkList=new ArrayList<Network>();
     }
 
-    
-    public boolean checkIfUserIsUnique(String userName){
-       //
-       return false;
+    public RestaurantDirectory getRestaurantDirectory() {
+        return this.restaurantDirectory;
+    }
+
+    public boolean checkIfUserIsUnique(String userName) {
+        //
+        return false;
     }
 }

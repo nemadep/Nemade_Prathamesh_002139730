@@ -17,7 +17,7 @@ public class RestaurantDirectory {
     private ArrayList<Restaurant> restaurantList;
 
     public RestaurantDirectory() {
-        restaurantList = new ArrayList();
+        restaurantList = new ArrayList<>();
     }
 
     public ArrayList<Restaurant> getRestaurantList() {
@@ -55,7 +55,7 @@ public class RestaurantDirectory {
             isValid = "Menu name cannot be empty! \n";
         } else if (city.length() < 2 || city.length() > 30) {
             isValid = "Menu name should be of minimum 2 characters and maximum 30 character! \n";
-        } else if (!city.matches("[a-zA-Z0-9]{2,30}")) {
+        } else if (!city.matches("[a-zA-Z0-9 ]{2,30}")) {
             isValid = "Invalid Menu name! \n";
         } else if (city.equals("Enter here")) {
             isValid = "Name is invalid! \n";
