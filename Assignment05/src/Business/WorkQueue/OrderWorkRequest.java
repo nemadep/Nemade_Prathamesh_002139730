@@ -5,8 +5,10 @@
  */
 package Business.WorkQueue;
 
+import Business.Restaurant.Restaurant;
 import Business.UserAccount.UserAccount;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  *
@@ -16,14 +18,35 @@ public class OrderWorkRequest extends WorkRequest {
 
     private long orderWorkRequestId;
     private UserAccount orderRequestCreatedBy;
-    private UserAccount orderRequestCreatedFor;
+    private Restaurant orderRequestCreatedFor;
     private String orderMessage;
     private Date orderCreationTime;
     private String orderRequestStatus;
 
-    
-//    public 
-    
+    public OrderWorkRequest(
+            String address,
+            UserAccount customerName,
+            HashMap<HashMap<String, Double>, Integer> orderGenerated,
+            Restaurant selectedRestaurant,
+            String mainOrderMessage,
+            String overAllStatus,
+            Date requestDate,
+            Long generateId,
+            UserAccount account,
+            Restaurant requestcreatedFor,
+            String orderWorkMessage,
+            Date orderCreationDate,
+            String currentOrderStatus) {
+        super(address, customerName, orderGenerated, selectedRestaurant, mainOrderMessage, overAllStatus, requestDate);
+        this.orderWorkRequestId = generateId;
+        this.orderRequestCreatedBy = account;
+        this.orderRequestCreatedFor = requestcreatedFor;
+        this.orderMessage = orderWorkMessage;
+        this.orderCreationTime = orderCreationDate;
+        this.orderRequestStatus = currentOrderStatus;
+
+    }
+
     /**
      * @return the orderWorkRequestId
      */
@@ -55,14 +78,14 @@ public class OrderWorkRequest extends WorkRequest {
     /**
      * @return the orderRequestCreatedFor
      */
-    public UserAccount getOrderRequestCreatedFor() {
+    public Restaurant getOrderRequestCreatedFor() {
         return orderRequestCreatedFor;
     }
 
     /**
      * @param orderRequestCreatedFor the orderRequestCreatedFor to set
      */
-    public void setOrderRequestCreatedFor(UserAccount orderRequestCreatedFor) {
+    public void setOrderRequestCreatedFor(Restaurant orderRequestCreatedFor) {
         this.orderRequestCreatedFor = orderRequestCreatedFor;
     }
 

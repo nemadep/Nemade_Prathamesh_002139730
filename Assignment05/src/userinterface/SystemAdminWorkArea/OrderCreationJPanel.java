@@ -8,12 +8,16 @@ package userinterface.SystemAdminWorkArea;
 import Business.EcoSystem;
 import Business.Restaurant.Restaurant;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.OrderWorkRequest;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import javax.swing.JSplitPane;
 
 /**
@@ -27,6 +31,7 @@ public class OrderCreationJPanel extends javax.swing.JPanel {
     JSplitPane jSplitPane;
     Restaurant selectedRestaurant;
     Integer selectedRestaurantIndex;
+    UserAccount customer;
     HashMap<String, Double> seletedMenu = new HashMap<String, Double>();
     HashMap<String, Double> selectedMenuList = new HashMap<String, Double>();
     HashMap<HashMap<String, Double>, Integer> orderGenerated = new HashMap<HashMap<String, Double>, Integer>();
@@ -84,6 +89,7 @@ public class OrderCreationJPanel extends javax.swing.JPanel {
 
         selectedRestaurantIndex = restaurantNameJList.getSelectedIndex();
         totalPriceJLabel.setText("0");
+        quantityJField.setText("Enter here");
         ArrayList<Restaurant> restaurantList = this.ecosystem.getRestaurantDirectory().getRestaurantList();
         if (selectedRestaurantIndex != -1) {
             selectedRestaurant = restaurantList.get(selectedRestaurantIndex);
@@ -161,8 +167,11 @@ public class OrderCreationJPanel extends javax.swing.JPanel {
         customerJComboBox = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        addressJTextArea = new javax.swing.JTextArea();
         jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        orderMEssageJTextArea = new javax.swing.JTextArea();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -305,11 +314,17 @@ public class OrderCreationJPanel extends javax.swing.JPanel {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Select a customer:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane3.setViewportView(jTextArea1);
+        addressJTextArea.setColumns(20);
+        addressJTextArea.setRows(5);
+        jScrollPane3.setViewportView(addressJTextArea);
 
         jLabel8.setText("Address:");
+
+        jLabel9.setText("Order Message");
+
+        orderMEssageJTextArea.setColumns(20);
+        orderMEssageJTextArea.setRows(5);
+        jScrollPane4.setViewportView(orderMEssageJTextArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -345,8 +360,10 @@ public class OrderCreationJPanel extends javax.swing.JPanel {
                                     .addComponent(jLabel3)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(totalPriceJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(createJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(120, Short.MAX_VALUE))
+                            .addComponent(createJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -380,8 +397,12 @@ public class OrderCreationJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel3)
                             .addComponent(totalPriceJLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(createJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(52, 52, 52))
         );
@@ -415,12 +436,35 @@ public class OrderCreationJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_menuJComboBoxItemStateChanged
 
     private void createJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createJButtonActionPerformed
-        // TODO add your handling code here:
-//        this.ecosystem.getWorkQueue().
+        Long uniqueId = Long.parseLong(generateId());
+        OrderWorkRequest createNewOrder = new OrderWorkRequest(
+                this.addressJTextArea.getText(),
+                customer,
+                this.orderGenerated,
+                this.selectedRestaurant,
+                "Should be written by Customer",
+                "INPROGRESS",
+                new Date(),
+                uniqueId,
+                this.account,
+                this.selectedRestaurant,
+                this.orderMEssageJTextArea.getText(),
+                new Date(),
+                "UNASSIGNED"
+        );
+        this.ecosystem.getWorkQueue().getWorkRequestList().add(createNewOrder);
+        JOptionPane.showMessageDialog(this, "Order Created Successfully!!", "Create Order By Admin", INFORMATION_MESSAGE);
     }//GEN-LAST:event_createJButtonActionPerformed
 
+    public String generateId() {
+        Date dNow = new Date();
+        SimpleDateFormat ft = new SimpleDateFormat("yyMMddhhmmssMs");
+        String datetime = ft.format(dNow);
+        return datetime;
+    }
+
     private void customerJComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_customerJComboBoxItemStateChanged
-        // TODO add your handling code here:
+        customer = this.ecosystem.getUserAccountDirectory().getAccountBasedOnUsername("Business.Role.CustomerRole", this.customerJComboBox.getSelectedItem().toString());
     }//GEN-LAST:event_customerJComboBoxItemStateChanged
 
     public void updateMenu() {
@@ -436,6 +480,7 @@ public class OrderCreationJPanel extends javax.swing.JPanel {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addJButton;
+    private javax.swing.JTextArea addressJTextArea;
     private javax.swing.JLabel contactJLabel;
     private javax.swing.JButton createJButton;
     private javax.swing.JComboBox<String> customerJComboBox;
@@ -447,13 +492,15 @@ public class OrderCreationJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel managerNameJLabel;
     private javax.swing.JComboBox<String> menuJComboBox;
     private javax.swing.JLabel nameJLabel;
+    private javax.swing.JTextArea orderMEssageJTextArea;
     private javax.swing.JTextField quantityJField;
     private javax.swing.JList<String> receiptJList;
     private javax.swing.JList<String> restaurantNameJList;

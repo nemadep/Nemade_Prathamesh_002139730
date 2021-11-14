@@ -4,6 +4,7 @@
  */
 package Business.WorkQueue;
 
+import Business.Restaurant.Restaurant;
 import Business.UserAccount.UserAccount;
 import java.util.Date;
 import java.util.HashMap;
@@ -15,16 +16,29 @@ import java.util.HashMap;
 public abstract class WorkRequest {
 
     private String message; //use this for comments
-    private UserAccount sender; //from order
+    private Restaurant sender; //from order
     private UserAccount receiver; //to order
     private String status; //overall status of order - inprogress/completed
     private Date requestDate; //ordered date
     private Date resolveDate; //order completed date
-    private HashMap<String, Double> orderedMenu; //ordered items
+    private HashMap<HashMap<String, Double>, Integer> orderedMenu; //ordered items
     private String address; //address to deliver
 
-    public WorkRequest() {
-        requestDate = new Date();
+    public WorkRequest(String address,
+            UserAccount customerName,
+            HashMap<HashMap<String, Double>, Integer> orderGenerated,
+            Restaurant selectedRestaurant,
+            String mainOrderMessage,
+            String overAllStatus,
+            Date requestDate) {
+        this.message = mainOrderMessage;
+        this.sender = selectedRestaurant;
+        this.receiver = customerName;
+        this.status = overAllStatus;
+        this.requestDate = requestDate;
+        this.resolveDate = null;
+        this.orderedMenu = orderGenerated;
+        this.address = address;
     }
 
     public String getMessage() {
@@ -35,11 +49,11 @@ public abstract class WorkRequest {
         this.message = message;
     }
 
-    public UserAccount getSender() {
+    public Restaurant getSender() {
         return sender;
     }
 
-    public void setSender(UserAccount sender) {
+    public void setSender(Restaurant sender) {
         this.sender = sender;
     }
 
@@ -78,14 +92,14 @@ public abstract class WorkRequest {
     /**
      * @return the orderedMenu
      */
-    public HashMap<String, Double> getOrderedMenu() {
+    public HashMap<HashMap<String, Double>, Integer> getOrderedMenu() {
         return orderedMenu;
     }
 
     /**
      * @param orderedMenu the orderedMenu to set
      */
-    public void setOrderedMenu(HashMap<String, Double> orderedMenu) {
+    public void setOrderedMenu(HashMap<HashMap<String, Double>, Integer> orderedMenu) {
         this.orderedMenu = orderedMenu;
     }
 

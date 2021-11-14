@@ -5,21 +5,48 @@
  */
 package Business.WorkQueue;
 
+import Business.Restaurant.Restaurant;
 import Business.UserAccount.UserAccount;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  *
  * @author prathameshnemade
  */
 public class OrderAssignmentRequest extends WorkRequest {
+
     private UserAccount assignmentTo;
     private Date orderAssignmentAt;
     private String assignmentComments;
     private String assignmentStatus;
     private int noOfBags;
-    private String isfragilePackage;
+    private Boolean isfragilePackage;
     private long assignmentId;
+
+    public OrderAssignmentRequest(String address,
+            UserAccount customerName,
+            HashMap<HashMap<String, Double>, Integer> orderGenerated,
+            Restaurant selectedRestaurant,
+            String mainOrderMessage,
+            String overAllStatus,
+            Date requestDate,
+            UserAccount assignmentTo,
+            Date orderAssignmentAt,
+            String assignmentComments,
+            String assignmentStatus,
+            int noOfBags,
+            Boolean isfragilePackage,
+            long assignmentId) {
+        super(address, customerName, orderGenerated, selectedRestaurant, mainOrderMessage, overAllStatus, requestDate);
+        this.assignmentTo = assignmentTo;
+        this.orderAssignmentAt = orderAssignmentAt;
+        this.assignmentComments = assignmentComments;
+        this.assignmentStatus = assignmentStatus;
+        this.noOfBags = noOfBags;
+        this.isfragilePackage = isfragilePackage;
+        this.assignmentId = assignmentId;
+    }
 
     /**
      * @return the assignmentTo
@@ -94,14 +121,14 @@ public class OrderAssignmentRequest extends WorkRequest {
     /**
      * @return the isfragilePackage
      */
-    public String getIsfragilePackage() {
+    public Boolean getIsfragilePackage() {
         return isfragilePackage;
     }
 
     /**
      * @param isfragilePackage the isfragilePackage to set
      */
-    public void setIsfragilePackage(String isfragilePackage) {
+    public void setIsfragilePackage(Boolean isfragilePackage) {
         this.isfragilePackage = isfragilePackage;
     }
 
@@ -118,5 +145,5 @@ public class OrderAssignmentRequest extends WorkRequest {
     public void setAssignmentId(long assignmentId) {
         this.assignmentId = assignmentId;
     }
-    
+
 }

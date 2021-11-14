@@ -5,14 +5,16 @@
  */
 package Business.WorkQueue;
 
+import Business.Restaurant.Restaurant;
 import Business.UserAccount.UserAccount;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  *
  * @author prathameshnemade
  */
-public class OrderDelieveryRequest {
+public class OrderDelieveryRequest extends WorkRequest{
 
     private String deliveryStatus;
     private String bikeNo;
@@ -20,6 +22,10 @@ public class OrderDelieveryRequest {
     private Date deliveryTime;
     private UserAccount deliveredBy;
     private long deliveryRequestId;
+
+    public OrderDelieveryRequest(String address, UserAccount customerName, HashMap<HashMap<String, Double>, Integer> orderGenerated, Restaurant selectedRestaurant, String mainOrderMessage, String overAllStatus, Date requestDate) {
+        super(address, customerName, orderGenerated, selectedRestaurant, mainOrderMessage, overAllStatus, requestDate);
+    }
 
     /**
      * @return the deliveryStatus
