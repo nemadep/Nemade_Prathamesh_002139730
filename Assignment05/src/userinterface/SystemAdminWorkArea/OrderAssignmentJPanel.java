@@ -36,11 +36,22 @@ public class OrderAssignmentJPanel extends javax.swing.JPanel {
 
     OrderAssignmentJPanel(EcoSystem ecosystem, UserAccount account, JSplitPane jSplitPane) {
         initComponents();
+        this.jLabel2.setVisible(false);
+        this.deleiveryManJComboBox.setVisible(false);
+        this.jLabel3.setVisible(false);
+        this.bagsJField.setVisible(false);
+        this.jLabel4.setVisible(false);
+        this.yesJCheckBox.setVisible(false);
+        this.noJCheckBox.setVisible(false);
+        this.jLabel9.setVisible(false);
+        this.orderMEssageJTextArea.setVisible(false);
+        this.addJButton.setVisible(false);
         this.ecosystem = ecosystem;
         this.account = account;
         this.jSplitPane = jSplitPane;
         _getDeliveryManList();
         _getUnAssignedOrders();
+        _getSelectedDelivery();
     }
 
     public void _getUnAssignedOrders() {
@@ -154,6 +165,13 @@ public class OrderAssignmentJPanel extends javax.swing.JPanel {
                 bagsJFieldnameChangeHandler(evt);
             }
         });
+        bagsJField.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                bagsJFieldInputMethodTextChanged(evt);
+            }
+        });
         bagsJField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bagsJFieldActionPerformed(evt);
@@ -252,6 +270,7 @@ public class OrderAssignmentJPanel extends javax.swing.JPanel {
                     onGo.setOrderRequestStatus("ASSIGNED");
 
                     _getUnAssignedOrders();
+                    System.out.println("this.selectedDel----" + this.selectedDel.getUsername());
                     OrderAssignmentRequest orderAssignment = new OrderAssignmentRequest(
                             onGo.getAddress(),
                             onGo.getReceiver(),
@@ -273,6 +292,16 @@ public class OrderAssignmentJPanel extends javax.swing.JPanel {
                 }
             }
         }
+        this.jLabel2.setVisible(false);
+        this.deleiveryManJComboBox.setVisible(false);
+        this.jLabel3.setVisible(false);
+        this.bagsJField.setVisible(false);
+        this.jLabel4.setVisible(false);
+        this.yesJCheckBox.setVisible(false);
+        this.noJCheckBox.setVisible(false);
+        this.jLabel9.setVisible(false);
+        this.orderMEssageJTextArea.setVisible(false);
+        this.addJButton.setVisible(false);
 
     }//GEN-LAST:event_addJButtonActionPerformed
 
@@ -282,16 +311,24 @@ public class OrderAssignmentJPanel extends javax.swing.JPanel {
 
     private void ordersJListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_ordersJListValueChanged
         openSelectedOrder();
+        this.jLabel2.setVisible(true);
+        this.deleiveryManJComboBox.setVisible(true);
+        this.jLabel3.setVisible(true);
+        this.bagsJField.setVisible(true);
     }//GEN-LAST:event_ordersJListValueChanged
 
     private void deleiveryManJComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_deleiveryManJComboBoxItemStateChanged
-        // TODO add your handling code here:
+        _getSelectedDelivery();
+        this.jLabel3.setVisible(true);
+        this.bagsJField.setVisible(true);
+    }//GEN-LAST:event_deleiveryManJComboBoxItemStateChanged
+
+    public void _getSelectedDelivery() {
         Integer selectedDelIndex = this.deleiveryManJComboBox.getSelectedIndex();
         if (selectedDelIndex != -1) {
             this.selectedDel = this.deliverMenList.get(selectedDelIndex);
         }
-    }//GEN-LAST:event_deleiveryManJComboBoxItemStateChanged
-
+    }
     private void bagsJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_bagsJFieldFocusGained
         if (bagsJField.getText().equals("Enter here")) {
             bagsJField.setText("");
@@ -308,15 +345,28 @@ public class OrderAssignmentJPanel extends javax.swing.JPanel {
 
     private void yesJCheckBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_yesJCheckBoxFocusGained
         this.noJCheckBox.setSelected(false);
+
+        this.jLabel9.setVisible(true);
+        this.orderMEssageJTextArea.setVisible(true);
+        this.addJButton.setVisible(true);
     }//GEN-LAST:event_yesJCheckBoxFocusGained
 
     private void noJCheckBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_noJCheckBoxFocusGained
         this.yesJCheckBox.setSelected(false);
+        this.jLabel9.setVisible(true);
+        this.orderMEssageJTextArea.setVisible(true);
+        this.addJButton.setVisible(true);
     }//GEN-LAST:event_noJCheckBoxFocusGained
 
     private void noJCheckBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_noJCheckBoxItemStateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_noJCheckBoxItemStateChanged
+
+    private void bagsJFieldInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_bagsJFieldInputMethodTextChanged
+        this.jLabel4.setVisible(true);
+        this.yesJCheckBox.setVisible(true);
+        this.noJCheckBox.setVisible(true);
+    }//GEN-LAST:event_bagsJFieldInputMethodTextChanged
 
     public void _getDeliveryManList() {
         ArrayList<String> menuNameDropdown = new ArrayList<>();

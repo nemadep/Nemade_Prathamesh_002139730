@@ -50,6 +50,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         AccountCreationJButton2 = new javax.swing.JButton();
         OrderCreationJButton = new javax.swing.JButton();
         OrderCreationJButton1 = new javax.swing.JButton();
+        OrderCreationJButton2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -124,6 +125,16 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        OrderCreationJButton2.setBackground(new java.awt.Color(200, 203, 178));
+        OrderCreationJButton2.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        OrderCreationJButton2.setForeground(new java.awt.Color(67, 100, 100));
+        OrderCreationJButton2.setText("Change Order Delivery Status");
+        OrderCreationJButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OrderCreationJButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -140,7 +151,8 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(AccountCreationJButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(AccountCreationJButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(OrderCreationJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(OrderCreationJButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(OrderCreationJButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(OrderCreationJButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -162,7 +174,9 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(OrderCreationJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(OrderCreationJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(213, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(OrderCreationJButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(157, Short.MAX_VALUE))
         );
 
         jSplitPane.setLeftComponent(jPanel1);
@@ -220,6 +234,11 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         this.jSplitPane.setRightComponent(orderAssignmentPanel);
     }//GEN-LAST:event_OrderCreationJButton1ActionPerformed
 
+    private void OrderCreationJButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderCreationJButton2ActionPerformed
+        OrderDeliveryStatusJPanel orderStatusPanel = new OrderDeliveryStatusJPanel(ecosystem, account, jSplitPane);
+        this.jSplitPane.setRightComponent(orderStatusPanel);
+    }//GEN-LAST:event_OrderCreationJButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AccountCreationJButton;
@@ -227,6 +246,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton AccountCreationJButton2;
     private javax.swing.JButton OrderCreationJButton;
     private javax.swing.JButton OrderCreationJButton1;
+    private javax.swing.JButton OrderCreationJButton2;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -378,7 +378,7 @@ public class OrderCreationJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(menuJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(menuJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(quantityJField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(addJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -454,6 +454,11 @@ public class OrderCreationJPanel extends javax.swing.JPanel {
         );
         this.ecosystem.getWorkQueue().getWorkRequestList().add(createNewOrder);
         JOptionPane.showMessageDialog(this, "Order Created Successfully!!", "Create Order By Admin", INFORMATION_MESSAGE);
+        this.orderMEssageJTextArea.setText("");
+        this.addressJTextArea.setText("");
+        this.quantityJField.setText("Enter here");
+        DefaultListModel model = new DefaultListModel();
+        receiptJList.setModel(model);
     }//GEN-LAST:event_createJButtonActionPerformed
 
     public String generateId() {
