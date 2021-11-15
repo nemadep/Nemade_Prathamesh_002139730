@@ -62,6 +62,7 @@ public class OrderDeliveryStatusJPanel extends javax.swing.JPanel {
     public void _getUnAssignedOrders() {
         DefaultListModel model = new DefaultListModel();
         this.ordersJList.setModel(model);
+        allReadyToPickUpOrders = new ArrayList<OrderAssignmentRequest>();
         
         for (int i = 0; i < this.ecosystem.getWorkQueue().getWorkRequestList().size(); i++) {
             WorkRequest ongoing = this.ecosystem.getWorkQueue().getWorkRequestList().get(i);

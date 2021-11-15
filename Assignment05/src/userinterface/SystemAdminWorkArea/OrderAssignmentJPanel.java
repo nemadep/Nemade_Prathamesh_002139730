@@ -315,12 +315,16 @@ public class OrderAssignmentJPanel extends javax.swing.JPanel {
         this.deleiveryManJComboBox.setVisible(true);
         this.jLabel3.setVisible(true);
         this.bagsJField.setVisible(true);
+        this.jLabel4.setVisible(true);
+        this.yesJCheckBox.setVisible(true);
+        this.noJCheckBox.setVisible(true);
+        this.jLabel9.setVisible(true);
+        this.orderMEssageJTextArea.setVisible(true);
+        this.addJButton.setVisible(true);
     }//GEN-LAST:event_ordersJListValueChanged
 
     private void deleiveryManJComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_deleiveryManJComboBoxItemStateChanged
         _getSelectedDelivery();
-        this.jLabel3.setVisible(true);
-        this.bagsJField.setVisible(true);
     }//GEN-LAST:event_deleiveryManJComboBoxItemStateChanged
 
     public void _getSelectedDelivery() {
@@ -346,16 +350,12 @@ public class OrderAssignmentJPanel extends javax.swing.JPanel {
     private void yesJCheckBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_yesJCheckBoxFocusGained
         this.noJCheckBox.setSelected(false);
 
-        this.jLabel9.setVisible(true);
-        this.orderMEssageJTextArea.setVisible(true);
-        this.addJButton.setVisible(true);
+
     }//GEN-LAST:event_yesJCheckBoxFocusGained
 
     private void noJCheckBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_noJCheckBoxFocusGained
         this.yesJCheckBox.setSelected(false);
-        this.jLabel9.setVisible(true);
-        this.orderMEssageJTextArea.setVisible(true);
-        this.addJButton.setVisible(true);
+
     }//GEN-LAST:event_noJCheckBoxFocusGained
 
     private void noJCheckBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_noJCheckBoxItemStateChanged
@@ -363,9 +363,7 @@ public class OrderAssignmentJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_noJCheckBoxItemStateChanged
 
     private void bagsJFieldInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_bagsJFieldInputMethodTextChanged
-        this.jLabel4.setVisible(true);
-        this.yesJCheckBox.setVisible(true);
-        this.noJCheckBox.setVisible(true);
+
     }//GEN-LAST:event_bagsJFieldInputMethodTextChanged
 
     public void _getDeliveryManList() {
