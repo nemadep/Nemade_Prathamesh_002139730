@@ -5,14 +5,10 @@
  */
 package userinterface;
 
-import Business.Customer.Customer;
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Employee.Employee;
-import Business.Role.AdminRole;
-import Business.Role.CustomerRole;
-import Business.UserAccount.UserAccount;
-import Business.UserAccount.UserAccountDirectory;
+import Business.Role.SystemAdminRole;
 import java.awt.CardLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,7 +16,6 @@ import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import javax.swing.JPanel;
-import javax.swing.JSplitPane;
 
 /**
  *
@@ -60,11 +55,11 @@ public class RegisterPage extends javax.swing.JPanel {
     private void initComponents() {
 
         registerJButton = new javax.swing.JButton();
-        passwordJField = new javax.swing.JTextField();
         emailIDJField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        confirmPasswordJField = new javax.swing.JTextField();
+        JPasswordField = new javax.swing.JPasswordField();
+        confirmJPasswordField = new javax.swing.JPasswordField();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -75,25 +70,6 @@ public class RegisterPage extends javax.swing.JPanel {
         registerJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registerJButtonActionPerformed(evt);
-            }
-        });
-
-        passwordJField.setBackground(new java.awt.Color(238, 238, 238));
-        passwordJField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        passwordJField.setText("Enter password");
-        passwordJField.setToolTipText("Click to enter your Password.");
-        passwordJField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
-        passwordJField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                passwordJFieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                passwordJFieldFocusLost(evt);
-            }
-        });
-        passwordJField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordJFieldActionPerformed(evt);
             }
         });
 
@@ -130,24 +106,11 @@ public class RegisterPage extends javax.swing.JPanel {
             }
         });
 
-        confirmPasswordJField.setBackground(new java.awt.Color(238, 238, 238));
-        confirmPasswordJField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        confirmPasswordJField.setText("Enter password");
-        confirmPasswordJField.setToolTipText("Click to enter your Password.");
-        confirmPasswordJField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
-        confirmPasswordJField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                confirmPasswordJFieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                confirmPasswordJFieldFocusLost(evt);
-            }
-        });
-        confirmPasswordJField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmPasswordJFieldActionPerformed(evt);
-            }
-        });
+        JPasswordField.setBackground(new java.awt.Color(238, 238, 238));
+        JPasswordField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        confirmJPasswordField.setBackground(new java.awt.Color(238, 238, 238));
+        confirmJPasswordField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -158,10 +121,10 @@ public class RegisterPage extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(registerJButton)
                     .addComponent(jButton1)
-                    .addComponent(passwordJField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(emailIDJField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(confirmPasswordJField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(confirmJPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(300, 300, 300))
         );
         layout.setVerticalGroup(
@@ -171,11 +134,11 @@ public class RegisterPage extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(174, 174, 174)
                 .addComponent(emailIDJField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(passwordJField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(confirmPasswordJField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(confirmJPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(registerJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
@@ -186,16 +149,16 @@ public class RegisterPage extends javax.swing.JPanel {
     public String validateregister() {
         String isValid = "";
 
-        if (this.emailIDJField == null) {
-            isValid += "Email Id required! \n";
+        if (!this.emailIDJField.getText().matches("[a-zA-Z0-9]{8,20}")) {
+            isValid += "Invalid Email Id! Should be minimum 8 and maximum 20 characters! \n";
         }
-        if (this.passwordJField == null) {
-            isValid += "Password is required! \n";
+        if (!new String(this.JPasswordField.getPassword()).matches("[a-zA-Z0-9@#$%]{8,20}")) {
+            isValid += "Invalid Password! Should be minimum 8 and maximum 20 characters! \n";
         }
-        if (!this.confirmPasswordJField.getText().equals(this.passwordJField.getText())) {
+        if (!new String(this.confirmJPasswordField.getPassword()).equals(new String(this.JPasswordField.getPassword()))) {
             isValid += "Confirm Password should be same as Password! \n";
         }
-        if (this.system.checkIfUserIsUnique(this.emailIDJField.getText())) {
+        if (!this.system.getUserAccountDirectory().checkIfUsernameIsUnique(this.emailIDJField.getText())) {
             isValid += "Username already used! \n";
         }
         return isValid;
@@ -206,15 +169,9 @@ public class RegisterPage extends javax.swing.JPanel {
         if (isValid.equals("")) {
             Employee employee = new Employee();
             employee.setName(this.emailIDJField.getText());
-//            this.system.getUserAccountDirectory().createUserAccount("admin", "admin", employee, new CustomerRole());
-//           
-            UserAccount user = new UserAccount();
-            user.setEmployee(employee);
-            user.setPassword(this.passwordJField.getText());
-            user.setUsername(this.emailIDJField.getText());
-            user.setRole(new AdminRole());
-            (DB4OUtil.getInstance()).storeSystem(system);
+            this.system.getUserAccountDirectory().createUserAccount(this.emailIDJField.getText(), new String(this.JPasswordField.getPassword()), employee, new SystemAdminRole());
 
+            (DB4OUtil.getInstance()).storeSystem(system);
             JOptionPane.showMessageDialog(this, "Registered Successfully!", "Register", INFORMATION_MESSAGE);
 
             LoginPage loginPage = new LoginPage(this.rootFrame, this.rootJPanel, this.logoutJButton, system);
@@ -226,20 +183,6 @@ public class RegisterPage extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, isValid, "Register", ERROR_MESSAGE);
         }
     }//GEN-LAST:event_registerJButtonActionPerformed
-
-    private void passwordJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordJFieldFocusGained
-        if (passwordJField.getText().equals("Enter password")) {
-            passwordJField.setText("");
-        }
-    }//GEN-LAST:event_passwordJFieldFocusGained
-
-    private void passwordJFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordJFieldFocusLost
-
-    }//GEN-LAST:event_passwordJFieldFocusLost
-
-    private void passwordJFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordJFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordJFieldActionPerformed
 
     private void emailIDJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailIDJFieldFocusGained
         if (emailIDJField.getText().equals("Enter email id")) {
@@ -262,27 +205,13 @@ public class RegisterPage extends javax.swing.JPanel {
         layout.next(this.rootJPanel);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void confirmPasswordJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_confirmPasswordJFieldFocusGained
-        if (confirmPasswordJField.getText().equals("Enter password")) {
-            confirmPasswordJField.setText("");
-        }
-    }//GEN-LAST:event_confirmPasswordJFieldFocusGained
-
-    private void confirmPasswordJFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_confirmPasswordJFieldFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_confirmPasswordJFieldFocusLost
-
-    private void confirmPasswordJFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmPasswordJFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_confirmPasswordJFieldActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField confirmPasswordJField;
+    private javax.swing.JPasswordField JPasswordField;
+    private javax.swing.JPasswordField confirmJPasswordField;
     private javax.swing.JTextField emailIDJField;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField passwordJField;
     private javax.swing.JButton registerJButton;
     // End of variables declaration//GEN-END:variables
 }

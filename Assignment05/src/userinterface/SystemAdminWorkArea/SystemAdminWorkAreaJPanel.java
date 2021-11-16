@@ -29,6 +29,9 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         this.ecosystem = ecosystem;
         this.account = account;
         userNameJLabel.setText(account.getUsername());
+
+        SystemAdminDashboard updateProfileAdmin = new SystemAdminDashboard(ecosystem, account, jSplitPane);
+        this.jSplitPane.setRightComponent(updateProfileAdmin);
     }
 
     /**
@@ -51,6 +54,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         OrderCreationJButton = new javax.swing.JButton();
         OrderCreationJButton1 = new javax.swing.JButton();
         OrderCreationJButton2 = new javax.swing.JButton();
+        AllOrdersJButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -135,6 +139,16 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        AllOrdersJButton.setBackground(new java.awt.Color(200, 203, 178));
+        AllOrdersJButton.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        AllOrdersJButton.setForeground(new java.awt.Color(67, 100, 100));
+        AllOrdersJButton.setText("All Orders");
+        AllOrdersJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AllOrdersJButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -152,7 +166,8 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(AccountCreationJButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(OrderCreationJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(OrderCreationJButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(OrderCreationJButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(OrderCreationJButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(AllOrdersJButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -176,7 +191,9 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(OrderCreationJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(OrderCreationJButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(AllOrdersJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(101, Short.MAX_VALUE))
         );
 
         jSplitPane.setLeftComponent(jPanel1);
@@ -206,7 +223,8 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-
+        SystemAdminDashboard createAdmin = new SystemAdminDashboard(ecosystem, account, jSplitPane);
+        this.jSplitPane.setRightComponent(createAdmin);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void AccountCreationJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccountCreationJButtonActionPerformed
@@ -239,11 +257,17 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         this.jSplitPane.setRightComponent(orderStatusPanel);
     }//GEN-LAST:event_OrderCreationJButton2ActionPerformed
 
+    private void AllOrdersJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllOrdersJButtonActionPerformed
+        AllOrdersJPanel allOrdersPanel = new AllOrdersJPanel(ecosystem, account, jSplitPane);
+        this.jSplitPane.setRightComponent(allOrdersPanel);
+    }//GEN-LAST:event_AllOrdersJButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AccountCreationJButton;
     private javax.swing.JButton AccountCreationJButton1;
     private javax.swing.JButton AccountCreationJButton2;
+    private javax.swing.JButton AllOrdersJButton;
     private javax.swing.JButton OrderCreationJButton;
     private javax.swing.JButton OrderCreationJButton1;
     private javax.swing.JButton OrderCreationJButton2;

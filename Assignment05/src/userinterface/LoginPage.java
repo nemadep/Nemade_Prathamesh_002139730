@@ -6,17 +6,16 @@
 package userinterface;
 
 import Business.EcoSystem;
-import Business.Role.Role;
-import Business.Role.SystemAdminRole;
-import Business.UserAccount.SystemAdminAccount;
 import Business.UserAccount.UserAccount;
-import Business.UserAccount.UserAccountDirectory;
 import java.awt.CardLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import javax.swing.JPanel;
+import userinterface.CustomerRole.CustomerJPanel;
+import userinterface.DeliveryManRole.DeliveryManAdminJPanel;
+import userinterface.RestaurantAdminRole.RestaurantAdminJPanel;
 import userinterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
 
 /**
@@ -157,19 +156,17 @@ public class LoginPage extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginJButtonActionPerformed
-
-//        if (passwordJField != null && emailIDJField != null) {
-//            UserAccount account = system.getUserAccountDirectory().authenticateUser(emailIDJField.getText(), passwordJField.getText());
-        UserAccount account = system.getUserAccountDirectory().authenticateUser("sysadmin", "sysadmin");
-        if (account != null) {
-            System.out.println("Success!!!!!" + account.getRole());
-            redirectToPanel(account);
+        if (passwordJField != null && emailIDJField != null) {
+            UserAccount account = system.getUserAccountDirectory().authenticateUser(emailIDJField.getText(), passwordJField.getText());
+            if (account != null) {
+                System.out.println("Success!!!!!" + account.getRole());
+                redirectToPanel(account);
+            } else {
+                JOptionPane.showMessageDialog(this, "Invalid Username or Password!", "Login", ERROR_MESSAGE);
+            }
         } else {
-            JOptionPane.showMessageDialog(this, "Invalid Username or Password!", "Login", ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Username or Password requried.", "Login", ERROR_MESSAGE);
         }
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Username or Password requried.", "Login", ERROR_MESSAGE);
-//        }
     }//GEN-LAST:event_loginJButtonActionPerformed
 
     public void redirectToPanel(UserAccount account) {
@@ -179,14 +176,22 @@ public class LoginPage extends javax.swing.JPanel {
             this.rootJPanel.add(registerPage);
             CardLayout layout = (CardLayout) this.rootJPanel.getLayout();
             layout.next(this.rootJPanel);
+        } else if (account.getRole().toString() == "Business.Role.AdminRole") {
+            RestaurantAdminJPanel resPage = new RestaurantAdminJPanel(this.rootJPanel, account, system);
+            this.rootJPanel.add(resPage);
+            CardLayout layout = (CardLayout) this.rootJPanel.getLayout();
+            layout.next(this.rootJPanel);
+        } else if (account.getRole().toString() == "Business.Role.DeliverManRole") {
+            DeliveryManAdminJPanel delPage = new DeliveryManAdminJPanel(this.rootJPanel, account, system);
+            this.rootJPanel.add(delPage);
+            CardLayout layout = (CardLayout) this.rootJPanel.getLayout();
+            layout.next(this.rootJPanel);
+        } else {
+            CustomerJPanel cusPage = new CustomerJPanel(this.rootJPanel, account, system);
+            this.rootJPanel.add(cusPage);
+            CardLayout layout = (CardLayout) this.rootJPanel.getLayout();
+            layout.next(this.rootJPanel);
         }
-//        else if (selectedAccount.getRole().toString() == "Business.Role.AdminRole") {
-//
-//        } else if (selectedAccount.getRole().toString() == "Business.Role.DeliverManROle") {
-//
-//        } else {
-//
-//        }
     }
 
     private void passwordJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordJFieldFocusGained

@@ -21,7 +21,7 @@ import javax.swing.JSplitPane;
  * @author prathameshnemade
  */
 public class OrderDeliveryStatusJPanel extends javax.swing.JPanel {
-    
+
     EcoSystem ecosystem;
     UserAccount account;
     JSplitPane jSplitPane;
@@ -29,7 +29,7 @@ public class OrderDeliveryStatusJPanel extends javax.swing.JPanel {
     ArrayList<UserAccount> onlyDeliveryMens = new ArrayList<UserAccount>();
     ArrayList<OrderAssignmentRequest> allReadyToPickUpOrders = new ArrayList<OrderAssignmentRequest>();
     OrderAssignmentRequest selectedOrder;
-    
+
     OrderDeliveryStatusJPanel(EcoSystem ecosystem, UserAccount account, JSplitPane jSplitPane) {
         this.ecosystem = ecosystem;
         this.account = account;
@@ -42,10 +42,10 @@ public class OrderDeliveryStatusJPanel extends javax.swing.JPanel {
         _getDeliveryMenList();
         setDeliveryMen();
     }
-    
+
     public void _getDeliveryMenList() {
         ArrayList<String> menuNameDropdown = new ArrayList<>();
-        
+
         for (int i = 0; i < this.ecosystem.getUserAccountDirectory().getUserAccountList().size(); i++) {
             UserAccount ongoing = this.ecosystem.getUserAccountDirectory().getUserAccountList().get(i);
             if ("Business.Role.DeliverManRole".equals(ongoing.getRole().toString())) {
@@ -53,17 +53,17 @@ public class OrderDeliveryStatusJPanel extends javax.swing.JPanel {
                 menuNameDropdown.add(ongoing.getUsername());
             }
         }
-        
+
         String[] menuSDropdown = menuNameDropdown.toArray(new String[menuNameDropdown.size()]);
         DefaultComboBoxModel<String> brandSDropdownModel = new DefaultComboBoxModel<>(menuSDropdown);
         this.deliveryMenJComboBox.setModel(brandSDropdownModel);
     }
-    
+
     public void _getUnAssignedOrders() {
         DefaultListModel model = new DefaultListModel();
         this.ordersJList.setModel(model);
         allReadyToPickUpOrders = new ArrayList<OrderAssignmentRequest>();
-        
+
         for (int i = 0; i < this.ecosystem.getWorkQueue().getWorkRequestList().size(); i++) {
             WorkRequest ongoing = this.ecosystem.getWorkQueue().getWorkRequestList().get(i);
             if (ongoing instanceof OrderAssignmentRequest) {
@@ -192,7 +192,7 @@ public class OrderDeliveryStatusJPanel extends javax.swing.JPanel {
     private void deliveryMenJComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_deliveryMenJComboBoxItemStateChanged
         setDeliveryMen();
     }//GEN-LAST:event_deliveryMenJComboBoxItemStateChanged
-    
+
     public void setDeliveryMen() {
         Integer selectedIndex = this.deliveryMenJComboBox.getSelectedIndex();
         if (selectedIndex != -1) {
@@ -215,7 +215,7 @@ public class OrderDeliveryStatusJPanel extends javax.swing.JPanel {
     private void statusJComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_statusJComboBoxItemStateChanged
         //todo
     }//GEN-LAST:event_statusJComboBoxItemStateChanged
-    
+
     public void openSelectedOrder() {
         Integer selectedOrderIndex = this.ordersJList.getSelectedIndex();
         if (selectedOrderIndex != -1) {
@@ -228,8 +228,13 @@ public class OrderDeliveryStatusJPanel extends javax.swing.JPanel {
             WorkRequest ongoing = this.ecosystem.getWorkQueue().getWorkRequestList().get(i);
             if (ongoing instanceof OrderAssignmentRequest) {
                 OrderAssignmentRequest onGo = (OrderAssignmentRequest) ongoing;
-                if (onGo.getAssignmentStatus() == this.statusJComboBox.getSelectedItem().toString() && onGo.getAssignmentId() == this.selectedOrder.getAssignmentId()) {
+                System.out.println("!!!!!--->" + onGo.getAssignmentStatus());
+                System.out.println("this.statusJComboBox.getSelectedItem().toString()" + this.statusJComboBox.getSelectedItem().toString());
+                System.out.println("onGo.getAssignmentId()" + onGo.getAssignmentId());
+                System.out.println("this.selectedOrder.getAssignmentId()" + this.selectedOrder.getAssignmentId());
+                if (onGo.getAssignmentId() == this.selectedOrder.getAssignmentId()) {
                     onGo.setAssignmentStatus(this.statusJComboBox.getSelectedItem().toString());
+                    System.out.println("!!!!!!!" + this.statusJComboBox.getSelectedItem().toString());
                     if (this.statusJComboBox.getSelectedItem().toString() == "DELIVERED") {
                         onGo.setStatus("DELIVERED");
                         for (int j = 0; j < this.ecosystem.getWorkQueue().getWorkRequestList().size(); j++) {
@@ -256,6 +261,8 @@ public class OrderDeliveryStatusJPanel extends javax.swing.JPanel {
         this.jLabel5.setVisible(false);
         this.statusJComboBox.setVisible(false);
         this.addJButton1.setVisible(false);
+        setDeliveryMen();
+        setDeliveryMen();
     }//GEN-LAST:event_addJButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

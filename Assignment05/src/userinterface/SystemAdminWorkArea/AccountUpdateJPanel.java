@@ -112,7 +112,7 @@ public class AccountUpdateJPanel extends javax.swing.JPanel {
         deleteJButton.setBackground(new java.awt.Color(67, 100, 100));
         deleteJButton.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         deleteJButton.setForeground(new java.awt.Color(255, 255, 255));
-        deleteJButton.setText("DELETE CAR");
+        deleteJButton.setText("DELETE PROFILE");
         deleteJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteJButtonActionPerformed(evt);
@@ -201,7 +201,7 @@ public class AccountUpdateJPanel extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(270, Short.MAX_VALUE)
+                .addContainerGap(240, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(confirmJPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(emailIDJField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -331,7 +331,7 @@ public class AccountUpdateJPanel extends javax.swing.JPanel {
                         this.CustomerJRadioButton.setSelected(false);
                         this.DeliveryManJRadioButton.setSelected(false);
                         break;
-                    case "Business.Role.DeliverManROle":
+                    case "Business.Role.DeliverManRole":
                         this.DeliveryManJRadioButton.setSelected(true);
                         this.AdminJRadioButton.setSelected(false);
                         this.CustomerJRadioButton.setSelected(false);

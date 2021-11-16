@@ -59,6 +59,7 @@ public class OrderCreationJPanel extends javax.swing.JPanel {
         String[] menuSDropdown = menuNameDropdown.toArray(new String[menuNameDropdown.size()]);
         DefaultComboBoxModel<String> brandSDropdownModel = new DefaultComboBoxModel<>(menuSDropdown);
         this.customerJComboBox.setModel(brandSDropdownModel);
+        customer = this.ecosystem.getUserAccountDirectory().getAccountBasedOnUsername("Business.Role.CustomerRole", this.customerJComboBox.getSelectedItem().toString());
     }
 
     public void _getRestaurantList() {
@@ -437,6 +438,7 @@ public class OrderCreationJPanel extends javax.swing.JPanel {
 
     private void createJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createJButtonActionPerformed
         Long uniqueId = Long.parseLong(generateId());
+        System.out.println("customercustomercustomer" + customer.getUsername());
         OrderWorkRequest createNewOrder = new OrderWorkRequest(
                 this.addressJTextArea.getText(),
                 customer,

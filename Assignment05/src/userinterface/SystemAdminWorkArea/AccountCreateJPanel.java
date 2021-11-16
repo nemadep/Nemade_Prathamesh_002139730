@@ -188,37 +188,60 @@ public class AccountCreateJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loginJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginJButtonActionPerformed
-        if (emailIDJField != null && JPasswordField.getPassword() != null) {
-            String password = new String(JPasswordField.getPassword());
-            String confirmPassword = new String(confirmJPasswordField.getPassword());
-            System.out.println("JPasswordField.getPassword().toString()" + password);
-            System.out.println("confirmJPasswordField.getPassword().toString()" + this.emailIDJField.getText());
-            if (password.equals(confirmPassword)) {
-                if (this.system.getUserAccountDirectory().checkIfUsernameIsUnique(this.emailIDJField.getText())) {
-                    Role role;
-                    Employee employee = new Employee();
-                    employee.setName(this.emailIDJField.getText());
-                    if (AdminJRadioButton.isSelected()) {
-                        role = new SystemAdminRole();
-                    } else if (RestaurantManagerJRadioButton.isSelected()) {
-                        role = new AdminRole();
-                    } else if (DeliveryManJRadioButton.isSelected()) {
-                        role = new DeliverManRole();
-                    } else {
-                        role = new CustomerRole();
-                    }
-                    this.system.getUserAccountDirectory().createUserAccount(this.emailIDJField.getText(), password, employee, role);
-                    JOptionPane.showMessageDialog(this, "User registered successfully!!", "Register", INFORMATION_MESSAGE);
+    public String validateregister() {
+        String isValid = "";
 
+        if (!this.emailIDJField.getText().matches("[a-zA-Z0-9]{8,20}")) {
+            isValid += "Invalid Email Id! Should be minimum 8 and maximum 20 characters! \n";
+        }
+        if (!new String(this.JPasswordField.getPassword()).matches("[a-zA-Z0-9@#$%]{8,20}")) {
+            isValid += "Invalid Password! Should be minimum 8 and maximum 20 characters! \n";
+        }
+        if (!new String(this.confirmJPasswordField.getPassword()).equals(new String(this.JPasswordField.getPassword()))) {
+            isValid += "Confirm Password should be same as Password! \n";
+        }
+        if (!this.system.getUserAccountDirectory().checkIfUsernameIsUnique(this.emailIDJField.getText())) {
+            isValid += "Username already used! \n";
+        }
+        return isValid;
+    }
+
+    private void loginJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginJButtonActionPerformed
+        String isValid = this.validateregister();
+        if (isValid.equals("")) {
+            if (emailIDJField != null && JPasswordField.getPassword() != null) {
+                String password = new String(JPasswordField.getPassword());
+                String confirmPassword = new String(confirmJPasswordField.getPassword());
+                System.out.println("JPasswordField.getPassword().toString()" + password);
+                System.out.println("confirmJPasswordField.getPassword().toString()" + this.emailIDJField.getText());
+                if (password.equals(confirmPassword)) {
+                    if (this.system.getUserAccountDirectory().checkIfUsernameIsUnique(this.emailIDJField.getText())) {
+                        Role role;
+                        Employee employee = new Employee();
+                        employee.setName(this.emailIDJField.getText());
+                        if (AdminJRadioButton.isSelected()) {
+                            role = new SystemAdminRole();
+                        } else if (RestaurantManagerJRadioButton.isSelected()) {
+                            role = new AdminRole();
+                        } else if (DeliveryManJRadioButton.isSelected()) {
+                            role = new DeliverManRole();
+                        } else {
+                            role = new CustomerRole();
+                        }
+                        this.system.getUserAccountDirectory().createUserAccount(this.emailIDJField.getText(), password, employee, role);
+                        JOptionPane.showMessageDialog(this, "User registered successfully!!", "Register", INFORMATION_MESSAGE);
+
+                    } else {
+                        JOptionPane.showMessageDialog(this, "EmailId already used!!", "Register", ERROR_MESSAGE);
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(this, "EmailId already used!!", "Register", ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Password and Confirm Password should match!", "Register", ERROR_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Password and Confirm Password should match!", "Register", ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Username or Password requried.", "Register", ERROR_MESSAGE);
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Username or Password requried.", "Register", ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, isValid, "Register", ERROR_MESSAGE);
         }
     }//GEN-LAST:event_loginJButtonActionPerformed
 
