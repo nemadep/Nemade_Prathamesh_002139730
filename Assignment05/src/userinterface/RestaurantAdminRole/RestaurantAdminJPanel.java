@@ -45,6 +45,8 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         userNameJLabel = new javax.swing.JLabel();
         RestaurantModifyMenuJButton = new javax.swing.JButton();
+        RestaurantModifyMenuJButton1 = new javax.swing.JButton();
+        RestaurantModifyMenuJButton2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -72,10 +74,30 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
         RestaurantModifyMenuJButton.setBackground(new java.awt.Color(200, 203, 178));
         RestaurantModifyMenuJButton.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         RestaurantModifyMenuJButton.setForeground(new java.awt.Color(67, 100, 100));
-        RestaurantModifyMenuJButton.setText("Modify Menu");
+        RestaurantModifyMenuJButton.setText("Assign Orders");
         RestaurantModifyMenuJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RestaurantModifyMenuJButtonActionPerformed(evt);
+            }
+        });
+
+        RestaurantModifyMenuJButton1.setBackground(new java.awt.Color(200, 203, 178));
+        RestaurantModifyMenuJButton1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        RestaurantModifyMenuJButton1.setForeground(new java.awt.Color(67, 100, 100));
+        RestaurantModifyMenuJButton1.setText("Modify Menu");
+        RestaurantModifyMenuJButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RestaurantModifyMenuJButton1ActionPerformed(evt);
+            }
+        });
+
+        RestaurantModifyMenuJButton2.setBackground(new java.awt.Color(200, 203, 178));
+        RestaurantModifyMenuJButton2.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        RestaurantModifyMenuJButton2.setForeground(new java.awt.Color(67, 100, 100));
+        RestaurantModifyMenuJButton2.setText("Change Order Status");
+        RestaurantModifyMenuJButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RestaurantModifyMenuJButton2ActionPerformed(evt);
             }
         });
 
@@ -91,7 +113,9 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(userNameJLabel))
-                    .addComponent(RestaurantModifyMenuJButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(RestaurantModifyMenuJButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(RestaurantModifyMenuJButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(RestaurantModifyMenuJButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -104,8 +128,12 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(RestaurantModifyMenuJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(RestaurantModifyMenuJButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(RestaurantModifyMenuJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(293, Short.MAX_VALUE))
+                .addContainerGap(181, Short.MAX_VALUE))
         );
 
         jSplitPane.setLeftComponent(jPanel1);
@@ -140,13 +168,25 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void RestaurantModifyMenuJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestaurantModifyMenuJButtonActionPerformed
-        RestaurantModifyMenuJPanel modifyMenu = new RestaurantModifyMenuJPanel(this.system, account, jSplitPane);
+        RestaurantAssignOrdersJPanel modifyMenu = new RestaurantAssignOrdersJPanel(this.system, account, jSplitPane);
         this.jSplitPane.setRightComponent(modifyMenu);
     }//GEN-LAST:event_RestaurantModifyMenuJButtonActionPerformed
+
+    private void RestaurantModifyMenuJButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestaurantModifyMenuJButton1ActionPerformed
+        RestaurantModifyMenuJPanel modifyMenu = new RestaurantModifyMenuJPanel(this.system, account, jSplitPane);
+        this.jSplitPane.setRightComponent(modifyMenu);
+    }//GEN-LAST:event_RestaurantModifyMenuJButton1ActionPerformed
+
+    private void RestaurantModifyMenuJButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestaurantModifyMenuJButton2ActionPerformed
+        RestaurantOrderStatusJPanel modifyMenu = new RestaurantOrderStatusJPanel(this.system, account, jSplitPane);
+        this.jSplitPane.setRightComponent(modifyMenu);
+    }//GEN-LAST:event_RestaurantModifyMenuJButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton RestaurantModifyMenuJButton;
+    private javax.swing.JButton RestaurantModifyMenuJButton1;
+    private javax.swing.JButton RestaurantModifyMenuJButton2;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
