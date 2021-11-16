@@ -15,6 +15,7 @@ import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import javax.swing.JSplitPane;
 
@@ -51,7 +52,7 @@ public class RestaurantAssignOrdersJPanel extends javax.swing.JPanel {
             WorkRequest ongoing = this.system.getWorkQueue().getWorkRequestList().get(i);
             if (ongoing instanceof OrderWorkRequest) {
                 OrderWorkRequest onGo = (OrderWorkRequest) ongoing;
-                if (onGo.getSender().getManagerUserName().toString().equals(this.account.getUsername().toString()) && onGo.getOrderRequestStatus() == "UNASSIGNED") {
+                if (onGo.getSender().getManagerUserName().toString().equals(this.account.getUsername().toString()) && onGo.getOrderRequestStatus().toString().equals("READYFORPICKUP")) {
                     String resName = ongoing.getSender().getName();
                     Long resWorkId = ((OrderWorkRequest) ongoing).getOrderWorkRequestId();
                     model.addElement(String.valueOf(resWorkId) + " - " + resName);
@@ -281,47 +282,78 @@ public class RestaurantAssignOrdersJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_deleiveryManJComboBoxActionPerformed
 
-    private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
-        for (int i = 0; i < this.system.getWorkQueue().getWorkRequestList().size(); i++) {
-            WorkRequest ongoing = this.system.getWorkQueue().getWorkRequestList().get(i);
-            if (ongoing instanceof OrderWorkRequest) {
-                OrderWorkRequest onGo = (OrderWorkRequest) ongoing;
-                if (onGo == selectedWorkRequest) {
-                    onGo.setOrderRequestStatus("ASSIGNED");
+    public Boolean validAssignment() {
+        String errorMessage = "";
 
-                    _getUnAssignedOrders();
-                    System.out.println("this.selectedDel----" + this.selectedDel.getUsername());
-                    OrderAssignmentRequest orderAssignment = new OrderAssignmentRequest(
-                            onGo.getAddress(),
-                            onGo.getReceiver(),
-                            onGo.getOrderedMenu(),
-                            onGo.getSender(),
-                            onGo.getMessage(),
-                            onGo.getStatus(),
-                            onGo.getRequestDate(),
-                            this.selectedDel,
-                            new Date(),
-                            this.orderMEssageJTextArea.getText(),
-                            "READYTOPICKUP",
-                            Integer.valueOf(this.bagsJField.getText()),
-                            this.yesJCheckBox.isSelected(),
-                            onGo.getOrderWorkRequestId()
-                    );
-                    this.system.getWorkQueue().getWorkRequestList().add(orderAssignment);
-                    JOptionPane.showMessageDialog(this, "Order Assigned Successfully!", "Order Assignment Details", INFORMATION_MESSAGE);
+        if (this.selectedWorkRequest == null) {
+            errorMessage += "Select an order to allocate a delivery person! \n";
+        }
+        if (this.selectedDel == null) {
+            errorMessage += "Select a delivery person! \n";
+        }
+        if (!this.bagsJField.getText().matches("[0-9]+")) {
+            errorMessage += "Enter no. of Bags! \n";
+        }
+        if (errorMessage.equals("")) {
+            return true;
+        }
+        JOptionPane.showMessageDialog(this, errorMessage, "Order Assignment Details", ERROR_MESSAGE);
+        return false;
+    }
+
+    private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
+        Boolean isValid = this.validAssignment();
+        if (isValid) {
+            for (int i = 0; i < this.system.getWorkQueue().getWorkRequestList().size(); i++) {
+                WorkRequest ongoing = this.system.getWorkQueue().getWorkRequestList().get(i);
+                if (ongoing instanceof OrderWorkRequest) {
+                    OrderWorkRequest onGo = (OrderWorkRequest) ongoing;
+                    if (onGo == selectedWorkRequest) {
+                        System.out.println("DONE!");
+                        onGo.setOrderRequestStatus("ASSIGNED");
+                        OrderAssignmentRequest orderAssignment = null;
+                        for (int j = 0; j < this.system.getWorkQueue().getWorkRequestList().size(); j++) {
+                            WorkRequest on = this.system.getWorkQueue().getWorkRequestList().get(j);
+                            if (on instanceof OrderAssignmentRequest) {
+                                String orderAssignmentId = String.valueOf(((OrderAssignmentRequest) on).getAssignmentId());
+                                String orderWorkId = String.valueOf(onGo.getOrderWorkRequestId());
+                                if (orderAssignmentId.equals(orderWorkId)) {
+                                    orderAssignment = (OrderAssignmentRequest) on;
+                                }
+                            }
+                        }
+
+                        System.out.println("********orderAssignment*******");
+                        System.out.println(onGo.getAddress());
+                        System.out.println(onGo.getReceiver());
+                        System.out.println(onGo.getOrderedMenu());
+                        System.out.println(onGo.getSender());
+                        System.out.println(onGo.getMessage());
+                        System.out.println(onGo.getRequestDate());
+                        System.out.println(this.selectedDel);
+                        System.out.println(onGo.getOrderWorkRequestId());
+                        System.out.println("***********");
+                        
+                        orderAssignment.setAddress(onGo.getAddress());
+                        orderAssignment.setReceiver(onGo.getReceiver());
+                        orderAssignment.setOrderedMenu(onGo.getOrderedMenu());
+                        orderAssignment.setSender(onGo.getSender());
+                        orderAssignment.setMessage(onGo.getMessage());
+                        orderAssignment.setStatus("ASSIGNED");//change to on the way to delivery
+                        orderAssignment.setRequestDate(onGo.getRequestDate());
+                        orderAssignment.setAssignmentTo(this.selectedDel);
+                        orderAssignment.setOrderAssignmentAt(new Date());
+                        orderAssignment.setAssignmentComments(this.orderMEssageJTextArea.getText());
+                        orderAssignment.setAssignmentStatus("READYFORPICKUP");
+                        orderAssignment.setNoOfBags(Integer.valueOf(this.bagsJField.getText()));
+                        orderAssignment.setIsfragilePackage(this.yesJCheckBox.isSelected());
+                        orderAssignment.setAssignmentId(onGo.getOrderWorkRequestId());
+                        _getUnAssignedOrders();
+                        JOptionPane.showMessageDialog(this, "Order Assigned Successfully!", "Order Assignment Details", INFORMATION_MESSAGE);
+                    }
                 }
             }
         }
-        this.jLabel2.setVisible(false);
-        this.deleiveryManJComboBox.setVisible(false);
-        this.jLabel3.setVisible(false);
-        this.bagsJField.setVisible(false);
-        this.jLabel4.setVisible(false);
-        this.yesJCheckBox.setVisible(false);
-        this.noJCheckBox.setVisible(false);
-        this.jLabel9.setVisible(false);
-        this.orderMEssageJTextArea.setVisible(false);
-        this.addJButton.setVisible(false);
     }//GEN-LAST:event_addJButtonActionPerformed
 
     private void ordersJListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_ordersJListValueChanged

@@ -281,7 +281,7 @@ public class OrderAssignmentJPanel extends javax.swing.JPanel {
                             this.selectedDel,
                             new Date(),
                             this.orderMEssageJTextArea.getText(),
-                            "READYTOPICKUP",
+                            "READYFORPICKUP",
                             Integer.valueOf(this.bagsJField.getText()),
                             this.yesJCheckBox.isSelected(),
                             onGo.getOrderWorkRequestId()

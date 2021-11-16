@@ -159,7 +159,6 @@ public class LoginPage extends javax.swing.JPanel {
         if (passwordJField != null && emailIDJField != null) {
             UserAccount account = system.getUserAccountDirectory().authenticateUser(emailIDJField.getText(), passwordJField.getText());
             if (account != null) {
-                System.out.println("Success!!!!!" + account.getRole());
                 redirectToPanel(account);
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid Username or Password!", "Login", ERROR_MESSAGE);

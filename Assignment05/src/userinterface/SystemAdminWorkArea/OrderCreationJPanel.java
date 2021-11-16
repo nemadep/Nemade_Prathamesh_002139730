@@ -25,7 +25,7 @@ import javax.swing.JSplitPane;
  * @author prathameshnemade
  */
 public class OrderCreationJPanel extends javax.swing.JPanel {
-
+    
     EcoSystem ecosystem;
     UserAccount account;
     JSplitPane jSplitPane;
@@ -35,7 +35,7 @@ public class OrderCreationJPanel extends javax.swing.JPanel {
     HashMap<String, Double> seletedMenu = new HashMap<String, Double>();
     HashMap<String, Double> selectedMenuList = new HashMap<String, Double>();
     HashMap<HashMap<String, Double>, Integer> orderGenerated = new HashMap<HashMap<String, Double>, Integer>();
-
+    
     OrderCreationJPanel(EcoSystem ecosystem, UserAccount account, JSplitPane jSplitPane) {
         this.ecosystem = ecosystem;
         this.account = account;
@@ -45,23 +45,23 @@ public class OrderCreationJPanel extends javax.swing.JPanel {
         _getRestaurantList();
         _getCustomerList();
     }
-
+    
     public void _getCustomerList() {
         ArrayList<String> menuNameDropdown = new ArrayList<>();
-
+        
         for (int i = 0; i < this.ecosystem.getUserAccountDirectory().getUserAccountList().size(); i++) {
             UserAccount ongoing = this.ecosystem.getUserAccountDirectory().getUserAccountList().get(i);
             if ("Business.Role.CustomerRole".equals(ongoing.getRole().toString())) {
                 menuNameDropdown.add(ongoing.getUsername());
             }
         }
-
+        
         String[] menuSDropdown = menuNameDropdown.toArray(new String[menuNameDropdown.size()]);
         DefaultComboBoxModel<String> brandSDropdownModel = new DefaultComboBoxModel<>(menuSDropdown);
         this.customerJComboBox.setModel(brandSDropdownModel);
         customer = this.ecosystem.getUserAccountDirectory().getAccountBasedOnUsername("Business.Role.CustomerRole", this.customerJComboBox.getSelectedItem().toString());
     }
-
+    
     public void _getRestaurantList() {
         DefaultListModel model = new DefaultListModel();
         ArrayList<Restaurant> accountList = this.ecosystem.getRestaurantDirectory().getRestaurantList();
@@ -73,21 +73,21 @@ public class OrderCreationJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "No Restaurants Created Yet!!", "View Restaurant Details", ERROR_MESSAGE);
             return;
         }
-
+        
         restaurantNameJList.setModel(model);
         restaurantNameJList.setSelectedIndex(0);
         openSelectedRestuarant();
         updateMenu();
     }
-
+    
     private void openSelectedRestuarant() {
         seletedMenu = new HashMap<String, Double>();
         selectedMenuList = new HashMap<String, Double>();
         orderGenerated = new HashMap<HashMap<String, Double>, Integer>();
-
+        
         DefaultListModel model = new DefaultListModel();
         receiptJList.setModel(model);
-
+        
         selectedRestaurantIndex = restaurantNameJList.getSelectedIndex();
         totalPriceJLabel.setText("0");
         quantityJField.setText("Enter here");
@@ -102,21 +102,21 @@ public class OrderCreationJPanel extends javax.swing.JPanel {
             _getRestaurantMenuList(selectedRestaurant.getMenu());
         }
     }
-
+    
     public void _getRestaurantMenuList(HashMap<String, Double> menuList) {
         ArrayList<String> menuNameDropdown = new ArrayList<>();
-
+        
         for (HashMap.Entry<String, Double> menu : menuList.entrySet()) {
             String key = menu.getKey();
             Object value = menu.getValue();
             menuNameDropdown.add(key + " - " + value + " each");
         }
-
+        
         String[] menuSDropdown = menuNameDropdown.toArray(new String[menuNameDropdown.size()]);
         DefaultComboBoxModel<String> brandSDropdownModel = new DefaultComboBoxModel<>(menuSDropdown);
         this.menuJComboBox.setModel(brandSDropdownModel);
     }
-
+    
     public void generateBill() {
         Double net = 0.0;
         DefaultListModel model = new DefaultListModel();
@@ -340,7 +340,6 @@ public class OrderCreationJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(menuJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jScrollPane1)
-                                .addComponent(customerJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addGap(6, 6, 6)
@@ -350,7 +349,8 @@ public class OrderCreationJPanel extends javax.swing.JPanel {
                                             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                 .addComponent(quantityJField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(addJButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE))))))
+                                                .addComponent(addJButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)))))
+                                .addComponent(customerJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(49, 49, 49)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -426,43 +426,92 @@ public class OrderCreationJPanel extends javax.swing.JPanel {
     private void quantityJFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantityJFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_quantityJFieldActionPerformed
+    
+    public Boolean validateItem() {
+        String errorMEssage = "";
+        if (this.menuJComboBox.getSelectedItem() == null) {
+            errorMEssage += "Select Menu to proceed! \n";
+        }
+        if (!this.quantityJField.getText().matches("[0-9]+")) {
+            errorMEssage += "Quantity should be a number! \n";
+        }
+        if (errorMEssage.equals("")) {
+            return true;
+        }
+        JOptionPane.showMessageDialog(this, errorMEssage, "Create Order", ERROR_MESSAGE);
+        return false;
+    }
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
-        this.orderGenerated.put(seletedMenu, Integer.valueOf(this.quantityJField.getText()));
-        generateBill();
+        Boolean isValid = validateItem();
+        if (isValid) {
+            this.orderGenerated.put(seletedMenu, Integer.valueOf(this.quantityJField.getText()));
+            generateBill();
+        }
     }//GEN-LAST:event_addJButtonActionPerformed
 
     private void menuJComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_menuJComboBoxItemStateChanged
         updateMenu();
     }//GEN-LAST:event_menuJComboBoxItemStateChanged
+    
+    public Boolean validateOrder() {
+        String errorMessage = "";
+        if (this.orderGenerated.isEmpty()) {
+            errorMessage += "Please create an order to proceed! \n";
+        }
+        if (this.customerJComboBox.getSelectedItem() == null) {
+            errorMessage += "Select Customer to create a order! \n";
+        }
+        if ("".equals(this.addressJTextArea.getText())) {
+            errorMessage += "Enter Address to proceed! \n";
+        }
+        if ("".equals(errorMessage)) {
+            return true;
+        }
+        JOptionPane.showMessageDialog(this, errorMessage, "Create Order", ERROR_MESSAGE);
+        return false;
+    }
 
     private void createJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createJButtonActionPerformed
-        Long uniqueId = Long.parseLong(generateId());
-        System.out.println("customercustomercustomer" + customer.getUsername());
-        OrderWorkRequest createNewOrder = new OrderWorkRequest(
-                this.addressJTextArea.getText(),
-                customer,
-                this.orderGenerated,
-                this.selectedRestaurant,
-                "Should be written by Customer",
-                "INPROGRESS",
-                new Date(),
-                uniqueId,
-                this.account,
-                this.selectedRestaurant,
-                this.orderMEssageJTextArea.getText(),
-                new Date(),
-                "UNASSIGNED"
-        );
-        this.ecosystem.getWorkQueue().getWorkRequestList().add(createNewOrder);
-        JOptionPane.showMessageDialog(this, "Order Created Successfully!!", "Create Order By Admin", INFORMATION_MESSAGE);
-        this.orderMEssageJTextArea.setText("");
-        this.addressJTextArea.setText("");
-        this.quantityJField.setText("Enter here");
-        DefaultListModel model = new DefaultListModel();
-        receiptJList.setModel(model);
+        Boolean isValid = validateOrder();
+        if (isValid) {
+            Long uniqueId = Long.parseLong(generateId());
+        System.out.println("*****************OrderWorkRequest");
+        System.out.println(this.addressJTextArea.getText());
+        System.out.println(customer.getUsername());
+        System.out.println(this.orderGenerated);
+        System.out.println(this.selectedRestaurant.getName() + "|" + this.selectedRestaurant.getManagerUserName());
+        System.out.println(uniqueId);
+        System.out.println(this.account.getUsername());
+        System.out.println(this.selectedRestaurant.getName());
+        System.out.println(this.orderMEssageJTextArea.getText());
+        System.out.println("*****************OrderWorkRequest");
+            OrderWorkRequest createNewOrder = new OrderWorkRequest(
+                    this.addressJTextArea.getText(),
+                    customer,
+                    this.orderGenerated,
+                    this.selectedRestaurant,
+                    "Should be written by Customer",
+                    "INPROGRESS",
+                    new Date(),
+                    uniqueId,
+                    this.account,
+                    this.selectedRestaurant,
+                    this.orderMEssageJTextArea.getText(),
+                    new Date(),
+                    "INPROGRESS"
+            );
+            this.ecosystem.getWorkQueue().getWorkRequestList().add(createNewOrder);
+            JOptionPane.showMessageDialog(this, "Order Created Successfully!!", "Create Order By Admin", INFORMATION_MESSAGE);
+            this.orderMEssageJTextArea.setText("");
+            this.addressJTextArea.setText("");
+            this.totalPriceJLabel.setText("0");
+            this.quantityJField.setText("Enter here");
+            DefaultListModel model = new DefaultListModel();
+            receiptJList.setModel(model);
+        }
     }//GEN-LAST:event_createJButtonActionPerformed
-
+    
     public String generateId() {
         Date dNow = new Date();
         SimpleDateFormat ft = new SimpleDateFormat("yyMMddhhmmssMs");
@@ -473,7 +522,7 @@ public class OrderCreationJPanel extends javax.swing.JPanel {
     private void customerJComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_customerJComboBoxItemStateChanged
         customer = this.ecosystem.getUserAccountDirectory().getAccountBasedOnUsername("Business.Role.CustomerRole", this.customerJComboBox.getSelectedItem().toString());
     }//GEN-LAST:event_customerJComboBoxItemStateChanged
-
+    
     public void updateMenu() {
         String selectedObject = this.menuJComboBox.getSelectedItem().toString();
         seletedMenu = new HashMap<String, Double>();

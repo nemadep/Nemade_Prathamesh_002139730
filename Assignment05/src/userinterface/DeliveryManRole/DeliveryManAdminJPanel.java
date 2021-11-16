@@ -26,7 +26,7 @@ public class DeliveryManAdminJPanel extends javax.swing.JPanel {
         this.account = account;
         this.system = system;
         userNameJLabel.setText(account.getUsername());
-        
+
         DeliveryManDashboardJPanel updateProfileAdmin = new DeliveryManDashboardJPanel(system, account, jSplitPane);
         this.jSplitPane.setRightComponent(updateProfileAdmin);
     }
@@ -45,6 +45,7 @@ public class DeliveryManAdminJPanel extends javax.swing.JPanel {
         jButton5 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         userNameJLabel = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -69,6 +70,16 @@ public class DeliveryManAdminJPanel extends javax.swing.JPanel {
         userNameJLabel.setFont(new java.awt.Font("Noto Sans Oriya", 1, 36)); // NOI18N
         userNameJLabel.setText("Del Admin!");
 
+        jButton6.setBackground(new java.awt.Color(200, 203, 178));
+        jButton6.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(67, 100, 100));
+        jButton6.setText("See Orders");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -76,11 +87,12 @@ public class DeliveryManAdminJPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(userNameJLabel)))
+                        .addComponent(userNameJLabel))
+                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -92,7 +104,9 @@ public class DeliveryManAdminJPanel extends javax.swing.JPanel {
                     .addComponent(userNameJLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(493, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(322, Short.MAX_VALUE))
         );
 
         jSplitPane.setLeftComponent(jPanel1);
@@ -106,14 +120,14 @@ public class DeliveryManAdminJPanel extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(131, 131, 131)
                 .addComponent(jLabel3)
-                .addContainerGap(370, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(72, 72, 72)
                 .addComponent(jLabel3)
-                .addContainerGap(530, Short.MAX_VALUE))
+                .addContainerGap(415, Short.MAX_VALUE))
         );
 
         jSplitPane.setRightComponent(jPanel3);
@@ -126,9 +140,15 @@ public class DeliveryManAdminJPanel extends javax.swing.JPanel {
         this.jSplitPane.setRightComponent(createAdmin);
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        DeliveryOrdersJPanel createAdmin = new DeliveryOrdersJPanel(this.system, account, jSplitPane);
+        this.jSplitPane.setRightComponent(createAdmin);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
