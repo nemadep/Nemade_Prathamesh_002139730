@@ -46,7 +46,16 @@ public class CreateRestaurantJPanel extends javax.swing.JPanel {
         ArrayList<String> managerNameDropdown = new ArrayList<>();
 
         this.ecosystem.getUserAccountDirectory().getUserAccountList().stream().filter(user -> ("Business.Role.AdminRole".equals(user.getRole().toString()))).forEachOrdered(user -> {
-            managerNameDropdown.add(user.getUsername());
+            Boolean found = false;
+            for (int i = 0; i < this.ecosystem.getRestaurantDirectory().getRestaurantList().size(); i++) {
+                Restaurant ongoing = this.ecosystem.getRestaurantDirectory().getRestaurantList().get(i);
+                if (ongoing.getManagerUserName().toString().equals(user.getUsername().toString())) {
+                    found = true;
+                }
+            }
+            if (!found) {
+                managerNameDropdown.add(user.getUsername());
+            }
         });
         String[] managerSDropdown = managerNameDropdown.toArray(new String[managerNameDropdown.size()]);
         DefaultComboBoxModel<String> brandSDropdownModel = new DefaultComboBoxModel<>(managerSDropdown);
@@ -373,6 +382,7 @@ public class CreateRestaurantJPanel extends javax.swing.JPanel {
         this.menuPriceJField.setText("Enter here");
         this.menu = new HashMap<String, Double>();
         this.generateList();
+        this.generateManagerDropdown();
     }
 
     private void contactNoJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_contactNoJFieldFocusGained

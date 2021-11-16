@@ -11,7 +11,6 @@ import Business.WorkQueue.OrderAssignmentRequest;
 import Business.WorkQueue.OrderDelieveryRequest;
 import Business.WorkQueue.OrderWorkRequest;
 import Business.WorkQueue.WorkRequest;
-import static java.util.Objects.isNull;
 import javax.swing.JSplitPane;
 import javax.swing.table.DefaultTableModel;
 

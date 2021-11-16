@@ -25,7 +25,7 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
         this.account = account;
         this.system = system;
         userNameJLabel.setText(account.getUsername());
-        
+
         RestaurantAdminDashboardJPanel updateProfileAdmin = new RestaurantAdminDashboardJPanel(system, account, jSplitPane);
         this.jSplitPane.setRightComponent(updateProfileAdmin);
     }
@@ -44,6 +44,7 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
         jButton5 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         userNameJLabel = new javax.swing.JLabel();
+        RestaurantModifyMenuJButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -68,6 +69,16 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
         userNameJLabel.setFont(new java.awt.Font("Noto Sans Oriya", 1, 36)); // NOI18N
         userNameJLabel.setText("Res Admin!");
 
+        RestaurantModifyMenuJButton.setBackground(new java.awt.Color(200, 203, 178));
+        RestaurantModifyMenuJButton.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        RestaurantModifyMenuJButton.setForeground(new java.awt.Color(67, 100, 100));
+        RestaurantModifyMenuJButton.setText("Modify Menu");
+        RestaurantModifyMenuJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RestaurantModifyMenuJButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -75,11 +86,12 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(userNameJLabel)))
+                        .addComponent(userNameJLabel))
+                    .addComponent(RestaurantModifyMenuJButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -91,7 +103,9 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
                     .addComponent(userNameJLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(493, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(RestaurantModifyMenuJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(293, Short.MAX_VALUE))
         );
 
         jSplitPane.setLeftComponent(jPanel1);
@@ -105,14 +119,14 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(131, 131, 131)
                 .addComponent(jLabel3)
-                .addContainerGap(370, Short.MAX_VALUE))
+                .addContainerGap(223, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(72, 72, 72)
                 .addComponent(jLabel3)
-                .addContainerGap(530, Short.MAX_VALUE))
+                .addContainerGap(386, Short.MAX_VALUE))
         );
 
         jSplitPane.setRightComponent(jPanel3);
@@ -125,8 +139,14 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
         this.jSplitPane.setRightComponent(createAdmin);
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void RestaurantModifyMenuJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestaurantModifyMenuJButtonActionPerformed
+        RestaurantModifyMenuJPanel modifyMenu = new RestaurantModifyMenuJPanel(this.system, account, jSplitPane);
+        this.jSplitPane.setRightComponent(modifyMenu);
+    }//GEN-LAST:event_RestaurantModifyMenuJButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton RestaurantModifyMenuJButton;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
