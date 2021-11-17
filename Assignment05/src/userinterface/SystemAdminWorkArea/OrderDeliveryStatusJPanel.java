@@ -69,8 +69,9 @@ public class OrderDeliveryStatusJPanel extends javax.swing.JPanel {
             if (ongoing instanceof OrderAssignmentRequest) {
                 OrderAssignmentRequest onGo = (OrderAssignmentRequest) ongoing;
                 System.out.println(onGo.getAssignmentStatus());
-                System.out.println(onGo.getAssignmentTo().getUsername());
+                System.out.println(onGo.getAssignmentTo());
                 System.out.println(this.selectedDeliveryMen.getUsername());
+
                 if ((onGo.getAssignmentStatus().toString().equals("READYFORPICKUP") || onGo.getAssignmentStatus().toString().equals("PICKED")) && onGo.getAssignmentTo().getUsername() == this.selectedDeliveryMen.getUsername()) {
                     String address = ongoing.getAddress().toString();
                     Long resWorkId = ((OrderAssignmentRequest) ongoing).getAssignmentId();

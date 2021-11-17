@@ -54,7 +54,7 @@ public class RestaurantOrderStatusJPanel extends javax.swing.JPanel {
             WorkRequest ongoing = this.system.getWorkQueue().getWorkRequestList().get(i);
             if (ongoing instanceof OrderWorkRequest) {
                 OrderWorkRequest onGo = (OrderWorkRequest) ongoing;
-                if (onGo.getSender().getManagerUserName().toString().equals(this.account.getUsername().toString())) {
+                if (onGo.getSender().getManagerUserName().toString().equals(this.account.getUsername().toString()) && !onGo.getOrderRequestStatus().toString().equals("CANCELLED")) {
                     String resName = ongoing.getSender().getName();
                     Long resWorkId = ((OrderWorkRequest) ongoing).getOrderWorkRequestId();
                     model.addElement(String.valueOf(resWorkId) + " - " + resName);

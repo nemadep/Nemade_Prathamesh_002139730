@@ -359,7 +359,7 @@ public class OrderAssignmentJPanel extends javax.swing.JPanel {
                         orderAssignment.setOrderedMenu(onGo.getOrderedMenu());
                         orderAssignment.setSender(onGo.getSender());
                         orderAssignment.setMessage(onGo.getMessage());
-                        orderAssignment.setStatus("ASSIGNED");//change to on the way to delivery
+                        orderAssignment.setStatus("ASSIGNED");  //change to on the way to delivery
                         orderAssignment.setRequestDate(onGo.getRequestDate());
                         orderAssignment.setAssignmentTo(this.selectedDel);
                         orderAssignment.setOrderAssignmentAt(new Date());
@@ -456,8 +456,6 @@ public class OrderAssignmentJPanel extends javax.swing.JPanel {
 
     private void yesJCheckBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_yesJCheckBoxFocusGained
         this.noJCheckBox.setSelected(false);
-
-
     }//GEN-LAST:event_yesJCheckBoxFocusGained
 
     private void noJCheckBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_noJCheckBoxFocusGained
@@ -501,7 +499,6 @@ public class OrderAssignmentJPanel extends javax.swing.JPanel {
                 menuNameDropdown.add(ongoing.getUsername());
             }
         }
-
         String[] menuSDropdown = menuNameDropdown.toArray(new String[menuNameDropdown.size()]);
         DefaultComboBoxModel<String> brandSDropdownModel = new DefaultComboBoxModel<>(menuSDropdown);
         this.deleiveryManJComboBox.setModel(brandSDropdownModel);
