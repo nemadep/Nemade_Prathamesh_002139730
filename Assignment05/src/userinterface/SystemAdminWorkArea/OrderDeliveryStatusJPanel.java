@@ -71,7 +71,7 @@ public class OrderDeliveryStatusJPanel extends javax.swing.JPanel {
                 System.out.println(onGo.getAssignmentStatus());
                 System.out.println(onGo.getAssignmentTo().getUsername());
                 System.out.println(this.selectedDeliveryMen.getUsername());
-                if (onGo.getAssignmentStatus() == "READYFORPICKUP" && onGo.getAssignmentTo().getUsername() == this.selectedDeliveryMen.getUsername()) {
+                if ((onGo.getAssignmentStatus().toString().equals("READYFORPICKUP") || onGo.getAssignmentStatus().toString().equals("PICKED")) && onGo.getAssignmentTo().getUsername() == this.selectedDeliveryMen.getUsername()) {
                     String address = ongoing.getAddress().toString();
                     Long resWorkId = ((OrderAssignmentRequest) ongoing).getAssignmentId();
                     model.addElement(String.valueOf(resWorkId) + " - " + address);
@@ -250,7 +250,7 @@ public class OrderDeliveryStatusJPanel extends javax.swing.JPanel {
                                 }
                             } else if (ongoing1 instanceof OrderWorkRequest) {
                                 OrderWorkRequest toChnage = (OrderWorkRequest) ongoing1;
-                                if (Long.parseLong(toChnage.getOrderRequestStatus()) == onGo.getAssignmentId()) {
+                                if ((toChnage.getOrderWorkRequestId()) == onGo.getAssignmentId()) {
                                     toChnage.setOrderRequestStatus("DELIVERED");
                                     toChnage.setStatus("DELIVERED");
                                 }

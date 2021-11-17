@@ -50,19 +50,15 @@ public class AllOrdersJPanel extends javax.swing.JPanel {
             } else if (ongoing instanceof OrderWorkRequest) {
                 ongoing3 = (OrderWorkRequest) this.ecosystem.getWorkQueue().getWorkRequestList().get(i);
             }
-            
+
             Object[] row = {
                 ongoing3 == null ? ongoing2 == null ? ongoing1 == null ? "NA" : ongoing1.getAssignmentId() : ongoing2.getDeliveryRequestId() : ongoing3.getOrderWorkRequestId(),
                 ongoing3 == null ? ongoing2 == null ? ongoing1 == null ? "NA" : ongoing1.getReceiver().getUsername() : ongoing2.getReceiver().getUsername() : ongoing3.getReceiver().getUsername(),
-                ongoing.getAddress(),"NA",
-//                ongoing2 == null ? ongoing1 == null ? "NA" : ongoing1.getAssignmentTo().getUsername() : ongoing2.getDeliveredBy().getUsername(),
+                ongoing3 == null ? ongoing2 == null ? ongoing1 == null ? "NA" : ongoing1.getSender().getName() : ongoing2.getSender().getName() : ongoing3.getSender().getName(),
                 ongoing2 == null ? "NA" : ongoing2.getDeliveryStatus(),
                 ongoing1 == null ? "NA" : ongoing1.getAssignmentStatus(),
                 ongoing.getStatus()
             };
-            
-            
-            
             model.addRow(row);
         }
     }
@@ -88,17 +84,17 @@ public class AllOrdersJPanel extends javax.swing.JPanel {
 
         ordersJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Order No.", "Customer Name", "Restaurant Name", "Delivery Men", "Delivery Men Status", "Restaurant Status", "Over All Status"
+                "Order No.", "Customer Name", "Restaurant Name", "Delivery Men status", "Restaurant Status", "Over All Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -115,7 +111,7 @@ public class AllOrdersJPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 756, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -124,7 +120,7 @@ public class AllOrdersJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(35, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
