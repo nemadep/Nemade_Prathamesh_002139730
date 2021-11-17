@@ -12,6 +12,7 @@ import Business.WorkQueue.OrderDelieveryRequest;
 import Business.WorkQueue.OrderWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
@@ -242,33 +243,47 @@ public class DeliveryOrdersJPanel extends javax.swing.JPanel {
                 OrderAssignmentRequest onGo = (OrderAssignmentRequest) ongoing;
                 if (onGo.getAssignmentId() == this.selectedWorkRequest.getAssignmentId()) {
                     onGo.setAssignmentStatus(this.orderJComboBox.getSelectedItem().toString());
+
                     if (this.orderJComboBox.getSelectedItem().toString() == "DELIVERED") {
-                        onGo.setStatus("DELIVERED");
-                        for (int j = 0; j < this.system.getWorkQueue().getWorkRequestList().size(); j++) {
-                            WorkRequest ongoing1 = this.system.getWorkQueue().getWorkRequestList().get(j);
-                            if (ongoing1 instanceof OrderDelieveryRequest) {
-                                OrderDelieveryRequest toChnage = (OrderDelieveryRequest) ongoing1;
-                                if (toChnage.getDeliveryRequestId() == onGo.getAssignmentId()) {
-                                    toChnage.setDeliveryStatus("DELIVERED");
-                                    toChnage.setStatus("DELIVERED");
+                        onGo.setResolveDate(new Date());
+                    }
+//                    if (this.orderJComboBox.getSelectedItem().toString() == "DELIVERED") {
+                    onGo.setStatus(this.orderJComboBox.getSelectedItem().toString());
+                    for (int j = 0; j < this.system.getWorkQueue().getWorkRequestList().size(); j++) {
+                        WorkRequest ongoing1 = this.system.getWorkQueue().getWorkRequestList().get(j);
+                        if (ongoing1 instanceof OrderDelieveryRequest) {
+                            OrderDelieveryRequest toChnage = (OrderDelieveryRequest) ongoing1;
+                            if (toChnage.getDeliveryRequestId() == onGo.getAssignmentId()) {
+                                toChnage.setDeliveryStatus(this.orderJComboBox.getSelectedItem().toString());
+                                toChnage.setStatus(this.orderJComboBox.getSelectedItem().toString());
+
+                                if (this.orderJComboBox.getSelectedItem().toString() == "DELIVERED") {
+                                    toChnage.setResolveDate(new Date());
                                 }
-                            } else if (ongoing1 instanceof OrderWorkRequest) {
-                                OrderWorkRequest toChnage = (OrderWorkRequest) ongoing1;
-                                if ((toChnage.getOrderWorkRequestId()) == onGo.getAssignmentId()) {
-                                    toChnage.setOrderRequestStatus("DELIVERED");
-                                    toChnage.setStatus("DELIVERED");
+                            }
+                        } else if (ongoing1 instanceof OrderWorkRequest) {
+                            OrderWorkRequest toChnage = (OrderWorkRequest) ongoing1;
+                            if ((toChnage.getOrderWorkRequestId()) == onGo.getAssignmentId()) {
+                                toChnage.setOrderRequestStatus(this.orderJComboBox.getSelectedItem().toString());
+                                toChnage.setStatus(this.orderJComboBox.getSelectedItem().toString());
+
+                                if (this.orderJComboBox.getSelectedItem().toString() == "DELIVERED") {
+                                    toChnage.setResolveDate(new Date());
                                 }
                             }
                         }
+//                        }
                     }
                 }
             }
         }
+
         this.createdAtJLabel.setText("Select a order!");
         this.commentsJLabel.setText("Select a order!");
         this.addressJLabel.setText("Select a order!");
         this.customerJLabel.setText("Select a order!");
         _getUnAssignedOrders();
+
     }//GEN-LAST:event_addJButtonActionPerformed
 
 

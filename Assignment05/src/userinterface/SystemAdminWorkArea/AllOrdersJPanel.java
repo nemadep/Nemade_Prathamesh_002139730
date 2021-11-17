@@ -43,23 +43,28 @@ public class AllOrdersJPanel extends javax.swing.JPanel {
             OrderAssignmentRequest ongoing1 = null;
             OrderDelieveryRequest ongoing2 = null;
             OrderWorkRequest ongoing3 = null;
-            if (ongoing instanceof OrderAssignmentRequest) {
-                ongoing1 = (OrderAssignmentRequest) this.ecosystem.getWorkQueue().getWorkRequestList().get(i);
-            } else if (ongoing instanceof OrderDelieveryRequest) {
-                ongoing2 = (OrderDelieveryRequest) this.ecosystem.getWorkQueue().getWorkRequestList().get(i);
-            } else if (ongoing instanceof OrderWorkRequest) {
+            if (ongoing instanceof OrderWorkRequest) {
                 ongoing3 = (OrderWorkRequest) this.ecosystem.getWorkQueue().getWorkRequestList().get(i);
+                Object[] row = {
+                    ongoing3.getOrderWorkRequestId(),
+                    ongoing3.getRequestDate(),
+                    ongoing3.getReceiver().getUsername(),
+                    ongoing3.getSender().getName(),
+                    ongoing3.getStatus(),
+                    ongoing3.getResolveDate() == null ? "INPROGRESS" : ongoing3.getResolveDate()
+                };
+                model.addRow(row);
+
             }
 
-            Object[] row = {
-                ongoing3 == null ? ongoing2 == null ? ongoing1 == null ? "NA" : ongoing1.getAssignmentId() : ongoing2.getDeliveryRequestId() : ongoing3.getOrderWorkRequestId(),
-                ongoing3 == null ? ongoing2 == null ? ongoing1 == null ? "NA" : ongoing1.getReceiver().getUsername() : ongoing2.getReceiver().getUsername() : ongoing3.getReceiver().getUsername(),
-                ongoing3 == null ? ongoing2 == null ? ongoing1 == null ? "NA" : ongoing1.getSender().getName() : ongoing2.getSender().getName() : ongoing3.getSender().getName(),
-                ongoing2 == null ? "NA" : ongoing2.getDeliveryStatus(),
-                ongoing1 == null ? "NA" : ongoing1.getAssignmentStatus(),
-                ongoing.getStatus()
-            };
-            model.addRow(row);
+//            Object[] row = {
+//                ongoing3 == null ? ongoing2 == null ? ongoing1 == null ? "NA" : ongoing1.getAssignmentId() : ongoing2.getDeliveryRequestId() : ongoing3.getOrderWorkRequestId(),
+//                ongoing3 == null ? ongoing2 == null ? ongoing1 == null ? "NA" : ongoing1.getReceiver().getUsername() : ongoing2.getReceiver().getUsername() : ongoing3.getReceiver().getUsername(),
+//                ongoing3 == null ? ongoing2 == null ? ongoing1 == null ? "NA" : ongoing1.getSender().getName() : ongoing2.getSender().getName() : ongoing3.getSender().getName(),
+//                ongoing2 == null ? "NA" : ongoing2.getDeliveryStatus(),
+//                ongoing1 == null ? "NA" : ongoing1.getAssignmentStatus(),
+//                ongoing.getStatus()
+//            };
         }
     }
 
@@ -90,7 +95,7 @@ public class AllOrdersJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Order No.", "Customer Name", "Restaurant Name", "Delivery Men status", "Restaurant Status", "Over All Status"
+                "Order No.", "Order Date", "Customer Name", "Restaurant Name", "Over All Status", "Order Completed"
             }
         ) {
             boolean[] canEdit = new boolean [] {

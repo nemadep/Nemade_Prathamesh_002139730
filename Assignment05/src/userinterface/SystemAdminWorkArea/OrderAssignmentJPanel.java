@@ -391,6 +391,8 @@ public class OrderAssignmentJPanel extends javax.swing.JPanel {
                                     ((OrderDelieveryRequest) on).setDeliveredBy(this.selectedDel);
                                     ((OrderDelieveryRequest) on).setDeliveryStatus(String.valueOf(onGo.getOrderWorkRequestId()));
                                 }
+                            } else if (on instanceof OrderWorkRequest) {
+                                on.setStatus("ASSIGNED");
                             }
                         }
 

@@ -344,7 +344,7 @@ public class RestaurantAssignOrdersJPanel extends javax.swing.JPanel {
     }
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
-       Boolean isValid = this.validAssignment();
+        Boolean isValid = this.validAssignment();
         if (isValid) {
             for (int i = 0; i < this.system.getWorkQueue().getWorkRequestList().size(); i++) {
                 WorkRequest ongoing = this.system.getWorkQueue().getWorkRequestList().get(i);
@@ -412,6 +412,8 @@ public class RestaurantAssignOrdersJPanel extends javax.swing.JPanel {
                                     ((OrderDelieveryRequest) on).setDeliveredBy(this.selectedDel);
                                     ((OrderDelieveryRequest) on).setDeliveryStatus(String.valueOf(onGo.getOrderWorkRequestId()));
                                 }
+                            } else if (on instanceof OrderWorkRequest) {
+                                on.setStatus("ASSIGNED");
                             }
                         }
 

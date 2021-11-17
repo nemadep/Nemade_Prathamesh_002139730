@@ -12,8 +12,11 @@ import Business.WorkQueue.OrderDelieveryRequest;
 import Business.WorkQueue.OrderWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import javax.swing.JSplitPane;
 
 /**
@@ -198,7 +201,7 @@ public class OrderDeliveryStatusJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(142, 142, 142)
+                        .addGap(119, 119, 119)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(deliveryMenJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(addJButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -307,35 +310,44 @@ public class OrderDeliveryStatusJPanel extends javax.swing.JPanel {
             WorkRequest ongoing = this.ecosystem.getWorkQueue().getWorkRequestList().get(i);
             if (ongoing instanceof OrderAssignmentRequest) {
                 OrderAssignmentRequest onGo = (OrderAssignmentRequest) ongoing;
-                System.out.println("!!!!!--->" + onGo.getAssignmentStatus());
-                System.out.println("this.statusJComboBox.getSelectedItem().toString()" + this.statusJComboBox.getSelectedItem().toString());
-                System.out.println("onGo.getAssignmentId()" + onGo.getAssignmentId());
-                System.out.println("this.selectedOrder.getAssignmentId()" + this.selectedOrder.getAssignmentId());
                 if (onGo.getAssignmentId() == this.selectedOrder.getAssignmentId()) {
                     onGo.setAssignmentStatus(this.statusJComboBox.getSelectedItem().toString());
-                    System.out.println("!!!!!!!" + this.statusJComboBox.getSelectedItem().toString());
+
                     if (this.statusJComboBox.getSelectedItem().toString() == "DELIVERED") {
-                        onGo.setStatus("DELIVERED");
-                        for (int j = 0; j < this.ecosystem.getWorkQueue().getWorkRequestList().size(); j++) {
-                            WorkRequest ongoing1 = this.ecosystem.getWorkQueue().getWorkRequestList().get(j);
-                            if (ongoing1 instanceof OrderDelieveryRequest) {
-                                OrderDelieveryRequest toChnage = (OrderDelieveryRequest) ongoing1;
-                                if (toChnage.getDeliveryRequestId() == onGo.getAssignmentId()) {
-                                    toChnage.setDeliveryStatus("DELIVERED");
-                                    toChnage.setStatus("DELIVERED");
+                        onGo.setResolveDate(new Date());
+                    }
+//                    if (this.statusJComboBox.getSelectedItem().toString() == "DELIVERED") {
+                    onGo.setStatus(this.statusJComboBox.getSelectedItem().toString());
+                    for (int j = 0; j < this.ecosystem.getWorkQueue().getWorkRequestList().size(); j++) {
+                        WorkRequest ongoing1 = this.ecosystem.getWorkQueue().getWorkRequestList().get(j);
+                        if (ongoing1 instanceof OrderDelieveryRequest) {
+                            OrderDelieveryRequest toChnage = (OrderDelieveryRequest) ongoing1;
+                            if (toChnage.getDeliveryRequestId() == onGo.getAssignmentId()) {
+                                toChnage.setDeliveryStatus(this.statusJComboBox.getSelectedItem().toString());
+                                toChnage.setStatus(this.statusJComboBox.getSelectedItem().toString());
+
+                                if (this.statusJComboBox.getSelectedItem().toString() == "DELIVERED") {
+                                    toChnage.setResolveDate(new Date());
                                 }
-                            } else if (ongoing1 instanceof OrderWorkRequest) {
-                                OrderWorkRequest toChnage = (OrderWorkRequest) ongoing1;
-                                if ((toChnage.getOrderWorkRequestId()) == onGo.getAssignmentId()) {
-                                    toChnage.setOrderRequestStatus("DELIVERED");
-                                    toChnage.setStatus("DELIVERED");
+                            }
+                        } else if (ongoing1 instanceof OrderWorkRequest) {
+                            OrderWorkRequest toChnage = (OrderWorkRequest) ongoing1;
+                            if ((toChnage.getOrderWorkRequestId()) == onGo.getAssignmentId()) {
+                                toChnage.setOrderRequestStatus(this.statusJComboBox.getSelectedItem().toString());
+                                toChnage.setStatus(this.statusJComboBox.getSelectedItem().toString());
+
+                                if (this.statusJComboBox.getSelectedItem().toString() == "DELIVERED") {
+                                    toChnage.setResolveDate(new Date());
                                 }
                             }
                         }
+//                        }
                     }
                 }
             }
         }
+        JOptionPane.showMessageDialog(this, "Status changed Successfully!", "Delivery Status Details", INFORMATION_MESSAGE);
+
         this.ordersJList.setVisible(false);
         this.jLabel5.setVisible(false);
         this.statusJComboBox.setVisible(false);
