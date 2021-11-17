@@ -8,6 +8,8 @@ package userinterface.DeliveryManRole;
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.OrderAssignmentRequest;
+import Business.WorkQueue.OrderDelieveryRequest;
+import Business.WorkQueue.OrderWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -20,13 +22,13 @@ import javax.swing.JSplitPane;
  * @author prathameshnemade
  */
 public class DeliveryOrdersJPanel extends javax.swing.JPanel {
-
+    
     EcoSystem system;
     UserAccount account;
     JSplitPane jSplitPanel;
     ArrayList<OrderAssignmentRequest> unAssignedRequests = new ArrayList<OrderAssignmentRequest>();
     OrderAssignmentRequest selectedWorkRequest;
-
+    
     DeliveryOrdersJPanel(EcoSystem system, UserAccount account, JSplitPane jSplitPane) {
         this.system = system;
         this.account = account;
@@ -34,17 +36,17 @@ public class DeliveryOrdersJPanel extends javax.swing.JPanel {
         initComponents();
         _getUnAssignedOrders();
     }
-
+    
     public void _getUnAssignedOrders() {
         DefaultListModel model = new DefaultListModel();
         this.ordersJList.setModel(model);
-
+        
         for (int i = 0; i < this.system.getWorkQueue().getWorkRequestList().size(); i++) {
             WorkRequest ongoing = this.system.getWorkQueue().getWorkRequestList().get(i);
             if (ongoing instanceof OrderAssignmentRequest) {
                 OrderAssignmentRequest onGo = (OrderAssignmentRequest) ongoing;
-
-                if (onGo.getAssignmentTo().getUsername().toString().equals(this.account.getUsername().toString()) && onGo.getAssignmentStatus().toString().equals("READYFORPICKUP")) {
+                
+                if (onGo.getAssignmentTo().getUsername().toString().equals(this.account.getUsername().toString()) && (onGo.getAssignmentStatus().toString().equals("READYFORPICKUP") || onGo.getAssignmentStatus().toString().equals("PICKED"))) {
                     String resName = ongoing.getSender().getName();
                     Long resWorkId = ((OrderAssignmentRequest) ongoing).getAssignmentId();
                     model.addElement(String.valueOf(resWorkId) + " - " + resName);
@@ -132,19 +134,16 @@ public class DeliveryOrdersJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(orderJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(addJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55))))
+                        .addGap(88, 88, 88)
+                        .addComponent(addJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -164,7 +163,6 @@ public class DeliveryOrdersJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_orderJComboBoxActionPerformed
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
-
         String selectedOrderStatus = this.orderJComboBox.getSelectedItem().toString();
         for (int i = 0; i < this.system.getWorkQueue().getWorkRequestList().size(); i++) {
             WorkRequest ongoing = this.system.getWorkQueue().getWorkRequestList().get(i);
@@ -172,11 +170,29 @@ public class DeliveryOrdersJPanel extends javax.swing.JPanel {
                 OrderAssignmentRequest onGo = (OrderAssignmentRequest) ongoing;
                 if (onGo == selectedWorkRequest) {
                     onGo.setAssignmentStatus(selectedOrderStatus);
-
-                 
-                    
-                    
-                    
+                    onGo.setStatus(selectedOrderStatus);
+                    OrderWorkRequest orderAssignment = null;
+                    OrderDelieveryRequest orderDelivery = null;
+                    for (int j = 0; j < this.system.getWorkQueue().getWorkRequestList().size(); j++) {
+                        WorkRequest on = this.system.getWorkQueue().getWorkRequestList().get(j);
+                        if (on instanceof OrderWorkRequest) {
+                            String orderAssignmentId = String.valueOf(((OrderWorkRequest) on).getOrderWorkRequestId());
+                            String orderWorkId = String.valueOf(onGo.getAssignmentId());
+                            if (orderAssignmentId.equals(orderWorkId)) {
+                                orderAssignment = (OrderWorkRequest) on;
+                            }
+                        } else if (on instanceof OrderDelieveryRequest) {
+                            String orderAssignmentId = String.valueOf(((OrderDelieveryRequest) on).getDeliveryRequestId());
+                            String orderWorkId = String.valueOf(onGo.getAssignmentId());
+                            if (orderAssignmentId.equals(orderWorkId)) {
+                                orderDelivery = (OrderDelieveryRequest) on;
+                            }
+                        }
+                    }
+                    orderAssignment.setOrderRequestStatus(selectedOrderStatus);
+                    orderAssignment.setStatus(selectedOrderStatus);
+                    orderDelivery.setDeliveryStatus(selectedOrderStatus);
+                    orderDelivery.setStatus(selectedOrderStatus);
                     _getUnAssignedOrders();
                     JOptionPane.showMessageDialog(this, "Status changed Successfully!", "Order Status Details", INFORMATION_MESSAGE);
                 }

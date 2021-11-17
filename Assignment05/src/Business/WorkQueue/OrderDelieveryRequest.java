@@ -14,7 +14,7 @@ import java.util.HashMap;
  *
  * @author prathameshnemade
  */
-public class OrderDelieveryRequest extends WorkRequest{
+public class OrderDelieveryRequest extends WorkRequest {
 
     private String deliveryStatus;
     private String bikeNo;
@@ -23,8 +23,14 @@ public class OrderDelieveryRequest extends WorkRequest{
     private UserAccount deliveredBy;
     private long deliveryRequestId;
 
-    public OrderDelieveryRequest(String address, UserAccount customerName, HashMap<HashMap<String, Double>, Integer> orderGenerated, Restaurant selectedRestaurant, String mainOrderMessage, String overAllStatus, Date requestDate) {
+    public OrderDelieveryRequest(String address, UserAccount customerName, HashMap<HashMap<String, Double>, Integer> orderGenerated, Restaurant selectedRestaurant, String mainOrderMessage, String overAllStatus, Date requestDate, String deliveryStatus, String bikeNo, Date pickupTime, Date deliveryTime, UserAccount deliveredBy, long deliveryRequestId) {
         super(address, customerName, orderGenerated, selectedRestaurant, mainOrderMessage, overAllStatus, requestDate);
+        this.deliveryStatus = deliveryStatus;
+        this.bikeNo = bikeNo;
+        this.pickupTime = pickupTime;
+        this.deliveryTime = deliveryTime;
+        this.deliveredBy = deliveredBy;
+        this.deliveryRequestId = deliveryRequestId;
     }
 
     /**

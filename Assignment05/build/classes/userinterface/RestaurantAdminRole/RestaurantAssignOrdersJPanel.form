@@ -43,6 +43,8 @@
                               <Component id="noJCheckBox" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jLabel4" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
+                          <Component id="jLabel5" min="-2" pref="135" max="-2" attributes="0"/>
+                          <Component id="bikeNoJField" min="-2" pref="87" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="jLabel1" alignment="0" min="-2" pref="237" max="-2" attributes="0"/>
@@ -73,7 +75,11 @@
                           <Component id="yesJCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="noJCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                      <Component id="bikeNoJField" min="-2" pref="37" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane4" min="-2" max="-2" attributes="0"/>
@@ -235,6 +241,36 @@
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Is Fragile?"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel5">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="18" style="1"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="Bike No.?"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="bikeNoJField">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ee" green="ee" red="ee" type="rgb"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="2"/>
+        <Property name="text" type="java.lang.String" value="Enter here"/>
+        <Property name="toolTipText" type="java.lang.String" value="Click to enter your name."/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
+            <EmptyBorder bottom="1" left="5" right="5" top="1"/>
+          </Border>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="bikeNoJFieldFocusGained"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="bikeNoJFieldnameChangeHandler"/>
+        <EventHandler event="inputMethodTextChanged" listener="java.awt.event.InputMethodListener" parameters="java.awt.event.InputMethodEvent" handler="bikeNoJFieldInputMethodTextChanged"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bikeNoJFieldActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

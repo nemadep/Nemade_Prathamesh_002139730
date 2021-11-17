@@ -36,6 +36,7 @@ public class AccountUpdateJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form AccountUpdateJPanel
+     *
      * @param system
      * @param account
      * @param jSplitPane
@@ -381,6 +382,7 @@ public class AccountUpdateJPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Username or Password requried.", "Register", ERROR_MESSAGE);
             }
         }
+        _getDetails();
     }//GEN-LAST:event_updateJButtonActionPerformed
 
     private void deleteJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteJButtonActionPerformed
@@ -390,6 +392,7 @@ public class AccountUpdateJPanel extends javax.swing.JPanel {
             uploadedJList.setSelectedIndex(0);
             openSelectedProfile();
         }
+        _getDetails();
     }//GEN-LAST:event_deleteJButtonActionPerformed
 
     private void uploadedJListFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_uploadedJListFocusGained

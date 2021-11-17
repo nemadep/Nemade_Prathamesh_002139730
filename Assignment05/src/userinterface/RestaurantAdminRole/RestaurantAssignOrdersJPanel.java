@@ -8,6 +8,7 @@ package userinterface.RestaurantAdminRole;
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.OrderAssignmentRequest;
+import Business.WorkQueue.OrderDelieveryRequest;
 import Business.WorkQueue.OrderWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.util.ArrayList;
@@ -116,6 +117,8 @@ public class RestaurantAssignOrdersJPanel extends javax.swing.JPanel {
         yesJCheckBox = new javax.swing.JCheckBox();
         noJCheckBox = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        bikeNoJField = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -215,6 +218,36 @@ public class RestaurantAssignOrdersJPanel extends javax.swing.JPanel {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Is Fragile?");
 
+        jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Bike No.?");
+
+        bikeNoJField.setBackground(new java.awt.Color(238, 238, 238));
+        bikeNoJField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        bikeNoJField.setText("Enter here");
+        bikeNoJField.setToolTipText("Click to enter your name.");
+        bikeNoJField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 5));
+        bikeNoJField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                bikeNoJFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                bikeNoJFieldnameChangeHandler(evt);
+            }
+        });
+        bikeNoJField.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                bikeNoJFieldInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+        });
+        bikeNoJField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bikeNoJFieldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -238,7 +271,9 @@ public class RestaurantAssignOrdersJPanel extends javax.swing.JPanel {
                                 .addComponent(yesJCheckBox)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(noJCheckBox))
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bikeNoJField, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -263,7 +298,11 @@ public class RestaurantAssignOrdersJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(yesJCheckBox)
                             .addComponent(noJCheckBox))
-                        .addGap(30, 30, 30)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5)
+                        .addGap(5, 5, 5)
+                        .addComponent(bikeNoJField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -293,6 +332,9 @@ public class RestaurantAssignOrdersJPanel extends javax.swing.JPanel {
         }
         if (!this.bagsJField.getText().matches("[0-9]+")) {
             errorMessage += "Enter no. of Bags! \n";
+        }
+        if (!this.bikeNoJField.getText().matches("[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}")) {
+            errorMessage += "Inavlid Number plate! \n";
         }
         if (errorMessage.equals("")) {
             return true;
@@ -333,7 +375,7 @@ public class RestaurantAssignOrdersJPanel extends javax.swing.JPanel {
                         System.out.println(this.selectedDel);
                         System.out.println(onGo.getOrderWorkRequestId());
                         System.out.println("***********");
-                        
+
                         orderAssignment.setAddress(onGo.getAddress());
                         orderAssignment.setReceiver(onGo.getReceiver());
                         orderAssignment.setOrderedMenu(onGo.getOrderedMenu());
@@ -348,6 +390,25 @@ public class RestaurantAssignOrdersJPanel extends javax.swing.JPanel {
                         orderAssignment.setNoOfBags(Integer.valueOf(this.bagsJField.getText()));
                         orderAssignment.setIsfragilePackage(this.yesJCheckBox.isSelected());
                         orderAssignment.setAssignmentId(onGo.getOrderWorkRequestId());
+
+                        OrderDelieveryRequest newDelievery = new OrderDelieveryRequest(
+                                onGo.getAddress(),
+                                onGo.getReceiver(),
+                                onGo.getOrderedMenu(),
+                                onGo.getSender(),
+                                onGo.getMessage(),
+                                "ASSIGNED",
+                                onGo.getRequestDate(),
+                                "NOTPICKED",//delivery status
+                                this.bikeNoJField.getText(),
+                                new Date(),
+                                null,
+                                this.selectedDel,
+                                onGo.getOrderWorkRequestId()
+                        );
+
+                        this.system.getWorkQueue().getWorkRequestList().add(newDelievery);
+
                         _getUnAssignedOrders();
                         JOptionPane.showMessageDialog(this, "Order Assigned Successfully!", "Order Assignment Details", INFORMATION_MESSAGE);
                     }
@@ -401,15 +462,35 @@ public class RestaurantAssignOrdersJPanel extends javax.swing.JPanel {
         this.yesJCheckBox.setSelected(false);
     }//GEN-LAST:event_noJCheckBoxFocusGained
 
+    private void bikeNoJFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_bikeNoJFieldFocusGained
+        if (bikeNoJField.getText().equals("Enter here")) {
+            bikeNoJField.setText("");
+        }
+    }//GEN-LAST:event_bikeNoJFieldFocusGained
+
+    private void bikeNoJFieldnameChangeHandler(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_bikeNoJFieldnameChangeHandler
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bikeNoJFieldnameChangeHandler
+
+    private void bikeNoJFieldInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_bikeNoJFieldInputMethodTextChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bikeNoJFieldInputMethodTextChanged
+
+    private void bikeNoJFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bikeNoJFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bikeNoJFieldActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addJButton;
     private javax.swing.JTextField bagsJField;
+    private javax.swing.JTextField bikeNoJField;
     private javax.swing.JComboBox<String> deleiveryManJComboBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane4;

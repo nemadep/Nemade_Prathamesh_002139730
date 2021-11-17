@@ -46,7 +46,7 @@ public class OrderCreationJPanel extends javax.swing.JPanel {
         _getCustomerList();
     }
     
-    public void _getCustomerList() {
+        public void _getCustomerList() {
         ArrayList<String> menuNameDropdown = new ArrayList<>();
         
         for (int i = 0; i < this.ecosystem.getUserAccountDirectory().getUserAccountList().size(); i++) {

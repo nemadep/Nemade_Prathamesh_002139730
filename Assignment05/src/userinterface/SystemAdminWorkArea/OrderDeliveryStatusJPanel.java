@@ -68,6 +68,9 @@ public class OrderDeliveryStatusJPanel extends javax.swing.JPanel {
             WorkRequest ongoing = this.ecosystem.getWorkQueue().getWorkRequestList().get(i);
             if (ongoing instanceof OrderAssignmentRequest) {
                 OrderAssignmentRequest onGo = (OrderAssignmentRequest) ongoing;
+                System.out.println(onGo.getAssignmentStatus());
+                System.out.println(onGo.getAssignmentTo().getUsername());
+                System.out.println(this.selectedDeliveryMen.getUsername());
                 if (onGo.getAssignmentStatus() == "READYFORPICKUP" && onGo.getAssignmentTo().getUsername() == this.selectedDeliveryMen.getUsername()) {
                     String address = ongoing.getAddress().toString();
                     Long resWorkId = ((OrderAssignmentRequest) ongoing).getAssignmentId();
@@ -261,7 +264,7 @@ public class OrderDeliveryStatusJPanel extends javax.swing.JPanel {
         this.jLabel5.setVisible(false);
         this.statusJComboBox.setVisible(false);
         this.addJButton1.setVisible(false);
-        setDeliveryMen();
+        _getDeliveryMenList();
         setDeliveryMen();
     }//GEN-LAST:event_addJButton1ActionPerformed
 

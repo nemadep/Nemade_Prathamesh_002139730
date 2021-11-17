@@ -11,6 +11,8 @@ import Business.WorkQueue.OrderAssignmentRequest;
 import Business.WorkQueue.OrderDelieveryRequest;
 import Business.WorkQueue.OrderWorkRequest;
 import Business.WorkQueue.WorkRequest;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.JSplitPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -35,6 +37,7 @@ public class AllOrdersJPanel extends javax.swing.JPanel {
     public void _getOrdersTable() {
         DefaultTableModel model = (DefaultTableModel) ordersJTable.getModel();
         model.setRowCount(0);
+
         for (int i = 0; i < this.ecosystem.getWorkQueue().getWorkRequestList().size(); i++) {
             WorkRequest ongoing = this.ecosystem.getWorkQueue().getWorkRequestList().get(i);
             OrderAssignmentRequest ongoing1 = null;
@@ -47,6 +50,7 @@ public class AllOrdersJPanel extends javax.swing.JPanel {
             } else if (ongoing instanceof OrderWorkRequest) {
                 ongoing3 = (OrderWorkRequest) this.ecosystem.getWorkQueue().getWorkRequestList().get(i);
             }
+            
             Object[] row = {
                 ongoing3 == null ? ongoing2 == null ? ongoing1 == null ? "NA" : ongoing1.getAssignmentId() : ongoing2.getDeliveryRequestId() : ongoing3.getOrderWorkRequestId(),
                 ongoing3 == null ? ongoing2 == null ? ongoing1 == null ? "NA" : ongoing1.getReceiver().getUsername() : ongoing2.getReceiver().getUsername() : ongoing3.getReceiver().getUsername(),
@@ -56,6 +60,9 @@ public class AllOrdersJPanel extends javax.swing.JPanel {
                 ongoing1 == null ? "NA" : ongoing1.getAssignmentStatus(),
                 ongoing.getStatus()
             };
+            
+            
+            
             model.addRow(row);
         }
     }
