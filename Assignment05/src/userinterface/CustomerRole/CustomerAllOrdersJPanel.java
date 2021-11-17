@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.SystemAdminWorkArea;
+package userinterface.CustomerRole;
 
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
@@ -11,8 +11,6 @@ import Business.WorkQueue.OrderAssignmentRequest;
 import Business.WorkQueue.OrderDelieveryRequest;
 import Business.WorkQueue.OrderWorkRequest;
 import Business.WorkQueue.WorkRequest;
-import java.util.ArrayList;
-import java.util.HashMap;
 import javax.swing.JSplitPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,13 +18,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author prathameshnemade
  */
-public class AllOrdersJPanel extends javax.swing.JPanel {
+public class CustomerAllOrdersJPanel extends javax.swing.JPanel {
 
     EcoSystem ecosystem;
     UserAccount account;
     JSplitPane jSplitPane;
 
-    public AllOrdersJPanel(EcoSystem ecosystem, UserAccount account, JSplitPane jSplitPane) {
+    public CustomerAllOrdersJPanel(EcoSystem ecosystem, UserAccount account, JSplitPane jSplitPane) {
         initComponents();
         this.ecosystem = ecosystem;
         this.account = account;
@@ -43,19 +41,21 @@ public class AllOrdersJPanel extends javax.swing.JPanel {
             OrderAssignmentRequest ongoing1 = null;
             OrderDelieveryRequest ongoing2 = null;
             OrderWorkRequest ongoing3 = null;
-            if (ongoing instanceof OrderWorkRequest) {
-                ongoing3 = (OrderWorkRequest) this.ecosystem.getWorkQueue().getWorkRequestList().get(i);
-                Object[] row = {
-                    ongoing3.getOrderWorkRequestId(),
-                    ongoing3.getRequestDate(),
-                    ongoing3.getReceiver().getUsername(),
-                    ongoing3.getSender().getName(),
-                    ongoing3.getStatus(),
-                    ongoing3.getResolveDate() == null ? "INPROGRESS" : ongoing3.getResolveDate()
-                };
-                model.addRow(row);
 
-            }
+            if (ongoing.getReceiver().getUsername().toString().equals(this.account.getUsername().toString())) {
+                if (ongoing instanceof OrderWorkRequest) {
+                    ongoing3 = (OrderWorkRequest) this.ecosystem.getWorkQueue().getWorkRequestList().get(i);
+                    Object[] row = {
+                        ongoing3.getOrderWorkRequestId(),
+                        ongoing3.getRequestDate(),
+                        ongoing3.getReceiver().getUsername(),
+                        ongoing3.getSender().getName(),
+                        ongoing3.getStatus(),
+                        ongoing3.getResolveDate() == null ? "INPROGRESS" : ongoing3.getResolveDate()
+                    };
+                    model.addRow(row);
+
+                }
 
 //            Object[] row = {
 //                ongoing3 == null ? ongoing2 == null ? ongoing1 == null ? "NA" : ongoing1.getAssignmentId() : ongoing2.getDeliveryRequestId() : ongoing3.getOrderWorkRequestId(),
@@ -65,6 +65,7 @@ public class AllOrdersJPanel extends javax.swing.JPanel {
 //                ongoing1 == null ? "NA" : ongoing1.getAssignmentStatus(),
 //                ongoing.getStatus()
 //            };
+            }
         }
     }
 

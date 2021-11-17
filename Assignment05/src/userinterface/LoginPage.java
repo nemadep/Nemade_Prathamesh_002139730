@@ -39,6 +39,8 @@ public class LoginPage extends javax.swing.JPanel {
      */
     public LoginPage(JFrame rootFrame, JPanel rootJPanel, JButton logoutJButton, EcoSystem system) {
         initComponents();
+//        rootFrame.setSize(
+//                1000, 800);
         this.rootFrame = rootFrame;
         this.rootJPanel = rootJPanel;
         this.logoutJButton = logoutJButton;
@@ -159,6 +161,8 @@ public class LoginPage extends javax.swing.JPanel {
         if (passwordJField != null && emailIDJField != null) {
             UserAccount account = system.getUserAccountDirectory().authenticateUser(emailIDJField.getText(), passwordJField.getText());
             if (account != null) {
+//                rootFrame.setSize(
+//                        1440, 781);
                 redirectToPanel(account);
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid Username or Password!", "Login", ERROR_MESSAGE);

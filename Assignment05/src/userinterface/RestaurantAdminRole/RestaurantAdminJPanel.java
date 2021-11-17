@@ -47,6 +47,7 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
         RestaurantModifyMenuJButton = new javax.swing.JButton();
         RestaurantModifyMenuJButton1 = new javax.swing.JButton();
         RestaurantModifyMenuJButton2 = new javax.swing.JButton();
+        RestaurantModifyMenuJButton3 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -101,6 +102,16 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
             }
         });
 
+        RestaurantModifyMenuJButton3.setBackground(new java.awt.Color(200, 203, 178));
+        RestaurantModifyMenuJButton3.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        RestaurantModifyMenuJButton3.setForeground(new java.awt.Color(67, 100, 100));
+        RestaurantModifyMenuJButton3.setText("All Orders");
+        RestaurantModifyMenuJButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RestaurantModifyMenuJButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -115,7 +126,8 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
                         .addComponent(userNameJLabel))
                     .addComponent(RestaurantModifyMenuJButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(RestaurantModifyMenuJButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(RestaurantModifyMenuJButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(RestaurantModifyMenuJButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(RestaurantModifyMenuJButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -133,7 +145,9 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
                 .addComponent(RestaurantModifyMenuJButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(RestaurantModifyMenuJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(RestaurantModifyMenuJButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(125, Short.MAX_VALUE))
         );
 
         jSplitPane.setLeftComponent(jPanel1);
@@ -182,11 +196,17 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
         this.jSplitPane.setRightComponent(modifyMenu);
     }//GEN-LAST:event_RestaurantModifyMenuJButton2ActionPerformed
 
+    private void RestaurantModifyMenuJButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestaurantModifyMenuJButton3ActionPerformed
+        RestaurantAllOrdersJPanel modifyMenu = new RestaurantAllOrdersJPanel(this.system, account, jSplitPane);
+        this.jSplitPane.setRightComponent(modifyMenu);
+    }//GEN-LAST:event_RestaurantModifyMenuJButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton RestaurantModifyMenuJButton;
     private javax.swing.JButton RestaurantModifyMenuJButton1;
     private javax.swing.JButton RestaurantModifyMenuJButton2;
+    private javax.swing.JButton RestaurantModifyMenuJButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
