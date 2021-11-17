@@ -329,7 +329,7 @@ public class OrderAssignmentJPanel extends javax.swing.JPanel {
                 WorkRequest ongoing = this.ecosystem.getWorkQueue().getWorkRequestList().get(i);
                 if (ongoing instanceof OrderWorkRequest) {
                     OrderWorkRequest onGo = (OrderWorkRequest) ongoing;
-                    if (onGo == selectedWorkRequest) {
+                    if (onGo.getOrderWorkRequestId() == selectedWorkRequest.getOrderWorkRequestId()) {
                         onGo.setOrderRequestStatus("ASSIGNED");
                         OrderAssignmentRequest orderAssignment = null;
                         for (int j = 0; j < this.ecosystem.getWorkQueue().getWorkRequestList().size(); j++) {
@@ -392,7 +392,11 @@ public class OrderAssignmentJPanel extends javax.swing.JPanel {
                                     ((OrderDelieveryRequest) on).setDeliveryStatus(String.valueOf(onGo.getOrderWorkRequestId()));
                                 }
                             } else if (on instanceof OrderWorkRequest) {
-                                on.setStatus("ASSIGNED");
+                                String wordOrderId = String.valueOf(((OrderWorkRequest) on).getOrderWorkRequestId());
+                                String orderWorkId = String.valueOf(onGo.getOrderWorkRequestId());
+                                if (wordOrderId.toString().equals(orderWorkId.toString())) {
+                                    on.setStatus("ASSIGNED");
+                                }
                             }
                         }
 

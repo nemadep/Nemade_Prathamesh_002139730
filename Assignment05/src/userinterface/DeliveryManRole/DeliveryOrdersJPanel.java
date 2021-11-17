@@ -48,7 +48,7 @@ public class DeliveryOrdersJPanel extends javax.swing.JPanel {
             if (ongoing instanceof OrderAssignmentRequest) {
                 OrderAssignmentRequest onGo = (OrderAssignmentRequest) ongoing;
                 System.out.println(onGo.getAssignmentTo());
-                if ((onGo.getAssignmentStatus().toString().equals("READYFORPICKUP") || onGo.getAssignmentStatus().toString().equals("PICKED")) && onGo.getAssignmentTo().getUsername().toString().equals(this.account.getUsername().toString())) {
+                if ((onGo.getAssignmentStatus().toString().equals("READYFORPICKUP") || onGo.getAssignmentStatus().toString().equals("PICKED")) && onGo.getAssignmentTo() != null && onGo.getAssignmentTo().getUsername().toString().equals(this.account.getUsername().toString())) {
                     String address = ongoing.getAddress().toString();
                     Long resWorkId = ((OrderAssignmentRequest) ongoing).getAssignmentId();
                     model.addElement(String.valueOf(resWorkId) + " - " + address);
@@ -100,7 +100,7 @@ public class DeliveryOrdersJPanel extends javax.swing.JPanel {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Status:");
 
-        orderJComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PICKED", "COMPLETED" }));
+        orderJComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PICKED", "DELIVERED" }));
         orderJComboBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 orderJComboBoxItemStateChanged(evt);
@@ -277,6 +277,8 @@ public class DeliveryOrdersJPanel extends javax.swing.JPanel {
                 }
             }
         }
+
+        JOptionPane.showMessageDialog(this, "Order Status Successfully!", "Order Status Details", INFORMATION_MESSAGE);
 
         this.createdAtJLabel.setText("Select a order!");
         this.commentsJLabel.setText("Select a order!");

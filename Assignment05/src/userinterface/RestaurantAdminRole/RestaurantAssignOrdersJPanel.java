@@ -413,7 +413,11 @@ public class RestaurantAssignOrdersJPanel extends javax.swing.JPanel {
                                     ((OrderDelieveryRequest) on).setDeliveryStatus(String.valueOf(onGo.getOrderWorkRequestId()));
                                 }
                             } else if (on instanceof OrderWorkRequest) {
-                                on.setStatus("ASSIGNED");
+                                String wordOrderId = String.valueOf(((OrderWorkRequest) on).getOrderWorkRequestId());
+                                String orderWorkId = String.valueOf(onGo.getOrderWorkRequestId());
+                                if (wordOrderId.toString().equals(orderWorkId.toString())) {
+                                    on.setStatus("ASSIGNED");
+                                }
                             }
                         }
 

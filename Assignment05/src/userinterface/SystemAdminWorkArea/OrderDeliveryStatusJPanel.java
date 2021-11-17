@@ -71,11 +71,7 @@ public class OrderDeliveryStatusJPanel extends javax.swing.JPanel {
             WorkRequest ongoing = this.ecosystem.getWorkQueue().getWorkRequestList().get(i);
             if (ongoing instanceof OrderAssignmentRequest) {
                 OrderAssignmentRequest onGo = (OrderAssignmentRequest) ongoing;
-                System.out.println(onGo.getAssignmentStatus());
-                System.out.println(onGo.getAssignmentTo());
-                System.out.println(this.selectedDeliveryMen.getUsername());
-
-                if ((onGo.getAssignmentStatus().toString().equals("READYFORPICKUP") || onGo.getAssignmentStatus().toString().equals("PICKED")) && onGo.getAssignmentTo().getUsername() == this.selectedDeliveryMen.getUsername()) {
+                if ((onGo.getAssignmentStatus().toString().equals("READYFORPICKUP") || onGo.getAssignmentStatus().toString().equals("PICKED")) && onGo.getAssignmentTo() != null &&  onGo.getAssignmentTo().getUsername() == this.selectedDeliveryMen.getUsername()) {
                     String address = ongoing.getAddress().toString();
                     Long resWorkId = ((OrderAssignmentRequest) ongoing).getAssignmentId();
                     model.addElement(String.valueOf(resWorkId) + " - " + address);
