@@ -344,14 +344,13 @@ public class RestaurantAssignOrdersJPanel extends javax.swing.JPanel {
     }
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
-        Boolean isValid = this.validAssignment();
+       Boolean isValid = this.validAssignment();
         if (isValid) {
             for (int i = 0; i < this.system.getWorkQueue().getWorkRequestList().size(); i++) {
                 WorkRequest ongoing = this.system.getWorkQueue().getWorkRequestList().get(i);
                 if (ongoing instanceof OrderWorkRequest) {
                     OrderWorkRequest onGo = (OrderWorkRequest) ongoing;
                     if (onGo == selectedWorkRequest) {
-                        System.out.println("DONE!");
                         onGo.setOrderRequestStatus("ASSIGNED");
                         OrderAssignmentRequest orderAssignment = null;
                         for (int j = 0; j < this.system.getWorkQueue().getWorkRequestList().size(); j++) {
@@ -391,29 +390,56 @@ public class RestaurantAssignOrdersJPanel extends javax.swing.JPanel {
                         orderAssignment.setIsfragilePackage(this.yesJCheckBox.isSelected());
                         orderAssignment.setAssignmentId(onGo.getOrderWorkRequestId());
 
-                        OrderDelieveryRequest newDelievery = new OrderDelieveryRequest(
-                                onGo.getAddress(),
-                                onGo.getReceiver(),
-                                onGo.getOrderedMenu(),
-                                onGo.getSender(),
-                                onGo.getMessage(),
-                                "ASSIGNED",
-                                onGo.getRequestDate(),
-                                "NOTPICKED",//delivery status
-                                this.bikeNoJField.getText(),
-                                new Date(),
-                                null,
-                                this.selectedDel,
-                                onGo.getOrderWorkRequestId()
-                        );
+                        OrderDelieveryRequest newDelievery = null;
+                        for (int j = 0; j < this.system.getWorkQueue().getWorkRequestList().size(); j++) {
+                            WorkRequest on = this.system.getWorkQueue().getWorkRequestList().get(j);
+                            if (on instanceof OrderDelieveryRequest) {
+                                String orderAssignmentId = String.valueOf(((OrderDelieveryRequest) on).getDeliveryRequestId());
+                                String orderWorkId = String.valueOf(onGo.getOrderWorkRequestId());
+                                if (orderAssignmentId.toString().equals(orderWorkId.toString())) {
+                                    newDelievery = (OrderDelieveryRequest) on;
+                                    on.setAddress(onGo.getAddress());
+                                    on.setReceiver(onGo.getReceiver());
+                                    on.setOrderedMenu(onGo.getOrderedMenu());
+                                    on.setSender(onGo.getSender());
+                                    on.setMessage(onGo.getMessage());
+                                    on.setStatus("ASSIGNED");
+                                    on.setRequestDate(onGo.getRequestDate());
+                                    ((OrderDelieveryRequest) on).setDeliveryStatus("NOTPICKED");
+                                    ((OrderDelieveryRequest) on).setBikeNo(this.bikeNoJField.getText());
+                                    ((OrderDelieveryRequest) on).setPickupTime(new Date());
+                                    ((OrderDelieveryRequest) on).setDeliveryTime(null);
+                                    ((OrderDelieveryRequest) on).setDeliveredBy(this.selectedDel);
+                                    ((OrderDelieveryRequest) on).setDeliveryStatus(String.valueOf(onGo.getOrderWorkRequestId()));
+                                }
+                            }
+                        }
 
-                        this.system.getWorkQueue().getWorkRequestList().add(newDelievery);
+                        if (newDelievery == null) {
+                            newDelievery = new OrderDelieveryRequest(
+                                    onGo.getAddress(),
+                                    onGo.getReceiver(),
+                                    onGo.getOrderedMenu(),
+                                    onGo.getSender(),
+                                    onGo.getMessage(),
+                                    "ASSIGNED",
+                                    onGo.getRequestDate(),
+                                    "NOTPICKED",//delivery status
+                                    this.bikeNoJField.getText(),
+                                    new Date(),
+                                    null,
+                                    this.selectedDel,
+                                    onGo.getOrderWorkRequestId()
+                            );
 
-                        _getUnAssignedOrders();
+                            this.system.getWorkQueue().getWorkRequestList().add(newDelievery);
+                        }
+
                         JOptionPane.showMessageDialog(this, "Order Assigned Successfully!", "Order Assignment Details", INFORMATION_MESSAGE);
                     }
                 }
             }
+            _getUnAssignedOrders();
         }
     }//GEN-LAST:event_addJButtonActionPerformed
 

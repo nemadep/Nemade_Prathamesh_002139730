@@ -99,6 +99,14 @@ public class OrderDeliveryStatusJPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         statusJComboBox = new javax.swing.JComboBox<>();
         addJButton1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        createdAtJLabel = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        commentsJLabel = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        addressJLabel = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        customerJLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -150,37 +158,100 @@ public class OrderDeliveryStatusJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Noto Sans Oriya", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(67, 100, 100));
+        jLabel6.setText("Order Created At:");
+
+        createdAtJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 1, 14)); // NOI18N
+        createdAtJLabel.setForeground(new java.awt.Color(67, 100, 100));
+        createdAtJLabel.setText("Select a order!");
+
+        jLabel7.setFont(new java.awt.Font("Noto Sans Oriya", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(67, 100, 100));
+        jLabel7.setText("Comments");
+
+        commentsJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 1, 14)); // NOI18N
+        commentsJLabel.setForeground(new java.awt.Color(67, 100, 100));
+        commentsJLabel.setText("Select a order!");
+
+        jLabel8.setFont(new java.awt.Font("Noto Sans Oriya", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(67, 100, 100));
+        jLabel8.setText("Address");
+
+        addressJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 1, 14)); // NOI18N
+        addressJLabel.setForeground(new java.awt.Color(67, 100, 100));
+        addressJLabel.setText("Select a order!");
+
+        jLabel9.setFont(new java.awt.Font("Noto Sans Oriya", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(67, 100, 100));
+        jLabel9.setText("Customer");
+
+        customerJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 1, 14)); // NOI18N
+        customerJLabel.setForeground(new java.awt.Color(67, 100, 100));
+        customerJLabel.setText("Select a order!");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(257, 257, 257)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(deliveryMenJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(addJButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(statusJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
-                    .addComponent(addJButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(96, 96, 96))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(142, 142, 142)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(deliveryMenJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(addJButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE))
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(createdAtJLabel)
+                            .addComponent(addressJLabel)
+                            .addComponent(commentsJLabel)
+                            .addComponent(customerJLabel)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(440, 440, 440)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(statusJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+                            .addComponent(addJButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(133, 133, 133))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(100, 100, 100)
-                .addComponent(jLabel4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel6)
+                    .addComponent(createdAtJLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(deliveryMenJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(deliveryMenJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(commentsJLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(addressJLabel))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(addJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(addJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel9)
+                        .addComponent(customerJLabel)))
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
                         .addGap(20, 20, 20))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
@@ -188,7 +259,7 @@ public class OrderDeliveryStatusJPanel extends javax.swing.JPanel {
                         .addComponent(statusJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
                         .addComponent(addJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(196, Short.MAX_VALUE))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -223,6 +294,10 @@ public class OrderDeliveryStatusJPanel extends javax.swing.JPanel {
         Integer selectedOrderIndex = this.ordersJList.getSelectedIndex();
         if (selectedOrderIndex != -1) {
             selectedOrder = this.allReadyToPickUpOrders.get(selectedOrderIndex);
+            this.createdAtJLabel.setText(this.selectedOrder.getOrderAssignmentAt().toString());
+            this.commentsJLabel.setText(this.selectedOrder.getAssignmentComments());
+            this.addressJLabel.setText(this.selectedOrder.getAddress());
+            this.customerJLabel.setText(this.selectedOrder.getReceiver().getUsername());
         }
     }
 
@@ -264,6 +339,10 @@ public class OrderDeliveryStatusJPanel extends javax.swing.JPanel {
         this.jLabel5.setVisible(false);
         this.statusJComboBox.setVisible(false);
         this.addJButton1.setVisible(false);
+        this.createdAtJLabel.setText("Select a order!");
+        this.commentsJLabel.setText("Select a order!");
+        this.addressJLabel.setText("Select a order!");
+        this.customerJLabel.setText("Select a order!");
         _getDeliveryMenList();
         setDeliveryMen();
     }//GEN-LAST:event_addJButton1ActionPerformed
@@ -271,9 +350,17 @@ public class OrderDeliveryStatusJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addJButton;
     private javax.swing.JButton addJButton1;
+    private javax.swing.JLabel addressJLabel;
+    private javax.swing.JLabel commentsJLabel;
+    private javax.swing.JLabel createdAtJLabel;
+    private javax.swing.JLabel customerJLabel;
     private javax.swing.JComboBox<String> deliveryMenJComboBox;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> ordersJList;
     private javax.swing.JComboBox<String> statusJComboBox;

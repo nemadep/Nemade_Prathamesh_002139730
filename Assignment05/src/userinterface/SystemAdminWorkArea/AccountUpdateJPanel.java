@@ -54,7 +54,12 @@ public class AccountUpdateJPanel extends javax.swing.JPanel {
         DefaultListModel model = new DefaultListModel();
         ArrayList<UserAccount> accountList = this.system.getUserAccountDirectory().getUserAccountList();
         accountList.forEach(user -> {
-            model.addElement(user.getUsername() + " - " + user.getRole().toString());
+            String role = user.getRole().toString()
+                    .replace("Business.Role.SystemAdminRole", "SystemAdminRole")
+                    .replace("Business.Role.AdminRole", "AdminRole")
+                    .replace("Business.Role.DeliverManRole", "DeliverManRole")
+                    .replace("Business.Role.CustomerRole", "CustomerRole");
+            model.addElement(user.getUsername() + " - " + role);
         });
         if (model.isEmpty()) {
             uploadedJList.setModel(model);

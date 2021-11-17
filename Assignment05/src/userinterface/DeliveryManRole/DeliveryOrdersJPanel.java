@@ -22,13 +22,13 @@ import javax.swing.JSplitPane;
  * @author prathameshnemade
  */
 public class DeliveryOrdersJPanel extends javax.swing.JPanel {
-    
+
     EcoSystem system;
     UserAccount account;
     JSplitPane jSplitPanel;
     ArrayList<OrderAssignmentRequest> unAssignedRequests = new ArrayList<OrderAssignmentRequest>();
     OrderAssignmentRequest selectedWorkRequest;
-    
+
     DeliveryOrdersJPanel(EcoSystem system, UserAccount account, JSplitPane jSplitPane) {
         this.system = system;
         this.account = account;
@@ -36,16 +36,16 @@ public class DeliveryOrdersJPanel extends javax.swing.JPanel {
         initComponents();
         _getUnAssignedOrders();
     }
-    
+
     public void _getUnAssignedOrders() {
         DefaultListModel model = new DefaultListModel();
         this.ordersJList.setModel(model);
-        
+
         for (int i = 0; i < this.system.getWorkQueue().getWorkRequestList().size(); i++) {
             WorkRequest ongoing = this.system.getWorkQueue().getWorkRequestList().get(i);
             if (ongoing instanceof OrderAssignmentRequest) {
                 OrderAssignmentRequest onGo = (OrderAssignmentRequest) ongoing;
-                
+
                 if (onGo.getAssignmentTo().getUsername().toString().equals(this.account.getUsername().toString()) && (onGo.getAssignmentStatus().toString().equals("READYFORPICKUP") || onGo.getAssignmentStatus().toString().equals("PICKED"))) {
                     String resName = ongoing.getSender().getName();
                     Long resWorkId = ((OrderAssignmentRequest) ongoing).getAssignmentId();
@@ -72,6 +72,14 @@ public class DeliveryOrdersJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         orderJComboBox = new javax.swing.JComboBox<>();
         addJButton = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        addressJLabel = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        customerJLabel = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        createdAtJLabel = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        commentsJLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -112,6 +120,38 @@ public class DeliveryOrdersJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel8.setFont(new java.awt.Font("Noto Sans Oriya", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(67, 100, 100));
+        jLabel8.setText("Address");
+
+        addressJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 1, 14)); // NOI18N
+        addressJLabel.setForeground(new java.awt.Color(67, 100, 100));
+        addressJLabel.setText("Select a order!");
+
+        jLabel9.setFont(new java.awt.Font("Noto Sans Oriya", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(67, 100, 100));
+        jLabel9.setText("Customer");
+
+        customerJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 1, 14)); // NOI18N
+        customerJLabel.setForeground(new java.awt.Color(67, 100, 100));
+        customerJLabel.setText("Select a order!");
+
+        jLabel6.setFont(new java.awt.Font("Noto Sans Oriya", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(67, 100, 100));
+        jLabel6.setText("Order Created At:");
+
+        createdAtJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 1, 14)); // NOI18N
+        createdAtJLabel.setForeground(new java.awt.Color(67, 100, 100));
+        createdAtJLabel.setText("Select a order!");
+
+        jLabel7.setFont(new java.awt.Font("Noto Sans Oriya", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(67, 100, 100));
+        jLabel7.setText("Comments");
+
+        commentsJLabel.setFont(new java.awt.Font("Noto Sans Kannada", 1, 14)); // NOI18N
+        commentsJLabel.setForeground(new java.awt.Color(67, 100, 100));
+        commentsJLabel.setText("Select a order!");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -125,7 +165,19 @@ public class DeliveryOrdersJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(addJButton, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                            .addComponent(orderJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(orderJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(createdAtJLabel)
+                                    .addComponent(addressJLabel)
+                                    .addComponent(commentsJLabel)
+                                    .addComponent(customerJLabel)))))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
@@ -135,8 +187,24 @@ public class DeliveryOrdersJPanel extends javax.swing.JPanel {
                 .addGap(33, 33, 33)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(createdAtJLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(commentsJLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(addressJLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(customerJLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(orderJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -151,6 +219,10 @@ public class DeliveryOrdersJPanel extends javax.swing.JPanel {
         Integer seletedIndex = ordersJList.getSelectedIndex();
         if (seletedIndex != -1) {
             this.selectedWorkRequest = this.unAssignedRequests.get(seletedIndex);
+            this.createdAtJLabel.setText(this.selectedWorkRequest.getOrderAssignmentAt().toString());
+            this.commentsJLabel.setText(this.selectedWorkRequest.getAssignmentComments());
+            this.addressJLabel.setText(this.selectedWorkRequest.getAddress());
+            this.customerJLabel.setText(this.selectedWorkRequest.getReceiver().getUsername());
         }
     }//GEN-LAST:event_ordersJListValueChanged
 
@@ -193,6 +265,10 @@ public class DeliveryOrdersJPanel extends javax.swing.JPanel {
                     orderAssignment.setStatus(selectedOrderStatus);
                     orderDelivery.setDeliveryStatus(selectedOrderStatus);
                     orderDelivery.setStatus(selectedOrderStatus);
+                    this.createdAtJLabel.setText("Select a order!");
+                    this.commentsJLabel.setText("Select a order!");
+                    this.addressJLabel.setText("Select a order!");
+                    this.customerJLabel.setText("Select a order!");
                     _getUnAssignedOrders();
                     JOptionPane.showMessageDialog(this, "Status changed Successfully!", "Order Status Details", INFORMATION_MESSAGE);
                 }
@@ -203,8 +279,16 @@ public class DeliveryOrdersJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addJButton;
+    private javax.swing.JLabel addressJLabel;
+    private javax.swing.JLabel commentsJLabel;
+    private javax.swing.JLabel createdAtJLabel;
+    private javax.swing.JLabel customerJLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> orderJComboBox;
     private javax.swing.JList<String> ordersJList;
