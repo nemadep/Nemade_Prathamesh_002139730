@@ -375,7 +375,7 @@ public class OrderAssignmentJPanel extends javax.swing.JPanel {
                             if (on instanceof OrderDelieveryRequest) {
                                 String orderAssignmentId = String.valueOf(((OrderDelieveryRequest) on).getDeliveryRequestId());
                                 String orderWorkId = String.valueOf(onGo.getOrderWorkRequestId());
-                                if (orderAssignmentId.equals(orderWorkId)) {
+                                if (orderAssignmentId.toString().equals(orderWorkId.toString())) {
                                     newDelievery = (OrderDelieveryRequest) on;
                                     on.setAddress(onGo.getAddress());
                                     on.setReceiver(onGo.getReceiver());
@@ -414,7 +414,6 @@ public class OrderAssignmentJPanel extends javax.swing.JPanel {
                             this.ecosystem.getWorkQueue().getWorkRequestList().add(newDelievery);
                         }
 
-                        this.ecosystem.getWorkQueue().getWorkRequestList().add(orderAssignment);
                         JOptionPane.showMessageDialog(this, "Order Assigned Successfully!", "Order Assignment Details", INFORMATION_MESSAGE);
                     }
                 }

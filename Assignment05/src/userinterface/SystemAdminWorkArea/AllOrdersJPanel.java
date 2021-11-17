@@ -54,8 +54,8 @@ public class AllOrdersJPanel extends javax.swing.JPanel {
             Object[] row = {
                 ongoing3 == null ? ongoing2 == null ? ongoing1 == null ? "NA" : ongoing1.getAssignmentId() : ongoing2.getDeliveryRequestId() : ongoing3.getOrderWorkRequestId(),
                 ongoing3 == null ? ongoing2 == null ? ongoing1 == null ? "NA" : ongoing1.getReceiver().getUsername() : ongoing2.getReceiver().getUsername() : ongoing3.getReceiver().getUsername(),
-                ongoing.getAddress(),
-                ongoing2 == null ? ongoing1 == null ? "NA" : ongoing1.getAssignmentTo().getUsername() : ongoing2.getDeliveredBy().getUsername(),
+                ongoing.getAddress(),"NA",
+//                ongoing2 == null ? ongoing1 == null ? "NA" : ongoing1.getAssignmentTo().getUsername() : ongoing2.getDeliveredBy().getUsername(),
                 ongoing2 == null ? "NA" : ongoing2.getDeliveryStatus(),
                 ongoing1 == null ? "NA" : ongoing1.getAssignmentStatus(),
                 ongoing.getStatus()
