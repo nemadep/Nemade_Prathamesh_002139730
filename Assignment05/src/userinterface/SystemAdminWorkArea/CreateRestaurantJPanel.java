@@ -334,6 +334,8 @@ public class CreateRestaurantJPanel extends javax.swing.JPanel {
         if (valid) {
             this.menu.put(this.menuNameJField.getText(), Double.parseDouble(this.menuPriceJField.getText()));
             generateList();
+            this.menuNameJField.setText("Enter here");
+            this.menuPriceJField.setText("Enter here");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

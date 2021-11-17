@@ -12,6 +12,7 @@ import Business.WorkQueue.OrderWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
@@ -46,6 +47,9 @@ public class RestaurantOrderStatusJPanel extends javax.swing.JPanel {
         this.orderMessageJLabel.setText("NA");
         this.addressJLabel.setText("Select a order!");
         this.statusJLabel.setText("Select a order!");
+        this.totalPriceJLabel.setText("0");
+        DefaultListModel model1 = new DefaultListModel();
+        receiptJList.setModel(model1);
 
         DefaultListModel model = new DefaultListModel();
         this.ordersJList.setModel(model);
@@ -54,7 +58,7 @@ public class RestaurantOrderStatusJPanel extends javax.swing.JPanel {
             WorkRequest ongoing = this.system.getWorkQueue().getWorkRequestList().get(i);
             if (ongoing instanceof OrderWorkRequest) {
                 OrderWorkRequest onGo = (OrderWorkRequest) ongoing;
-                if (onGo.getSender().getManagerUserName().toString().equals(this.account.getUsername().toString()) && !onGo.getOrderRequestStatus().toString().equals("CANCELLED")) {
+                if (onGo.getSender().getManagerUserName().toString().equals(this.account.getUsername().toString()) && onGo.getOrderRequestStatus().toString().equals("INPROGRESS")) {
                     String resName = ongoing.getSender().getName();
                     Long resWorkId = ((OrderWorkRequest) ongoing).getOrderWorkRequestId();
                     model.addElement(String.valueOf(resWorkId) + " - " + resName);
@@ -93,6 +97,11 @@ public class RestaurantOrderStatusJPanel extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         statusJLabel = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        receiptJList = new javax.swing.JList<>();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        totalPriceJLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -185,12 +194,24 @@ public class RestaurantOrderStatusJPanel extends javax.swing.JPanel {
         statusJLabel.setForeground(new java.awt.Color(67, 100, 100));
         statusJLabel.setText("Select a order!");
 
+        jScrollPane2.setViewportView(receiptJList);
+
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Menu:");
+
+        jLabel11.setText("Total:");
+
+        totalPriceJLabel.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        totalPriceJLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        totalPriceJLabel.setText("0");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(150, 150, 150)
+                .addGap(141, 141, 141)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE))
@@ -198,25 +219,31 @@ public class RestaurantOrderStatusJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(orderStatusJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(addJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(orderStatusJComboBox, 0, 240, Short.MAX_VALUE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(statusJLabel)
+                                .addComponent(customerNameJLabel)
+                                .addComponent(createdByJLabel)
+                                .addComponent(createdAtJLabel)
+                                .addComponent(orderMessageJLabel)
+                                .addComponent(addressJLabel)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(addJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(statusJLabel)
-                            .addComponent(customerNameJLabel)
-                            .addComponent(createdByJLabel)
-                            .addComponent(createdAtJLabel)
-                            .addComponent(orderMessageJLabel)
-                            .addComponent(addressJLabel))))
-                .addContainerGap(39, Short.MAX_VALUE))
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(totalPriceJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(45, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -227,7 +254,7 @@ public class RestaurantOrderStatusJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,14 +282,22 @@ public class RestaurantOrderStatusJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
                             .addComponent(statusJLabel))
-                        .addGap(45, 45, 45)
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(totalPriceJLabel))
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(orderStatusJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(addJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(141, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
+                .addGap(141, 141, 141))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -280,6 +315,7 @@ public class RestaurantOrderStatusJPanel extends javax.swing.JPanel {
             this.orderMessageJLabel.setText(this.selectedWorkRequest.getOrderMessage());
             this.addressJLabel.setText(this.selectedWorkRequest.getAddress());
             this.statusJLabel.setText(this.selectedWorkRequest.getOrderRequestStatus());
+            generateBill();
         }
     }
 
@@ -303,6 +339,27 @@ public class RestaurantOrderStatusJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this, errorMessage, "Order Assignment Details", ERROR_MESSAGE);
         return false;
     }
+
+    public void generateBill() {
+        Double net = 0.0;
+        DefaultListModel model = new DefaultListModel();
+        receiptJList.setModel(model);
+        for (HashMap.Entry<HashMap<String, Double>, Integer> order : selectedWorkRequest.getOrderedMenu().entrySet()) {
+            HashMap<String, Double> key = order.getKey();
+            Integer value = order.getValue();
+            String key1 = "";
+            Double value1 = 1.0;
+            for (HashMap.Entry<String, Double> order2 : key.entrySet()) {
+                key1 = order2.getKey();
+                value1 = order2.getValue();
+            }
+            net += value * value1;
+            model.addElement(key1 + " - " + value + "quantity * " + value1);
+        }
+        receiptJList.setModel(model);
+        this.totalPriceJLabel.setText(String.valueOf(net));
+    }
+
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
         Boolean isValid = this.validAssignment();
@@ -387,17 +444,22 @@ public class RestaurantOrderStatusJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel customerNameJLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel orderMessageJLabel;
     private javax.swing.JComboBox<String> orderStatusJComboBox;
     private javax.swing.JList<String> ordersJList;
+    private javax.swing.JList<String> receiptJList;
     private javax.swing.JLabel statusJLabel;
+    private javax.swing.JLabel totalPriceJLabel;
     // End of variables declaration//GEN-END:variables
 }
