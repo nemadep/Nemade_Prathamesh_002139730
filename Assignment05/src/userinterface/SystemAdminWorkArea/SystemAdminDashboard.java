@@ -10,6 +10,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.OrderWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import javax.swing.JSplitPane;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
  *
@@ -29,6 +30,31 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
         _getTotalOrders();
         _getTotalRestaurants();
         _getTotalCustomers();
+        _populateTree();
+    }
+
+    public void _populateTree() {
+        DefaultMutableTreeNode assets = new DefaultMutableTreeNode("assets");
+        DefaultMutableTreeNode restaurant = new DefaultMutableTreeNode("restaurants");
+        DefaultMutableTreeNode customers = new DefaultMutableTreeNode("customers");
+        DefaultMutableTreeNode deliverymen = new DefaultMutableTreeNode("deliverymen");
+        assets.add(restaurant);
+        assets.add(customers);
+        assets.add(deliverymen);
+        for (int i = 0; i < this.ecosystem.getRestaurantDirectory().getRestaurantList().size(); i++) {
+            DefaultMutableTreeNode temp = new DefaultMutableTreeNode(this.ecosystem.getRestaurantDirectory().getRestaurantList().get(i).getName());
+            restaurant.add(temp);
+        }
+        for (int i = 0; i < this.ecosystem.getUserAccountDirectory().getUserAccountList().size(); i++) {
+            if (this.ecosystem.getUserAccountDirectory().getUserAccountList().get(i).getRole().toString() == "Business.Role.DeliverManRole") {
+                DefaultMutableTreeNode temp = new DefaultMutableTreeNode(this.ecosystem.getUserAccountDirectory().getUserAccountList().get(i).getUsername());
+                deliverymen.add(temp);
+            } else if (this.ecosystem.getUserAccountDirectory().getUserAccountList().get(i).getRole().toString() == "Business.Role.CustomerRole") {
+                DefaultMutableTreeNode temp = new DefaultMutableTreeNode(this.ecosystem.getUserAccountDirectory().getUserAccountList().get(i).getUsername());
+                customers.add(temp);
+            }
+        }
+        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(assets));
     }
 
     public void _getTotalOrders() {
@@ -86,6 +112,8 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         totalCustomersJLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTree1 = new javax.swing.JTree();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
@@ -230,12 +258,43 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("JTree");
+        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("sysadmin");
+        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("sysadmin");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("restaurants");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Hotel Taj");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Hotel Seta");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("customer");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("customer111");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("customer222");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("customer333");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("deliverymen");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("delivery111");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("delivery222");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("delivery333");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane1.setViewportView(jTree1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -259,6 +318,9 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -272,6 +334,8 @@ public class SystemAdminDashboard extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTree jTree1;
     private javax.swing.JLabel totalCustomersJLabel;
     private javax.swing.JLabel totalDeliveryMenJLabel;
     private javax.swing.JLabel totalOrdersJLabel;
